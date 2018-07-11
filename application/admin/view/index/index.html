@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="__PUBLIC__/Admin/css/style.css" rel="stylesheet" type="text/css" />
+    <title>智慧医疗云平台</title>
+    <style type="text/css">
+    .login_btn {
+        width: 430px;
+        height: 55px;
+        text-align: center;
+        display: block;
+        line-height: 55px;
+        background-color: #3276ff;
+        color: #fff;
+        font-size: 18px;
+        margin-top: 35px;
+    }
+    </style>
+</head>
+<script type="text/javascript">
+if (window != top)
+    top.location.href = location.href;
+</script>
+
+<body>
+    <form action='{:url('login')}' name='from' method="POST" enctype="multipart/form-data">
+        <div class="loginbody">
+            <div class=""></div>
+            <div class="mian_cent">
+                <div class="login_warp">
+                    <h3>用户登录</h3>
+                    <span><input type="text" name='username' class="text" placeholder="用户名" data-placeholder="常用邮箱 / 网易邮箱" /></span>
+                    <span><input type="password" name='password' class="text" placeholder="密码"/></span>
+                    <span><input type="text" class="text" name='code' placeholder="验证码"/><b><img  id='code' width="114" height="46" src="/index.php/index/getCode" /></b></span>
+                    <div class="login_btn">
+                        <button type="submit" style="cursor: pointer;" class="login_btn">立即登录</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <img src="__PUBLIC__/Admin/images/bg.jpg" style="position:absolute; top:0; left:0; bottom:0;" height="100%" width="100%">
+</body>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/common.js"></script>
+<script src="__PUBLIC__/Admin/js/jquery-1.8.3.min.js"></script>
+<script src="__PUBLIC__/Admin/js/jquery.custom-select.js"></script>
+<script type="text/javascript">
+$(function() {
+    //判断浏览器是否支持placeholder属性
+    supportPlaceholder = 'placeholder' in document.createElement('input'),
+        placeholder = function(input) {
+            var text = input.attr('placeholder'),
+                defaultValue = input.defaultValue;
+            if (!defaultValue) {
+                input.val(text).addClass("phcolor");
+            }
+
+            input.focus(function() {
+                if (input.val() == text) {
+                    $(this).val("");
+                }
+            });
+
+            input.blur(function() {
+                if (input.val() == "") {
+                    $(this).val(text).addClass("phcolor");
+                }
+            });
+
+            //输入的字符不为灰色
+            input.keydown(function() {
+                $(this).removeClass("phcolor");
+            });
+        };
+    //当浏览器不支持placeholder属性时，调用placeholder函数
+    if (!supportPlaceholder) {
+        $('[placeholder]').each(function() {
+            placeholder($(this));
+        });
+    }
+});
+$(function() {
+    $('#code').bind('click', function() {
+        this.src = "/index.php/index/getCode/_=" + Math.random(0, 1000);
+    });
+    $('#btn').bind('click', function() {
+        $('form').submit();
+    });
+});
+// var height = $(window).height();
+// $("#container").height(height);
+// $("#bd").css("padding-top",height/2 - $("#bd").height()/2);
+
+// $(window).resize(function(){
+//  var height = $(window).height();
+//  $("#bd").css("padding-top",$(window).height()/2 - $("#bd").height()/2);
+//  $("#container").height(height);
+
+// });
+</script>
+
+</html>

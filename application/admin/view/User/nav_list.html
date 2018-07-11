@@ -1,0 +1,20 @@
+{if condition="in_array('User/index', session('auth'))"}
+    <li class="menuDiv active" role="presentation">
+        <a class="menuTitle" href="{:Url('User/index')}">患者列表</a>
+    </li>
+{/if}
+{if condition="in_array('User/user_count', session('auth'))"}
+    <li class="menuDiv" role="presentation">
+        <a class="menuTitle" href="{:Url('User/user_count')}">用户统计</a>
+    </li>
+{/if}
+{if condition="in_array('User/feed_back', session('auth'))"}
+    <li class="menuDiv" role="presentation">
+        <a class="menuTitle" href="{:Url('User/feed_back')}">用户反馈</a>
+    </li>
+{/if}
+{if condition="in_array('User/count_sign', session('auth'))"}
+    <li class="menuDiv" role="presentation">
+        <a class="menuTitle" href="{:Url('User/count_sign')}">用户点击报名数</a>
+    </li>
+{/if}

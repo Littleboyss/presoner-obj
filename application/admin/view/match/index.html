@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>赛事管理</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/BeatPicker.min.css" /> -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/select2.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/select2_lh.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/htmlCss.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/windowCss.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/libs/layer/css/layui.css" />
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/layer/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/laydate/laydate.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/nav.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/public.js"></script>
+    <style type="text/css">
+        .current {
+        padding: 2px 7px;
+        display: inline-block;
+        float: left;
+        color: #2da995;
+    }
+    .progress{
+              height: 25px;
+              background: #262626;
+              padding: 5px;
+              overflow: visible;
+              border-radius: 20px;
+              border-top: 1px solid #000;
+              border-bottom: 1px solid #7992a8;
+              margin-top: 50px;
+          }
+          .progress .progress-bar{
+              border-radius: 20px;
+              position: relative;
+              animation: animate-positive 2s;
+          }
+          .progress .progress-value{
+              display: block;
+              padding: 3px 7px;
+              font-size: 13px;
+              color: #fff;
+              border-radius: 4px;
+              background: #191919;
+              border: 1px solid #000;
+              position: absolute;
+              top: -40px;
+              right: -10px;
+          }
+          .progress .progress-value:after{
+              content: "";
+              border-top: 10px solid #191919;
+              border-left: 10px solid transparent;
+              border-right: 10px solid transparent;
+              position: absolute;
+              bottom: -6px;
+              left: 26%;
+          }
+          .progress-bar.active{
+              animation: reverse progress-bar-stripes 0.40s linear infinite, animate-positive 2s;
+          }
+          @-webkit-keyframes animate-positive{
+              0% { width: 0; }
+          }
+          @keyframes animate-positive{
+              0% { width: 0; }
+          }
+    </style>
+</head>
+
+<body>
+    <ul class="leftMenu nav nav-tabs" role="tablist">
+        <include file="nav_list" />
+    </ul>
+    <div class="main tab-content">
+        <div role="tabpanel" class="tab-pane fade in active">
+            <!------顶部栏目标题-------->
+            <div class="topTit flexed2">
+                <span>赛事列表</span>
+            </div>
+            <div class="secondTxt mgb30">
+                <form class="form-inline" action="{:U('Match/index')}" method="post">
+                    <div class="form-group select120 mar_r12">
+                        <label for="species">玩法：</label>
+                        <select name="game_type" class="task10-main-box-row2-select form-control select2" id="species">
+                            <option value="0">所有</option>
+                            <option value="1" <if condition="$map['game_type'] eq 1">selected</if>>人头赛</option>
+                            <option value="2" <if condition="$map['game_type'] eq 2">selected</if>>吃鸡赛</option>
+                            <option value="3" <if condition="$map['game_type'] eq 3">selected</if>>积分赛</option>
+                        </select>
+                    </div>
+                    <div class="form-group select120 mar_r12">
+                        <label for="model">模式：</label>
+                        <select name="play_type" class="task10-main-box-row2-select form-control select2" id="model">
+                            <option value="0">所有</option>
+                            <option value="1" <if condition="$map['play_type'] eq 1">selected</if>>单排</option>
+                            <option value="2" <if condition="$map['play_type'] eq 2">selected</if>>双排</option>
+                            <option value="3" <if condition="$map['play_type'] eq 3">selected</if>>多排</option>
+                        </select>
+                    </div>
+                    <div class="form-group select120 mar_r12">
+                        <label for="state">状态：</label>
+                        <select name="status" class="task10-main-box-row2-select form-control select2" id="state">
+                            <option value="100" <if condition="$map['status'] eq 'all'">selected</if>>所有</option>
+                            <option value="0" <if condition="$map['status'] eq 0">selected</if>>未上架</option>
+                            <option value="1" <if condition="$map['status'] eq 1">selected</if>>待报名</option>
+                            <option value="3" <if condition="$map['status'] eq 3">selected</if>>比赛中</option>
+                            <option value="4" <if condition="$map['status'] eq 4">selected</if>>待结算</option>
+                            <option value="5" <if condition="$map['status'] eq 5">selected</if>>已结算</option>
+                            <option value="6" <if condition="$map['status'] eq 6">selected</if>>终止</option>
+                        </select>
+                    </div>
+                    <div class="form-group select120 mar_r12 sign">
+                        <label for="signUp">报名费：</label>
+                        <input type="number" class="form-control" value="{$map['price_s']}" name="price_s" id="exampleInputEmail2" placeholder=""> -
+                        <input type="number" class="form-control" value="{$map['price_e']}" type="text" width="10" name="price_e" id="exampleInputEmail2" placeholder="">
+                    </div>
+                    <div class="form-group  select120 mar_r12 eventid">
+                        <label for="id">比赛ID：</label>
+                        <input type="text" class="form-control" id="id" name="id" placeholder="">
+                    </div>
+                    <br />
+                    <div class="form-group dateBtn select120 mar_r12 tiemCtrl">
+                        <label for="time">时间：</label>
+                        <input type="text" data-beatpicker="true" name="starttime" id="test1" value="{$map['starttime']}" class="form-control text input160" placeholder="">&nbsp;-
+                        <span><i class=""></i></span>
+                        <input type="text" name="endtime" value="{$map['endtime']}" id="test2" data-beatpicker="true" class="form-control text input160" placeholder="">
+                    </div>
+                    <div class="form-group  dateBtn select120 mar_r12 tiemCtrl">
+                    <button type="submit" class="btn  sLv120Btn  mar_r12"><i class=" chaXunShaiXuan"></i>查询</button>
+                </div>
+                </form>
+            </div>
+            <!--内容-->
+            <div class="Inner">
+                <div class="box boxShow">
+                    <!--表格列表-->
+                    <table class="csTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>标题</th>
+                                <th>玩法</th>
+                                <th>入场券</th>
+                                <th>基础奖金</th>
+                                <th>追加奖金</th>
+                                <th>状态</th>
+                                <th>结算时间</th>
+                                <th>上架</th>
+                                <th>置顶</th>
+                                <th>自动结算</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <foreach name="data" item="vo">
+                                <tr>
+                                    <td>{$vo.id}</td>
+                                    <td><a href="{:U('UserGuess/index',array('match_id'=>$vo['id']))}">{$vo.name}</a></td>
+                                    <td>
+                                        <?php echo c('game_type')[$vo['game_type']];?>
+                                    </td>
+                                    <td>{$vo['cost']/100}&nbsp;张</td>
+                                    <td>{$vo['base_price']/100}&nbsp;元</td>
+                                    <td>{$vo.add_price}%</td>
+                                    <td>
+                                        <?php echo c('match_status')[$vo['status']];?>
+                                    </td>
+                                    <td hidden=""><a href="{:U('Match/balance',array('match_id'=>$vo['id']))}"></a></td>
+                                    <if condition="$vo['auto_balance'] eq 1 ||  $vo['status'] egt 5">
+                                        <td align="center" id="balance{$vo.id}">{$vo.balance_time|date="m-d H:i",###}</td>
+                                    <else />
+                                        <td align="center"><a class="layui-btn balance" data="{$vo['id']}" href="javascript:;">结算</a></td>
+                                    </if>
+                                    
+                                    <td align="center">
+                                        <if condition="$vo['status'] ELT 1">
+                                        <a href="javascript:;" <if condition="$vo['status'] ELT 1"> dataid="{$vo.id}" status="{$vo.status}" onclick="set_sell(this)" dataname="status"<else/> class="alert" </if>>
+                                            <if condition="$vo['status'] == 0"><img src="/images/no.gif" title="点击开启" />
+                                                <else/><img src="/images/yes.gif" title="点击关闭" /></a>
+                                        </if>
+                                    </if>
+                                    </td>
+                                    <td align="center">
+                                        <if condition="$vo['status'] elt 2">
+                                        <a href="javascript:;" dataid="{$vo.id}" status="{$vo.sort}" onclick="set_sell(this)" dataname="sort">
+                                            <if condition="$vo['sort'] neq 1"><img src="/images/no.gif" title="点击开启" />
+                                                <else/><img src="/images/yes.gif" title="点击关闭" /></a>
+                                        </if>
+                                    </if>
+                                    </td>
+                                    <td align="center">
+                                        <if condition="$vo['status'] elt 4">
+                                        <a href="javascript:;" dataid="{$vo.id}" status="{$vo.auto_balance}" onclick="is_balance(this)" dataname="auto_balance">
+                                            <if condition="$vo['auto_balance'] neq 1"><img src="/images/no.gif" title="点击开启" />
+                                                <else/><img src="/images/yes.gif" title="点击关闭" /></a>
+                                        </if>
+                                        </if>
+                                    </td>
+                                   <!--  <td align="center">
+                                        <if condition="$vo['status'] egt 4">已结束
+                                            <else/><a href="javascript:;" id="shut_down">点击终止</a>
+                                        </if>
+                                    </td> -->
+                                    <td align="center">
+                                        <div class="flexed0">
+                                            <a href="{:U('edit',array('id'=>$vo['id']))}" class="btn2 bianJiBtn">编辑</a>
+                                            <if condition="in_array('Match/getlist', session('auth'))">
+                                            <if condition="$vo['cost'] != 0 && $vo['status'] == 6">
+                                                <i class="border_h"></i>
+                                                <a href="javascript:;" class="return_money btn2 paiSongBtn" data="{$vo.id}">退款</a>
+                                            </if>
+                                           </if> 
+                                            <if condition="$vo['status'] elt 4">
+                                                <i class="border_h"></i>
+                                                <a href="javascript:;" class="shut_down  btn2 stopBtn" data="{$vo.id}">终止</a>
+                                            </if>
+                                        </if>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </foreach>
+                        </tbody>
+                    </table>
+                    <!--右对齐-->
+                    <div class="nav_a clear_b">
+                        <span class="mar_l15"><em class="cor_b"><i class="cor_pad"></i></em></span>
+                        <div class="nav_c nav_right">
+                            {$show}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<div class="per">
+    <div class="progress" >
+        <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 0%;">
+            <div class="progress-value"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+$('.alert').click(function(){
+    layer.alert('报名已开始,如需关闭该赛事只能终止');
+})
+$('body').on('click','.balance',function(){
+    var match_id = $(this).attr('data');
+    $.ajax({
+        dataType: "json",
+        url: "{:U('balance')}",
+        data:{ 
+            match_id : match_id
+        },
+        type: 'post',
+        success: function(json) {
+            if (json.status == 0) {
+                layer.msg(json.info,
+                    {icon: 1,time: 2000 }
+                );
+            }else{
+                layer.msg(json.info,
+                    {icon: 2,time: 2000 }
+                );
+            }
+        }
+    })
+})
+
+laydate.render({
+  elem: '#test1',
+  type: 'datetime',
+  format:'yyyy-MM-dd HH:mm:ss',
+});
+laydate.render({
+  elem: '#test2',
+  type: 'datetime',
+  format:'yyyy-MM-dd HH:mm:ss',
+});
+function set_sell(obj){
+    if ($(obj).attr('status') == 1) {
+        var setStatus = 0;
+    } else {
+        var setStatus = 1;
+    }
+
+    var dataName = $(obj).attr('dataname');
+    if (dataName == 'status') {
+        var todo = 1;
+    }else if(dataName == 'sort'){
+        var todo = 2;
+    }
+    var id = $(obj).attr('dataid');
+    $.ajax({
+        dataType: "json",
+        url: "{:U('status')}",
+        data:{ 
+            id : id,
+            todo : todo,
+            status : setStatus,
+        },
+        type: 'post',
+        success: function(json) {
+            if (json && json == 1) {
+                if (setStatus == 1) {
+                    $(obj).html('<img src="/images/yes.gif" title="点击关闭" />');
+                    $(obj).attr('status', 1);
+                } else {
+                    $(obj).html('<img src="/images/no.gif" title="点击开启" />');
+                    $(obj).attr('status', 0);
+                }
+            }
+        }
+    })
+}
+function is_balance(obj){
+    if ($(obj).attr('status') == 1) {
+        var setStatus = 0;
+    }else{
+        var setStatus = 1;
+    }
+    var id = $(obj).attr('dataid');
+    $.ajax({
+        dataType: "json",
+        url: "{:U('status')}",
+        data:{ 
+            id : id,
+            todo : 3,
+            status : setStatus,
+        },
+        type: 'post',
+        success: function(json) {
+            if (json && json == 1) {
+                if (setStatus == 1) {
+                    $(obj).html('<img src="/images/yes.gif" title="点击关闭" />');
+                    $(obj).attr('status', 1);
+                } else {
+                    $("#balance"+id).html('<a class="layui-btn " src="javascript:hander('+id+');" >结算</a>');
+                    $(obj).html('<img src="/images/no.gif" title="点击开启" />');
+                    $(obj).attr('status', 0);
+                }
+            }
+        }
+    })
+}
+
+$(".shut_down").click(function(){
+    var match_id = $(this).attr('data');
+    var td = $(this);
+    var r=layer.confirm("比赛终结无法取消是否确定?", {
+      btn: ['确认','取消'] //按钮
+    }, function(){
+        $.ajax({
+            dataType: "json",
+            url: "{:U('shut_down')}",
+            data:{ 
+                match_id : match_id,
+            },
+            type: 'post',
+            success: function(json) {
+                if (json['status'] ==0 ) {
+                    td.html('已终结');
+                    layer.close(r)
+                }else{
+                    layer.close(r)
+                    layer.msg(json.info,
+                        {icon: 2,time: 2000 }
+                    );  
+                    layer.close()
+                }
+            }
+        })
+    }, function(){
+     
+    })
+})
+$(".progress").hide()
+<if condition="in_array('Match/getlist', session('auth'))">
+$(".return_money").click(function(){
+    var match_id = $(this).attr('data');
+    var td = $(this);
+    var r=layer.confirm("确认退款?", {
+      btn: ['确认','取消'] //按钮
+    }, function(){
+        $.ajax({
+            dataType: "json",
+            url: "{:U('getlist')}",
+            data:{ 
+                match_id : match_id,
+            },
+            type: 'post',
+            success: function(json) {
+                console.log(json);
+                if (json['status'] ==0 ) {
+                    layer.close(r)
+                    $(".progress-value").hide()
+                    var per = (0/json['extra_data'])*100;
+                    $(".progress-bar").width(per+'%')
+                    var open = layer.open({
+                      type: 1,
+                      fixed :true,
+                      scrollbar:false,
+                      title: '退款进度',
+                      zIndex: layer.zIndex,
+                      area: ['350px', '180px'],
+                      shadeClose:false,
+                      resize:false,
+                      content: $('.progress') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    });
+                    var data = $.parseJSON(json['data'])
+                    var success = 0,error =0;
+                    for (var i = 0; i < json['extra_data']+1; i++) {
+                       
+                         $.ajax({
+                            dataType: "json",
+                            url: "http://pubgdz-api.te6.com/index.php?m=user&c=Payurl&a=refund",
+                            data:{ 
+                                charge_id : data[i]['charge_id'],
+                            },
+                            async: false,
+                            type: 'post',
+                            success: function(json) {
+                                console.log(json);
+                                if (json['status'] ==0 ) {
+                                    $(".progress-value").html(i+1+'/'+json['extra_data'])
+                                    var per = (i+1/json['extra_data'])*100;
+                                    $(".progress-bar").width(per+'%')
+                                    $(".progress-value").show()
+                                   success++;
+                                }else{
+                                    error++;
+                                }
+                            }
+                        })
+                    }
+                    layer.close(open)
+                    layer.msg('退款成功'+success+',退款失败'+error,
+                        {icon: 2,time: 3000 }
+                    );  
+                    layer.close()
+                }else{
+                    layer.close(r)
+                    layer.msg(json.info,
+                        {icon: 2,time: 2000 }
+                    );  
+                    layer.close()
+                }
+            }
+        })
+    }, function(){
+     
+    })
+})  
+</if>
+</script>
+</body>
+
+</html>

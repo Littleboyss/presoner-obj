@@ -1,0 +1,89 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/***
+ * uimaker
+ * http://www.uimaker.com
+ * e-mail: admin@uimaker.com
+ */
+*{font-size:9pt;border:0;margin:0;padding:0;}
+body{font-family:'微软雅黑'; margin:0 auto;min-width:980px;}
+ul{display:block;margin:0;padding:0;list-style:none;}
+li{display:block;margin:0;padding:0;list-style: none;}
+img{border:0;}
+dl,dt,dd,span{margin:0;padding:0;display:block;}
+a,a:focus{text-decoration:none; color:#5c6780;outline:none;blr:expression(this.onFocus=this.blur());}
+a:hover{color:#EB5409;text-decoration:none;}
+table{border-collapse:collapse;border-spacing: 0;}
+cite{font-style:normal;}
+h2{font-weight:normal;}
+input,select{font-family:'微软雅黑';}
+em, th, i ,b{font-style:normal; font-weight:normal;}
+
+input:-ms-input-placeholder{color: #7d93be;opacity:1;}
+input::-webkit-input-placeholder{color: #7d93be;opacity:1;}
+/*login*/
+.logo{ background:url(../images/menulogo.png) no-repeat; width:235px; height:31px; position:absolute; z-index:9; top:40px ; left:50px;}
+.mian_cent{ position:absolute; z-index:10; left:50%; margin-left:-215px; top:50%; margin-top:-300px; width:430px; height:639px;}
+.login_warp h3{ font-size:30px; color:#fdfdff; font-weight:100; width:430px; margin-bottom:35px;}
+.login_warp input.text{ width:400px; height:55px; background:#2e3646; display:block; padding:0 15px; font-size:18px; line-height:55px; color:#fff}
+.login_warp input.text1{ width:210px; height:55px; background-color:#fff; float:left; margin-right:15px; padding:0 10px; font-size:18px; line-height:55px; color:#7d93be}
+.login_warp b{width:114px; height:46px; position:absolute; top:5px; right:5px;}
+.login_warp b a{ color:#3276ff; font-size:14px; line-height:46px; text-align:right; display:block; padding-right:20px;}
+.login_warp span{ overflow:hidden; margin-bottom:15px; width:430px; position:relative;}
+.login_btn a{ width:430px; height:55px; text-align:center; display:block; line-height:55px; background-color:#3276ff;color:#fff; font-size:18px; margin-top:35px;}
+.login_Newbtn { margin-top:25px; width:360px;}
+.login_Newbtn a{ width:430px; height:55px; text-align:center; display:block; line-height:55px; background-color:#47a62a;  color:#fff; font-size:18px;}
+
+.mian_cent1 h3{ width:820px;margin-bottom:35px;}
+.mian_cent1 h3 a{ color:#f09029; font-size:16px; display:block; background:url(../images/cst_icon.png) 0 6px no-repeat; padding-left:18px; margin:0 auto 15px auto; width:108px;}
+.mian_cent1 h3 em{ display:block;font-size:24px; color:#fdfdff; font-weight:100; text-align:center; }
+.mian_cent1{ position:absolute; z-index:10; left:50%; margin-left:-410px; top:50%; margin-top:-280px;}
+.login_warp_txt input.text3{ width:152px; height:46px; background-color:#fff;border-radius:5px; float:left; margin-right:15px; padding:0 10px; font-size:14px; line-height:46px;}
+.login_warp_txt input.text4{ width:152px; height:46px; background-color:#fff;border-radius:5px; float:left; padding:0 10px; font-size:14px; line-height:46px;}
+.login_warp_txt{ float: left; margin:0 25px;}
+.login_warp_txt h4{ font-size:18px; color:#fff; margin-bottom:15px; font-weight:100;}
+.login_warp_txt span a{width:114px; height:46px; display:block; background-color:#e0dccc; border-radius:5px; text-align:center; line-height:46px; float:right; color:#333; font-size:14px;}
+.examp_110{ margin-bottom:20px; float:left}
+.login_select{ overflow:hidden;}
+.examp_10{ margin:0 15px;}
+
+.mian_cent2 h2{ width:564px;margin-bottom:35px; font-size:24px; color:#fdfdff; text-align:center}
+
+.login_list_jd{ width:320px; margin:0 auto;}
+.login_list_jd ul{ overflow:hidden}
+.login_list_jd ul li{ height:40px; display:block; float:left; line-height:40px; color:#fffefe; font-size:18px; text-align:center}
+.login_list_jd ul li.current{ color:#9abcff;}
+.login_list_jd ul li i{ display:inline-block; background:url(../images/next.png) no-repeat; width:5px; height:8px; vertical-align:middle; margin:0 20px}
+
+.mian_cent2{ position:absolute; z-index:10; left:50%; margin-left:-282px; top:50%; margin-top:-300px; width:564px; height:600px}
+.login_conme{width:430px; height:639px; margin:0 auto;}
+.login_title_list{ margin-bottom:35px;}
+.login_title_list em{ font-size:18px; color:#fefefe; display:block;line-height:38px; height:38px; text-align:center}
+.login_title_list p{ line-height:38px; height:38px; font-size:18px; color:#fefefe; text-align:center;}
+.min_top{ margin-top:70px;}
+.login_title_list{ margin-top:50px;}
+
+.login_txt{ text-align:right; margin-top:20px;}
+.login_txt a{ color:#3276ff; font-size:16px;}
+.fh_btn a{ background:url(../images/fh_icon.png) no-repeat; width:40px; height:40px; display:block; margin-bottom:30px;}
+.login_10 span{ margin-bottom:10px;}
+.map_btn{ position:absolute; left:20px; top:17px;}
+.map_btn a{ background:url(../images/map_icon.png) no-repeat; width:13px; height:21px; display:block;}
+.login_warp input.txt_rt{ width:370px; height:55px; background:#2e3646; display:block; padding:0 15px 0 45px; font-size:18px; line-height:55px; color:#fff}
+
+.map_man_tone{ width:1090px; height:550px; top:50%; left:50%; margin:-300px 0 0 -545px; position:absolute; border:4px solid #fff; overflow:hidden;
+  -webkit-box-shadow:0 0 0.8rem rgba(0, 0, 0, .5);  -moz-box-shadow:0 0 0.8rem rgba(0, 0, 0, .5);  box-shadow:0 0 0.8rem rgba(0, 0, 0, .5); }
+.map_cont_of{ width:100%; height:100%; position:relative;}
+.map_top_min{position:fixed;visibility:hidden;width:100%;height:100%;opacity:0;z-index: 9999000; width:900px;}
+.is-visible{visibility:visible;opacity:1; width:100%; height:100%;}
+.map_close_btn{ width:1090px; overflow:hidden; height:33px; position:absolute; top:50%; left:50%; margin:-350px 0 0 -545px;}
+a.btn_close{ background:url(../images/colse_btn.png) no-repeat; height:33px; width:33px; float:right; background-size:100% 100%}
+
+.map_btn_off a{ width:200px; height:55px; background-color:#33a519; text-align:center; line-height:55px; color:#fefefe; display:block;position:absolute; top:50%; left:50%; margin:280px 0 0 -100px; font-size:18px;}
+
+/*6.07新加*/
+.min_cont_xt{ width:425px; height:220px; margin:0 auto; background-color:#2e3646;}
+.zc_wc{ text-align:center; color:#fff; font-size:16px;}
+.min_cont_xt span{ font-size:16px; text-align:center; color:#7d93be; padding-top:40px;}
+.min_cont_xt p{ font-size:22px; text-align:center;color:#7d93be; padding-top:20px;}
+.min_cont_xt p em{ color:#3276ff; font-size:22px;}

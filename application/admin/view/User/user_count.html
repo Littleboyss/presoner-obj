@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>首页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="__ADMIN__/css/swiper.min.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/BeatPicker.min.css" /> -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/select2.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/select2_lh.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/htmlCss.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/windowCss.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/libs/layer/css/layui.css" />
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/layer/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/laydate/laydate.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/layer/layui.all.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/nav.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/public.js"></script>
+</head>
+
+<body >
+    <ul class="leftMenu nav nav-tabs" role="tablist">
+        <include file="nav_list" />
+    </ul>
+    <div class="main_home tab-content">
+        <div role="tabpanel" class="tab-pane fade in active">
+            <!------顶部栏目标题-------->
+            <div class="topTit flexed2">
+                <span>用户注册统计</span>
+            </div>
+            <div class="secondTxt mgb30">
+                <form class="form-inline">
+                    <div class="form-group select120 mar_r12">
+                        <label for="species">来源：</label>
+                        <select name="app" class="task10-main-box-row2-select form-control select2" id="species">
+                            <option value="0">所有</option>
+                            <option value="1">对战平台</option>
+                            <option value="2">其他</option>
+                        </select>
+                    </div>
+                    <div class="form-group dateBtn select120 mar_r12 ">
+                        <label for="time">时间：</label>
+                        <select name="time" class="task10-main-box-row2-select form-control select2" id="species">
+                            <option value="0">所有</option>
+                            <option value="1">一月</option>
+                            <option value="2">二月</option>
+                            <option value="3">三月</option>
+                            <option value="4">四月</option>
+                            <option value="5">五月</option>
+                            <option value="6">六月</option>
+                            <option value="7">七月</option>
+                            <option value="8">八月</option>
+                            <option value="9">九月</option>
+                            <option value="10">十月</option>
+                            <option value="11">十一月</option>
+                            <option value="12">十二月</option>
+                        </select>
+                        <!-- <input type="text" data-beatpicker="true" name="starttime" id="test1" value="{$map['starttime']}" class="form-control text input160" placeholder="">&nbsp;-
+                        <span><i class=""></i></span>
+                        <input type="text" name="endtime" value="{$map['endtime']}" id="test2" data-beatpicker="true" class="form-control text input160" placeholder=""> -->
+                    </div>
+                    <div class="form-group  dateBtn select120 mar_r12 ">
+                        <a type="submit" class="btn  sLv120Btn  mar_r12"><i class=" chaXunShaiXuan"></i>查询</a>
+                    </div>
+                </form>
+            </div>
+            <!--内容-->
+        </div>
+            <div class="TONGJI">
+                
+            </div>
+        <div class="tongJiDiv" style="padding:40px 40px 0px 40px; ">
+            <div  class="tongJiLine">
+                        <p id="title">{$time}月注册人数:{$sum}</p>
+                        <div id="line"></div>
+                    </div>
+            <!-- <div class="tongJiZhu" id="match" hidden="">
+                <p></p>
+                <div id="line"></div>
+            </div> -->
+        </div>
+    </div>
+    <script type="text/javascript" src="__ADMIN__/libs/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="__ADMIN__/libs/js/swiper.jquery.min.js"></script>
+    <script type="text/javascript" src="__ADMIN__/libs/js/echarts.min.js"></script>
+    <script type="text/javascript" src="__ADMIN__/libs/js/nav.js"></script>
+    <script>
+laydate.render({
+  elem: '#test1',
+  type: 'datetime',
+  format:'yyyy-MM-dd',
+});
+laydate.render({
+  elem: '#test2',
+  type: 'datetime',
+  format:'yyyy-MM-dd',
+});
+$('.sLv120Btn').click(function(){
+    var   app = $("select[name='app']").val()
+    var   time = $("select[name='time']").val()
+    $.ajax({
+        dataType: "json",
+        url: "{:U('user/user_count')}",
+        data:{ 
+            app : app,
+            time : time
+        },
+        type: 'post',
+        success: function(json) {
+            if (json.status == 0) {
+                var sum = 0;
+                $.each(json.data,function(i,item){
+                    sum += parseInt(item);
+                })
+                if (time == 0) {
+                    $('#title').html('总注册人数:'+sum);
+                }else{
+                    $('#title').html(time+'月总注册人数:'+sum);
+                }
+                show_chart(json.extra_data,json.data)
+            }else{
+                layer.msg(json.info,
+                    {icon: 2,time: 3000 }
+                );  
+            }
+        }
+    })
+    return;
+})
+ // 基于准备好的dom，初始化echarts实例
+        var myChart1 = echarts.init(document.getElementById('line'));
+        // 指定图表的配置项和数据
+        var date = JSON.parse('{$date}');
+        var data = JSON.parse('{$sign}');
+        
+        show_chart(date,data)
+        function show_chart(date,data){
+            var option1 = {
+                title: {
+                    text: "人数",
+                    x: "left",
+                    textStyle:{
+                        "fontSize": 12,
+                        "color": "#666",
+                        fontWeight: 'normal'
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    backgroundColor:'rgba(255,255,255,1.0)',
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    textStyle: {
+                        color: '#666',
+                        fontWeight: 'normal',
+                        fontSize: 12
+                    },
+                    padding:20
+                },
+                legend: {
+                    itemWidth: 23,
+                    itemHeight: 9,
+                    data:[
+                        {
+                            name: "人数",
+                            textStyle: {
+                                "fontSize": 12,
+                                "color": "#404040",
+                                fontWeight: 'normal'
+                            }
+                        },
+                        {
+                            name: "绑定人数",
+                            textStyle: {
+                                "fontSize": 12,
+                                "color": "#404040",
+                                fontWeight: 'normal'
+                            }
+                        }
+                    ]
+                },
+                grid: {
+                    left: '8',
+                    right: '18',
+                    bottom: '20',
+                    top:'31',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: date
+                },
+                yAxis : {
+                    splitLine: {
+                        show: false
+                    },
+                    type : 'value'
+                },
+                series: [
+                    {
+                        name:'人数',
+                        type:'line',
+                        lineStyle:{
+                            color:'#cbcd4d'
+                        },
+                        itemStyle : {
+                            normal: {
+                                color: '#cbcd4d'
+                            }
+                        },
+                        symbolSize:6,
+                        data:data.sign
+                    },
+                    {
+                        name:'绑定人数',
+                        type:'line',
+                        lineStyle:{
+                            color:'#68add0'
+                        },
+                        itemStyle : {
+                            normal: {
+                                color: '#68add0'
+                            }
+                        },
+                        symbolSize:6,
+                        data:data.steam
+                    }
+                ]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart1.setOption(option1);
+            window.addEventListener("resize",myChart1.resize);
+        }
+   
+    </script>
+</body>
+
+</html>

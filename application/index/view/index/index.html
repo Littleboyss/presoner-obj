@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>特牛对战平台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="/Public/front/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public/front/js/layer/skin/mySkin/mySkinStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public/front/css/te6_style.css"/>
+
+    <script type="text/javascript" src="/Public/front/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/Public/front/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/Public/front/js/te6_script.js"></script>
+    <script type="text/javascript" src="/Public/front/js/Api_20170206.js"></script>
+    <script type="text/javascript" src="/Public/front/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="https://uc.te6.com/ucpass-pop-loader-1.0.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="https://s4-c.te6.com/a/FjxPtGWJfR.js"></script>
+    <script src="https://s3-c.te6.com/a/EGNJap42G5.js"></script>
+    <script src="https://s4-c.te6.com/a/mQXKCaDrp3.js"></script>
+    <![endif]-->
+</head>
+<body style="position: fixed;top:-1px;width: 100%;height: 100.1%;">
+    <!--登录-->
+    <div id="login-div" style="display:none;">
+        <div class="te6_boxShadow te6_loading">
+            <p class="te6_ldTitle">账号登录</p>
+            <div class="algCenter te6_mb30"><input type="text" class="te6_txt te6_txt280 login-input" placeholder="用户名"     id="username"/></div>
+            <div class="algCenter te6_mb18"><input type="password" class="te6_txt te6_txt280 login-input" placeholder="密码"   id="password"/></div>
+            <div class="te6_ldElse">
+                <a class="f_l" href="http://www.te6.com/index.php/user/resetpassword" target="_blank">忘记密码</a>
+                <a class="f_r" href="http://www.te6.com/index.php/pub/reg" target="_blank">免费注册</a>
+            </div>
+            <a class="te6_btn te6_loadBtn te6_btnYl te6_btnFm" onclick="logincheck();">登录</a>
+        </div>
+    </div>
+
+    <!--主体-->
+    <div class="te6_body te6_boxShadow te6_divCenter ">
+        <div class="te6_head">
+            <div class="te6_logo">
+                <!-- <img src="/Public/front/images/te6Logo.png" class="te6_divLeft" alt="logo"/> -->
+            </div>
+
+            <ul class="te6_hNav">
+                <li class="te6_hNavItem action" id="point-match" data-type="3"><a>积分赛</a></li>
+                <li class="te6_hNavItem " id="kill-match" data-type="1"><a>淘汰赛</a></li>
+                <li class="te6_hNavItem" id="win-match" data-type="2"><a>吃鸡赛</a></li>
+
+            </ul>
+
+            <div class="te6_hRight">
+                <!--已登录-->
+                <div class="te6_divRight te6_onLine" style="<?php echo session('member') ? '' : 'display:none;'; ?>">
+                    <span id="user-nickname" style="cursor:default;"><?php echo session('member.nickname'); ?></span>
+                    <div class="te6_hImg">
+                        <img src="<?php echo session('member.face'); ?>" alt="<?php echo session('member.nickname'); ?>" id="user-face"/>
+                    </div>
+                    <div class="te6_list">
+                        <ul>
+                            <li class="te6_GrZx" id="user-center-btn">个人中心</li>
+                            <li class="te6_zx" id="logout-btn">注销</li>
+                            <li class="te6_fk" id="feedback-btn">反馈</li>
+                        </ul>
+                    </div>
+                    <input type="hidden" id="user-name" value="<?php echo session('member.username'); ?>"/>
+                </div>
+
+                <!--未登录-->
+                <div class="te6_divRight te6_upLine" style="<?php echo session('member') ? 'display:none;' : ''; ?>">
+                    <span>登录</span>
+                    <div class="te6_hImg">
+                        <img src="/Public/front/images/defuPto.png" alt="登录"/>
+                    </div>
+                </div>
+            </div>
+
+            <!--窗口操作-->
+            <div class="te6_cDiv">
+                <a class="te6_icon te6_msg te6_mr12" id="message-list-btn"></a>
+                <div class="te6_msgDiv">
+                    <div class="te6_msgList">
+                        <ul id="message-list">
+                        </ul>
+                        <div class="te6_msgPag">
+                            <a class="te6_mP" id="message-last">上一页</a>
+                            <a class="te6_mP" id="message-next">下一页</a>
+                        </div>
+                    </div>
+                </div>
+<!--                <a class="te6_icon te6_small te6_mr12"></a>-->
+<!--                <a class="te6_icon te6_closed"></a>-->
+            </div>
+        </div>
+        <div class="te6_iFrameDiv">
+            <iframe src="{:url('/match/matchlist')}" frameborder="0" width="100%" height="100%" scrolling="no" id="main-iframe"></iframe>
+        </div>
+        <div style=" position: absolute;right: 50px;bottom: 20px">
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502000733" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+                <img src="/Public/front/images/te6icon2.png" style="float:left;"/>
+                <p style="float:left;height:20px;line-height:20px;margin: 0 0 0 5px; color:#939393;">鄂公网安备 42018502000733号</p>
+            </a>
+        </div>
+    </div>
+
+    <div id="te6_fanKui" style="display: none">
+        <div class="te6_tc te6_fkTc">
+            <div class="algCenter"><input type="text" class="te6_txt te6_txt342 te6_mt20 " placeholder="请输入报名号，无则填0" id="feedback-number"></div>
+            <div class="algCenter"><textarea class="te6_txt te6_txtAr342 te6_mt10 " style="" placeholder="请输入您的反馈意见（10-200字）" id="feedback-content"></textarea></div>
+            <div>
+                <a class="te6_btn te6_btnYl te6_fkTjBtn" id="feedback-submit"><span>提交</span></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var _login_index = 0;
+        var sTime = 12121;
+        var order_check_time = [];
+        var nowTime = parseInt(new Date().getTime()/1000);
+        var order_check_time_var = [60,60,60];
+        var urlNum=[],addUrlFlag=true;
+        var message_page = 1;
+        var max_message_page = 1;
+
+        $(function () {
+            checkloginstatus();
+
+            checkhasnewmessage();
+            order_check_time[1] = window.setInterval(function () {
+                checkhasnewmessage();
+            }, 5 * 60000);
+        });
+
+        $(document).on("keyup", ".login-input", function(event){
+            if(event.keyCode ==13){
+                logincheck();
+            }
+        });
+
+        $(document).on("click","#user-center-btn",function(e){
+            $.ajax({
+                type: "POST",
+                url: "{:url('user/check_token')}",
+                data: {"username":$('#user-name').val()},
+                dataType : "json",
+                beforeSend :function(XMLHttpRequest){
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    layer.msg("网络错误！");
+                },
+                success: function(data){
+                    if(data.code == 1){
+                        e.preventDefault();
+                        $(".te6_list").hide();
+                        layer.open({
+                            title: '个人中心 ',
+                            type: 2,
+                            area: ['800px', '646px'],
+                            resize:false,
+                            content:['<?php echo url('/user/index'); ?>','no']
+                        });
+                    }
+
+                    if (data.data.nologin == 1) {
+                        layer.msg("您的账号在别处登录，当前登录已被注销，请妥善保管您的账号信息");
+                        $('.te6_upLine').show();
+                        $('.te6_onLine').hide();
+                    }
+                }
+            });
+            
+        });
+
+        $(document).on("click","#feedback-btn",function(e){
+            e.preventDefault();
+            $(".te6_list").hide();
+            layer.open({
+                title: '反馈',
+                type: 1,
+                area: ['400px', '300px'],
+                resize:false,
+                content:$("#te6_fanKui")
+            });
+        });
+
+        $("#main-iframe").load(function(){
+            if(addUrlFlag){
+                urlNum.push($(this).attr('src'));
+            }
+            addUrlFlag=true;
+        });
+
+        // function urlback () {
+        //     var url = urlNum.pop();
+        //     url = urlNum.pop() || "<?php echo url('/match/matchlist');?>";
+        //     $("#main-iframe").attr("src", url);
+        // }
+        // 返回按键,直接返回列表页
+        function urlback () {
+            var url = "<?php echo url('/match/matchlist');?>";
+            $("#main-iframe").attr("src", url);
+        }
+
+        $(document).on('click', '.te6_hNavItem', function () {
+            var type = $(this).attr('data-type');
+            $('.te6_hNavItem').removeClass('action');
+            $(this).addClass('action');
+            $('#main-iframe').attr("src", "<?php echo url('/match/matchlist');?>" + "?type=" + type);
+        });
+
+        $(".te6_hRight").on("click",".te6_upLine",function(e){
+            e.preventDefault();
+            login_controll.signin();
+        });
+
+        function logincheck(){
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var regx     = /^[A-Za-z0-9@_\.\-]{6,24}$/;
+
+            if (username == "") {
+                layer.msg("请填写用户名");
+                return false;
+            }
+
+            if (!username.match(regx)) {
+                layer.msg("用户名格式不正确");
+                return false;
+            }
+
+            if (password == "") {
+                layer.msg("请填写密码");
+                return false;
+            }
+
+            if (password.length < 6) {
+                layer.msg("密码位数不正确");
+                return false;
+            }
+
+            var v = Api_20170206.key_k(username, password);
+
+            $.ajax({
+                type: "POST",
+                url: "{:Url('pub/login')}",
+                data: {"username":username, "t":v[0], "key1":v[1], "key2":v[2]},
+                dataType : "json",
+                beforeSend :function(XMLHttpRequest){
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    layer.msg("网络错误！");
+                },
+                success: function(msg){
+                    if(msg.code){
+                        // 登录成功，更新信息
+                        $('#user-nickname').html(msg.data.nickname);
+                        $('#user-face').attr('src', msg.data.face);
+                        $('#user-face').attr('alt', msg.data.nickname);
+
+                        $('.te6_upLine').hide();
+                        $('.te6_onLine').show();
+
+                        layer.close(_login_index);
+                        $('#login-div').hide();
+                    } else {
+                        layer.msg(msg.msg);
+                    }
+                }
+            });
+
+            return false;
+        }
+
+        $(document).on('click', '#logout-btn', function () {
+            logout();
+        });
+
+        function logout () {
+            login_controll.signout(function(data) {
+                $(".te6_list").hide();
+
+                $.ajax({
+                    type: "POST",
+                    url: "{:url('pub/logout')}",
+                    data: {},
+                    dataType : "json",
+                    beforeSend :function(XMLHttpRequest){
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown){
+                        layer.msg("网络错误！");
+                    },
+                    success: function(msg){
+                        if(msg.code){
+                            layer.msg(msg.msg);
+                            $.cookie("userid", "", {expires: -1});
+                            $.cookie("ssid", "", {expires: -1});
+                            $('.te6_upLine').show();
+                            $('.te6_onLine').hide();
+                            $('#user-name').val('');
+                            $('#user-nickname').html('');
+                            setTimeout(function () {
+                                document.location.reload();
+                            }, 1000);
+                        }else{
+                            layer.msg(msg.msg);
+                        }
+                    }
+                });
+            },function(err){
+                //失败回调
+            });
+        }
+
+        var signinOpt = {
+            afterInit : function () {
+            },
+            signinSuc : function () {
+                var userid = $.cookie('userid');
+                var ssid   = $.cookie('ssid');
+                $.ajax({
+                    type: "POST",
+                    url: "{:url('pub/login')}",
+                    data: {'userid':userid, 'ssid':ssid},
+                    dataType : "json",
+                    beforeSend :function(XMLHttpRequest){
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown){
+                        layer.msg("网络错误！");
+                    },
+                    success: function(data){
+                        if(data.code == 1){
+                            $('.uc-pop-header').find('.cancel').trigger('click');
+
+                            // 登录成功，更新信息
+                            $('#user-nickname').html(data.data.nickname);
+                            $('#user-name').val(data.data.username);
+                            $('#user-face').attr('src', data.data.face);
+                            $('#user-face').attr('alt', data.data.nickname);
+
+                            $('.te6_upLine').hide();
+                            $('.te6_onLine').show();
+
+                            addUrlFlag = false;
+
+                            $('#main-iframe').attr("src", $('#main-iframe').attr('src'));
+                            //$("#main-iframe").contents().find("#steam-data").html();
+                            //$("#main-iframe")[0].contentWindow.match_sign(); 
+                            //$('.te6_jcBMBtn', parent.document).trigger("click");
+                        } else {
+                            layer.msg(data.msg);
+                        }
+                    }
+                });
+            },
+            signinErr : function (err) {
+                console.log(err);
+            }
+        };
+
+        var signupConfig = {
+            afterInit : function () {
+            },
+            signupSuc : function () {
+                var userid = $.cookie('userid');
+                var ssid   = $.cookie('ssid');
+                $.ajax({
+                    type: "POST",
+                    url: "{:url('pub/login')}",
+                    data: {'userid':userid, 'ssid':ssid},
+                    dataType : "json",
+                    beforeSend :function(XMLHttpRequest){
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown){
+                        layer.msg("网络错误！");
+                    },
+                    success: function(data){
+                        if(data.code == 1){
+                            $('.uc-pop-header').find('.cancel').trigger('click');
+
+                            // 登录成功，更新信息
+                            $('#user-nickname').html(data.data.nickname);
+                            $('#user-name').val(data.data.username);
+                            $('#user-face').attr('src', data.data.face);
+                            $('#user-face').attr('alt', data.data.nickname);
+
+                            $('.te6_upLine').hide();
+                            $('.te6_onLine').show();
+
+                            addUrlFlag = false;
+
+                            $('#main-iframe').attr("src", $('#main-iframe').attr('src'));
+                        } else {
+                            layer.msg(data.msg);
+                        }
+                    }
+                });
+            },
+            signupErr : function (err) {
+                console.log(err);
+            }
+        };
+
+        var login_controll = new UcpassPop({
+            app       : 'pubgdz', // *必传
+            signinOpt : signinOpt,  //非必传
+            signupOpt : signupConfig
+        });
+
+        function checkhasnewmessage () {
+            if ($('#user-name').val() == undefined || $('#user-name').val() == '') {
+                return false;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "{:url('user/checkhasnewmessage')}",
+                data: {"username":$('#user-name').val()},
+                dataType : "json",
+                beforeSend :function(XMLHttpRequest){
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    layer.msg("网络错误！");
+                },
+                success: function(data){
+                    if(data.code == 1){
+                        $('.te6_msg').addClass('te6_hasMsg');
+                    }
+
+                    if (data.data.nologin == 1) {
+                        layer.msg("您的账号在别处登录，当前登录已被注销，请妥善保管您的账号信息");
+                        $('.te6_upLine').show();
+                        $('.te6_onLine').hide();
+                    }
+                }
+            });
+        }
+
+        function jumpToMatch (match_id) {
+            $(".te6_msgDiv").hide();
+            $(".te6_msg").removeClass('msg-action');
+            $('#main-iframe').attr("src", '<?php echo url('/match/matchdetail') . '?match_id=';?>' + match_id);
+        }
+
+        $(document).on('click', '#feedback-submit', function () {
+            var feedback_number  = $('#feedback-number').val();
+            var feedback_content = $('#feedback-content').val();
+
+            if (feedback_number == undefined || feedback_number == "" || isNaN(feedback_number)) {
+                layer.msg('请正确填写报名号');
+
+                return false;
+            }
+
+            if (feedback_content == undefined || feedback_content == "" || feedback_content.length < 10) {
+                layer.msg('字数不符合要求');
+
+                return false;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "{:url('user/feedback')}",
+                data: {"username":$('#user-name').val(), "feedbacknumber":feedback_number, "feedbackcontent":feedback_content},
+                dataType : "json",
+                beforeSend :function(XMLHttpRequest){
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    layer.msg("网络错误！");
+                },
+                success: function(data){
+                    if (data.data.nologin == 1) {
+                        layer.msg("您的账号在别处登录，当前登录已被注销，请妥善保管您的账号信息");
+                        $('.te6_upLine').show();
+                        $('.te6_onLine').hide();
+                    }
+
+                    if (data.code == 1) {
+                        layer.closeAll();
+                        layer.alert('提交成功');
+                        $('#feedback-number').val('');
+                        $('#feedback-content').val('');
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }
+            });
+        });
+
+        function checkloginstatus () {
+            var userid = $.cookie('userid');
+            var ssid   = $.cookie('ssid');
+            if (userid != '' && userid != undefined && ssid != '' && ssid != undefined) {
+                $.ajax({
+                    type: "POST",
+                    url: "{:url('pub/login')}",
+                    data: {'userid':userid, 'ssid':ssid},
+                    dataType : "json",
+                    beforeSend :function(XMLHttpRequest){
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown){
+                        layer.msg("网络错误！");
+                    },
+                    success: function(data){
+                        if(data.code == 1){
+                            $('.uc-pop-header').find('.cancel').trigger('click');
+                            SetCookie('ssid', ssid)
+                            SetCookie('userid', userid)
+                            // 登录成功，更新信息
+                            $('#user-nickname').html(data.data.nickname);
+                            $('#user-name').val(data.data.username);
+                            $('#user-face').attr('src', data.data.face);
+                            $('#user-face').attr('alt', data.data.nickname);
+
+                            $('.te6_upLine').hide();
+                            $('.te6_onLine').show();
+
+                            addUrlFlag = false;
+
+                            $('#main-iframe').attr("src", $('#main-iframe').attr('src'));
+                        }else{
+                            $.cookie("userid", "", {expires: -1});
+                            $.cookie("ssid", "", {expires: -1});
+                            $('.te6_upLine').show();
+                            $('.te6_onLine').hide();
+                            $('#user-name').val('');
+                            $('#user-nickname').html('');
+                        } 
+                    }
+                });
+            } 
+            
+        }
+function SetCookie(name, value) //两个参数，一个是cookie的名子，一个是值  
+{
+    var exp_T = new Date();
+    exp_T.setTime(exp_T.getTime() + ( 5 * 24 * 60 * 60 * 1000));
+    document.cookie = name + "=" + escape(value) + "; expires=" + exp_T.toGMTString() + "; path=/; ";
+}
+    </script>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?d87523d9389dda0dd4e5acc81353d9c0";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</body>
+</html>

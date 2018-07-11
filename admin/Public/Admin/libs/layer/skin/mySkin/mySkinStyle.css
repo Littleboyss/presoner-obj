@@ -1,0 +1,103 @@
+body .layer-ext-mySkin{background-color:#f2f2f2;opacity: 0.8;}
+body .layer-ext-mySkin .layui-layer-title{
+    height: 40px;
+    line-height: 40px;
+    background: url("tcTitleBg.png")no-repeat;
+    color:#f4f1e0;
+    border-bottom:0;
+    background-size: 100% 100%;
+    cursor: default!important;
+}
+body .layer-ext-mySkin .layui-layer-setwin{top:9px;}
+body .layer-ext-mySkin .layui-layer-setwin .layui-layer-close1{
+    width: 23px;
+    height: 23px;
+    background: url("btn.png")no-repeat -369px -9px;
+}
+body .layer-ext-mySkin .layui-layer-setwin .layui-layer-close1:hover{background-position: -395px -9px;}
+body .layer-ext-mySkin .layui-layer-setwin .layui-layer-close1:active{background-position: -419px -9px;}
+body .layer-ext-mySkin .layui-layer-content .layui-layer-wrap:before{content: "";display: table;}
+body .layer-ext-mySkin .layui-layer-content .layui-layer-wrap{
+    background: url("tcTitleBg2.png")repeat-x;
+}
+body .layer-ext-mySkin.layui-layer-dialog .layui-layer-btn a{padding: 0;}
+body .layer-ext-mySkin.layui-layer-dialog  .layui-layer-content{text-align: center;padding: 30px 20px 10px;}
+body .layer-ext-mySkin.layer-ext-mySkin-msg  .layui-layer-content{padding:20px 20px 20px 52px;text-align: left;}
+
+body .layer-ext-mySkin  .layui-layer-btn{
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-box-orient: horizontal;
+    /* 12版 */
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    -o-flex-direction: row;
+    flex-direction: row;
+
+    -webkit-flex-wrap: nowrap;
+    -moz-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    -o-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+
+    /* 12版 */
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    align-items: center;
+
+    /* 12版 */
+    -webkit-justify-content:  center;
+    -moz-justify-content:  center;
+    -ms-justify-content:  center;
+    -o-justify-content:  center;
+    justify-content: center;
+}
+body .layer-ext-mySkin  .layui-layer-btn{padding: 0 10px 30px;}
+body .layer-ext-mySkin  .layui-layer-btn .layui-layer-btn0{
+    width: 100px;height:34px;
+    background: url("btn03.png")no-repeat 0 2px;
+    color:#f4f1e0;
+    outline: none;
+    border: 0;
+    text-align: center;
+    line-height: 36px;
+}
+body .layer-ext-mySkin  .layui-layer-btn .layui-layer-btn0:hover{
+    background: url("btn03.png")no-repeat 0 -39px;
+    color:#fff;
+    line-height: 32px;
+    opacity: 1.0;
+}
+body .layer-ext-mySkin  .layui-layer-btn .layui-layer-btn0:active{
+    background: url("btn03.png")no-repeat 0 -77px;
+    color:#d7d0ab;
+    line-height: 40px;
+}
+body .layer-ext-mySkin  .layui-layer-btn .layui-layer-btn1{
+     width: 100px;height:34px;
+     background: url("btn03.png")no-repeat -110px 2px;
+     color:#f4f1e0;
+     outline: none;
+     border: 0;
+     text-align: center;
+     line-height: 36px;
+ }
+body .layer-ext-mySkin  .layui-layer-btn .layui-layer-btn1:hover{
+    background: url("btn03.png")no-repeat -110px -39px;
+    color:#fff;
+    line-height: 32px;
+    opacity: 1.0;
+}
+body .layer-ext-mySkin  .layui-layer-btn .layui-layer-btn1:active{
+    background: url("btn03.png")no-repeat -110px -77px;
+    color:#d7d0ab;
+    line-height: 40px;
+}

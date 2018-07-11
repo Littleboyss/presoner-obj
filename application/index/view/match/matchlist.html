@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" class="te6_size" >
+<head>
+    <title>特牛对战平台-首页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <link rel="stylesheet" type="text/css" href="/Public/front/js/layer/skin/mySkin/mySkinStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public/front/css/te6_style.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public/front/css/match_list.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public/front/css/base.css"/>
+    <script type="text/javascript" src="/Public/front/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/Public/front/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/Public/front/js/te6_script.js"></script>
+
+    <link rel="stylesheet" href="/Public/front/css/bootstrap.min.css">
+    <script src="/Public/front/js/bootstrap.min.js"></script>
+
+    <style type="text/css">
+        .head-banner .carousel-inner .active{
+            display: block;
+         
+        }
+
+    </style>
+</head>
+<body class="te6_size">
+    <div class="te6_cSize">
+        <div class="overflow">
+            <div class="te6_cNav">
+                <a class="te6_cNavItem <?php echo $mode == 1 ? 'action' : ''; ?>" data-mode="1">单排</a>
+                <a class="te6_cNavItem <?php echo $mode == 2 ? 'action' : ''; ?>" data-mode="2">双排</a>
+                <a class="te6_cNavItem <?php echo $mode == 3 ? 'action' : ''; ?>" data-mode="3">多排</a>
+            </div>
+            <a class="te6_btn te6_cSXinBtn te6_btnYl" onclick="refreshPage();"><i></i><span>刷新</span></a>
+        </div>
+        <?php
+            if ($list) {
+        $count = ceil(count($list)/4)?ceil(count($list)/4):0; 
+        if($count && $count >1 ){
+        ?>
+        <div class="col-xs-12 col-sm-12 col-lg-12  head-banner">
+    <div id="myCarousel" class="carousel slide">
+    <!-- 轮播（Carousel）指标 -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <?php
+    
+            for($i=1;$i< $count;$i++){
+                echo '<li data-target="#myCarousel" data-slide-to="'.$i.'"></li>';
+            }
+        }
+        ?>
+    </ol>   
+    <!-- 轮播（Carousel）项目 -->
+    <ul class="carousel-inner">
+
+        <li class="item active col-xs-12 col-sm-12 col-lg-12">
+            <?php
+            $now_time = time();
+            for( $j=0; $j< 4;$j++){
+                if(empty($list[$j])){
+                    break;
+                }
+           ?>
+            <div class="col-xs-3 col-sm-3 col-lg-3 carousel_swItem">
+                <a  class="te6_swItem" data-url="<?php echo url('/match/matchdetail') . '?match_id=' . $list[$j]['id'];?>" >
+                    <img class="img-responsive center-block" src="<?php echo $list[$j]['img_title']; ?>" >
+                    <div class="te6_swItemList">
+                        <div class="swItemList">
+                            <?php
+                                    if (intval($list[$j]['sort']) === 1) {
+                                ?>
+                                <i class="te6_discount">HOT</i>
+                                <?php
+                                    }
+                                ?>
+                            <p class="te6_swTitle"><?php echo $list[$j]['name']; ?></p>
+                            <p class="te6_swMoney"><em>奖池</em><span><?php echo sprintf('%.2f', (intval($list[$j]['base_price']) + (intval($list[$j]['cost'])) / 100.0 * intval($list[$j]['now_join']) * intval($list[$j]['add_price'])) / 100.0); ?></span></p>
+                            <table class="te6_table">
+                                <tbody><tr>
+                                    <td>局数</td>
+                                    <td><?php echo $list[$j]['times'];?></td>
+                                </tr>
+                                <tr>
+                                    <td>报名人数</td>
+                                    <td><?php echo $list[$j]['now_join'];?></td>
+                                </tr>
+                                <tr>
+                                    <td>比赛结束</td>
+                                    <td><?php  echo date('m/d H:i', $list[$j]['end_time']);?></td>
+                                </tr>
+                            </tbody></table>
+                            <div class="te6_btn <?php echo intval($list[$j]['cost']) > 0 ? 'te6_btnYe' : 'te6_btnBl'; ?>">
+                                <?php
+                                    if (time() < $list[$j]['start_time']) {
+                                        echo '还未开始';
+                                    } else {
+                                        if (intval($list[$j]['end_time']) < $now_time) {
+                                            echo '比赛结束';
+                                        } else {
+                                            echo intval($list[$j]['is_sign']) == 1 ? '已报名' : (intval($list[$j]['cost']) > 0 ? sprintf('<em>￥%.2f</em>&nbsp;<span>报名</span>', intval($list[$j]['cost']) / 100) : '免费报名');
+                                        }
+                                    }
+
+                                ?>
+                            </div>
+                        </div>
+                       
+                   </div>
+                </a>
+            </div> 
+            <?php
+                    }
+                } else {
+            ?>
+            <div class="te6_nothing">
+                <p>现在还没有比赛/(ㄒoㄒ)/~~</p>
+            </div>
+            <?php
+                }
+            ?>
+        </li>
+        <?php
+        $count = ceil(count($list)/4)?ceil(count($list)/4):0; 
+        if($count && $count >1 ){
+            for($k=1;$k < $count;$k++){
+        ?>
+            <li class="item">
+                <?php
+            $now_time = time();
+            for( $l=0; $l< 4;$l++){
+                if(empty($list[$k*4+$l])){
+                    break;
+                }
+           ?>
+            <div class="col-xs-3 col-sm-3 col-lg-3 carousel_swItem">
+                <a  class="te6_swItem" data-url="<?php echo url('/match/matchdetail') . '?match_id=' . $list[$k*4+$l]['id'];?>" >
+                    <img class="img-responsive center-block" src="<?php echo $list[$k*4+$l]['img_title']; ?>" >
+                    <div class="te6_swItemList">
+                        <div class="swItemList">
+                            <?php
+                                    if (intval($list[$k*4+$l]['sort']) === 1) {
+                                ?>
+                                <i class="te6_discount">HOT</i>
+                                <?php
+                                    }
+                                ?>
+                            <p class="te6_swTitle"><?php echo $list[$k*4+$l]['name']; ?></p>
+                            <p class="te6_swMoney"><em>奖池</em><span><?php echo sprintf('%.2f', (intval($list[$k*4+$l]['base_price']) + (intval($list[$k*4+$l]['cost'])) / 100.0 * intval($list[$k*4+$l]['now_join']) * intval($list[$k*4+$l]['add_price'])) / 100.0); ?></span></p>
+                            <table class="te6_table">
+                                <tbody><tr>
+                                    <td>局数</td>
+                                    <td><?php echo $list[$k*4+$l]['times'];?></td>
+                                </tr>
+                                <tr>
+                                    <td>报名人数</td>
+                                    <td><?php echo $list[$k*4+$l]['now_join'];?></td>
+                                </tr>
+                                <tr>
+                                    <td>比赛结束</td>
+                                    <td><?php  echo date('m/d H:i', $list[$k*4+$l]['end_time']);?></td>
+                                </tr>
+                            </tbody></table>
+                            <div class="te6_btn <?php echo intval($list[$k*4+$l]['cost']) > 0 ? 'te6_btnYe' : 'te6_btnBl'; ?>">
+                                <?php
+                                    if (time() < $list[$k*4+$l]['start_time']) {
+                                        echo '还未开始';
+                                    } else {
+                                        if (intval($list[$k*4+$l]['end_time']) < $now_time) {
+                                            echo '比赛结束';
+                                        } else {
+                                            echo intval($list[$k*4+$l]['is_sign']) == 1 ? '已报名' : (intval($list[$k*4+$l]['cost']) > 0 ? sprintf('<em>￥%.2f</em>&nbsp;<span>报名</span>', intval($list[$k*4+$l]['cost']) / 100) : '免费报名');
+                                        }
+                                    }
+
+                                ?>
+                            </div>
+                        </div>
+                       
+                   </div>
+                </a>
+            </div> 
+            <?php
+                }
+            ?>
+            </li>
+        <?php
+            }
+        }
+        ?>
+        
+        
+    </ul>
+     <?php
+        $count = ceil(count($list)/4)?ceil(count($list)/4):0; 
+        if($count && $count >1 ){
+        ?>
+    <!-- 轮播（Carousel）导航 -->
+   <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <img src="/Public/front/images/arrowLeft.png" alt="">
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <img src="/Public/front/images/arrowRight.png" alt="">
+    </a>
+
+    <?php
+      }
+        ?>
+</div>
+</div>     
+    </div>
+    <script>
+        $(document).on('click', '.te6_cNavItem', function () {
+            var mode = $(this).attr('data-mode');
+            $('#main-iframe', parent.document).attr("src", "<?php echo url('/match/matchlist');?>" + "?type=<?php echo $type; ?>" + "&mode=" + mode);
+        });
+
+        function refreshPage () {
+            $('#main-iframe', parent.document).attr("src", $('#main-iframe', parent.document).attr("src"));
+        }
+
+        $(document).on('click', '.te6_swItem', function () {
+            var url = $(this).attr('data-url');
+
+            $('#main-iframe', parent.document).attr('src', url);
+        });
+         function size() {
+                var _screenWidth = document.documentElement.clientWidth < 300 ? 300 : document.documentElement.clientWidth,
+                    _UIWidth = 750,
+                    _fontSize = _screenWidth / _UIWidth * 100;
+                document.documentElement.style.fontSize = _fontSize + 'px';
+            }
+            size();
+            window.onresize = function() {
+                size();
+            }
+
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?d87523d9389dda0dd4e5acc81353d9c0";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script type="text/javascript">
+        // $('#myCarousel').carousel({
+        //     data-interval: false;
+        // })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+.mar_r12{ margin-right:12px;}
+.pdr30{ padding-right:30px}
+.mar_t40{ margin-top:40px}
+
+
+.beatpicker li.cell {
+     width: 11%;
+}
+
+/******顶部标题 公用样式***tabtit*****/
+.topTit{height: 60px;}	
+.topTit span{ width:auto; font-size: 20px; color: #666;}
+.topTit .rightNav a{ margin-left: 10px; float: left; padding-left: 20px; background:url(../image/icon/top-tit-a.png) left center no-repeat; font-size: 14px;}
+.topTit .rightNav a:hover,.topTit .rightNav a.action,.topTit .rightNav a:last-child{background:url(../image/icon/top-tit-a-h.png) 1px center no-repeat;  color: #3b8bb3;}
+.topTit .rightNav a.home,.topTit .rightNav a.home:hover{ background: url(../image/icon/top-tit-home.png) left center no-repeat;}
+
+
+.secondTxt a{ margin-left:15px;}
+.secondTxt{padding:15px 30px; background: #fff;-moz-box-shadow:0px 3px 10px rgba(0,0,0,0.1); -webkit-box-shadow:0px 3px 10px rgba(0,0,0,0.1); box-shadow:0px 3px 10px rgba(0,0,0,0.1);display: -webkit-flex;display: flex;}
+.secondTxt .form-inline > div {
+    margin-left: 30px;
+}
+.secondTxt .form-inline > .sign input {
+    width: 100px;
+}
+.secondTxt .form-inline > .eventid input {
+    width: 100px;
+}
+.secondTxt .form-inline > .tiemCtrl {
+    margin-top: 20px;
+}
+#eventList .secondTxt .form-inline > button {
+    margin-top: 20px;
+}
+#add .csTable .sele {
+    margin-right: 12px;
+}
+#userList .csTable .userId {
+    text-align: left;
+    padding-left: 36px;
+}
+.secondTxt .form-inline > .tiemCtrl > label {
+    float: left;
+    padding-top: 5px;
+}
+.secondTxt .form-inline > .tiemCtrl > span {
+    float: left;
+    padding-top: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+.secondTxt .form-inline > .tiemCtrl > div:nth-child(2) {
+    float: left;
+}
+.secondTxt .form-inline > .tiemCtrl > div:nth-child(4) {
+    float: right;
+}
+.secondTxt .form-inline > .tiemCtrl > div > button {
+    background-color: #D36161;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font: bold 14px arial,serif;
+    margin: 3px;
+    padding: 4px;
+}
+.secondTxt em{ line-height: 34px; }
+
+
+.Inner{height: auto; width: 100%; display: block;}
+.Inner .tabtit{ height: 50px; line-height: 50px;}
+.Inner .tabtit > a{ height: 50px;  font-size: 16px; float: left;}
+.Inner .tabtit em{background:url(../image/icon/linebg1.png) center center no-repeat;width:30px; height: 50px; float: left; }
+.Inner .tabtit > a.action{ color: #246b8f; background: url(../image/icon/tabtit-bg1.png) center bottom no-repeat;}
+.Inner .tabtit > a.active{background: url(../image/icon/tabtit-bg1.png) center bottom no-repeat; color: #666;}
+
+.wdt1200{width:1200px}
+.wdt1000{width:1000px}
+/*****表单*********/
+.tabInne{padding:30px; background: #fff;}
+.csTable .wen{width:18px; height: 21px; vertical-align: middle; display: inline-block; margin-left: 5px;}
+.csTable{width:100%; border:0px; color: #666;}
+.csTable tr{ height:auto; vertical-align:middle; background:#fff; text-align:center;}
+.csTable tr th{ height:48px; line-height:48px; background:#666666; color:#f4f1e0; text-align:center}
+.csTable tr th:first-child{ padding-left:30px; text-align:left}
+.csTable tr td:first-child{ padding-left:30px; text-align:left}
+.csTable tr td{ border-bottom:1px solid #e6e6e6; padding:14px 0;}
+
+
+/*.box .typeList:first-child{background: url(images/icon-line-bg2.png) 138px 9px repeat-y;} */
+
+.rgtInfo2{width: 100%;}
+.xuanChek{ background: #f4f2e7; padding: 20px;width: 100%; display: block; margin-top: 10px; position: relative; z-index: 9;}
+.xuanChek span{ margin-right: 20px; margin-bottom: 10px; display:inline-block; width:150px;}
+
+.shuaixuan .etxt{  height:32px; line-height:32px; padding:0 10px; }
+.shuaixuanN{ padding-bottom:8px;}
+.shuaixuanN .fl,.shuaixuanN .fr{ margin-bottom:12px;}
+/****点歌管理******/
+.box .typeList .lftTit2{width:210px;}	
+.box .typeList .rgtInfo .txt2{width:250px}	
+
+
+
+/*****vip 模块**********/
+.vipList li{width: 310px; height: 200px; margin-bottom: 30px; margin-right: 30px; float: left; border-radius: 30px; overflow: hidden;}
+.vipList li .tname{ height: 140px; padding: 20px; background: #f4f2e7;}
+.vipList li .tname2{ background: #e7f4e9;}
+.vipList li .tname3{ background: #f2f2f2;}
+.vipList li .tname img{width:100px; height: 100px; float: left; margin-right: 10px;}
+.vipList li .tname h2{ font-size: 16px; line-height: 50px;}
+.vipList li .vipbtn a{ height: 60px;width:155px; float: left; background-image: url(../image/icon/btn3.png); background-repeat: no-repeat;}
+.vipList li .vipbtn a.vip_chakan{ background-position: 0 0;}
+.vipList li .vipbtn a.vip_chakan:hover{ background-position: 0 -72px;}
+.vipList li .vipbtn a.vip_chakan:active{ background-position: 0 -144px;}
+.vipList li .vipbtn a.vip_buy{ background-position: -155px 0;}
+.vipList li .vipbtn a.vip_buy:hover{ background-position: -155px -72px;}
+.vipList li .vipbtn a.vip_buy:active{ background-position: -155px -144px;}
+.vipList li .vipbtn a.vip_jianjie{ background-position:-322px 0;}
+.vipList li .vipbtn a.vip_jianjie:hover{ background-position: -322px -72px;}
+.vipList li .vipbtn a.vip_jianjie:active{ background-position:-322px -144px;}
+.vipList li .vipbtn a.vip_xufei{ background-position: -477px 0;}
+.vipList li .vipbtn a.vip_xufei:hover{ background-position: -477px -72px;}
+.vipList li .vipbtn a.vip_xufei:active{ background-position: -477px -144px;}
+
+/****网吧信息******/
+.select100{width:100px; display:inline-block; margin-right:10px}
+
+
+
+/*****添加用户弹窗*********/
+.tianjiaUser-pop{ padding-top:40px}
+.tablelist tr .rgtInfo .wenzi{ color:#666; padding:0 }
+.tablelist tr .rgtInfo .quan span{ margin-right:20px}
+.popUp{ padding:0 30px}
+.popUp .tabInne{ padding:0; background:none}
+/********添加普通商品**********/
+.tjptsp{width:750px; float:left}
+.tjptsp .lftTit{width:180px}
+.dhsz .lftTit{width:120px}
+.addquyupop .lftTit{width:115px}
+.addquyupop .tishi{ height:40px; line-height:20px; background:url(../image/icon/icon-tishi.jpg) center left no-repeat; padding-left:35px; margin-top:10px;}
+.addquyupop .textarea2{width:270px; height:80px; overflow:hidden; overflow-y:auto}
+.tabInne .bcl{ color:#1385BE; padding-left:5px; font-weight:normal}
+.shangchuangPOp{width:250px; height:250px; float:right; border:1px solid #ccc; background:#ddd; text-align:center; line-height:250px}
+.addsppop .box{ height:auto; overflow:hidden; overflow-y:auto}
+.othersetPop .lftTit{width:150px}
+.addylpop{ padding:30px}
+
+.bttongji{ height:102px; padding:20px; background:#f4f2e7; margin-bottom:10px}
+.bttongji span{ width:120px;line-height:30px; padding-right:30px; float:left; text-align:center}
+.bttongji span p b{ color:#3D8CB4; font-size:26px; font-weight:normal}
+.bttongji .twd{width:590px; line-height:20px; padding:5px; float:left; background:#fff; height:60px; overflow:hidden}
+
+.cgtxt{ height:30px; line-height:30px}
+.cgtxt span{ float:right}
+.cgtxt em{ padding-right:50px}
+
+.btbeizhu{ height:116px; padding:20px; display:block; background:#f4f2e7;}
+.btbeizhu .lftwz{width:400px; float:left;}
+.btbeizhu .rgtbz{width:640px; float:right; height:76px; background:#fff; border:1px solid #ddd; line-height:20px; padding:5px 10px}
+
+.jy_title1{ line-height:34px; padding:0 10px;}
+
+
+
+
+
+/*****vip  守望先锋弹窗*******/
+.vip-jjPop .pic1{width:100px; height: 100px; float: left; margin-right: 20px;}
+.vip-jjPop .txtwd{ padding-left: 120px;}
+.vip-jjPop .txtwd h2{ line-height: 40px; color: #666; font-size: 20px;}
+.vip-jjPop .txtwd p{ font-size: 14px; color: #666; line-height: 24px;}
+.vip .box .typeList .rgtInfo span{ color: #666;}
+.vip .lftTit{width:110px;}
+.vip .clg{ font-size:30px; color:#3aab4f; padding-right:10px}
+.vip .rgtInfo .xxuan{width:100%; height:100px; position:relative;}
+.vip .rgtInfo .xxuan .wdt1{width:180px; float:left; background:#3aab4f; height:100%; padding-top:15px; padding-left:30px; color:#d8e4c9;}
+.vip .rgtInfo .xxuan .wdt1 b{ font-size:30px; color:#fff; font-weight:normal}
+.vip .rgtInfo .xxuan .wdt1 p{ padding-left:20px}
+.vip .rgtInfo .xxuan .wdt2{ background:#309e45}
+.vip .rgtInfo .xxuan .wdt3{ background:#278f3b}
+.vip .rgtInfo .xxuan .wdt4{ background:#1f7f32}
+.xxuan2{ height:90px; padding:20px; background:#fff;}
+.tablelist tr .rgtInfo .xxuan2  img{width:48px; height:48px; margin-right:10px}
+.tablelist tr .rgtInfo .xxuan2  b{ margin-bottom:-10px; font-weight:normal; margin-right:10px}
+.vip .rgtInfo .xxuan3 .wdt1 h2{ font-size:20px; line-height:20px; text-decoration:line-through; color:#f4f1e0; padding-left:20px}
+.vip .rgtInfo .xxuan3 .wdt1{ height:120px; background:#3b8bb3}
+.vip .rgtInfo .xxuan3 .wdt2{ background:#317ea4}
+.vip .rgtInfo .xxuan3 .wdt3{ background:#266e91}
+.vip .rgtInfo .xxuan3 .wdt4{ background:#1c6081}
+.rgtInfo22 p{ height:40px; margin-bottom:5px}
+
+.vip .rgtInfo .xxuan4 .wdt1 h3{ font-size:12px; line-height:20px; color:#f4f1e0; padding-left:20px}
+.vip .rgtInfo .xxuan4 .wdt1{ height:120px; background:#2da995;width:145px; padding-left:15px}
+.vip .rgtInfo .xxuan4 .wdt2{ background:#269c89}
+.vip .rgtInfo .xxuan4 .wdt3{ background:#218e7c}
+.vip .rgtInfo .xxuan4 .wdt4{ background:#1a8170}
+.vip .rgtInfo .xxuan4 .wdt5{ background:#157565}
+
+
+
+
+.jgpop h2{ height:55px; line-height:55px; background:#ffffff; padding:0 30px;} 
+.bank1{ background:#fafafa; padding:20px 30px;  border-top:1px solid #f2f2f2; border-bottom:1px solid #f2f2f2;} 
+.bank1 .pti1{ height:40px; line-height:40px; background:url(../image/icon/icon-quan.png) center left no-repeat; padding-left:20px;}  
+.box1{ padding:20px 0px; background:#fff; border-bottom:1px solid #f2f2f2;} 
+.box1 .type1{width:180px; border-right:1px solid #f2f2f2; float:left; padding-left:30px}
+.box1 .type1:last-child{ border:none}
+.box1 .type1 .pname{ height:30px; line-height:30px;}
+.box1 .type1 .pname:hover,.box1 .type1 .pname.action{ color:#3b8bb3}
+.btnbj{width:16px; height:16px; background-image:url(../image/icon/smallIcon.png); background-repeat:no-repeat; background-position:-348px 0; display:inline-block; margin-top:5px; margin-left:5px;}
+.btnsc{width:32px; height:32px; background-image:url(../image/icon/btn2.png); background-repeat:no-repeat; background-position:-5px -40px; display:inline-block; margin-bottom:-10px;}
+
+/*****复选框**按钮*******/
+label {display: inline;}
+.regular-checkbox {display: none;}
+.regular-checkbox + label{ background:url(../image/icon/btn4.png) 0px -75px no-repeat;width:25px; height:20px;display: inline-block;position: relative; margin-right: 3px; vertical-align:middle; margin-bottom:2px}
+.regular-checkbox + label:hover{ background-position:-30px -75px;}
+.regular-checkbox + label:active{ background-position:-60px -75px;}
+
+.regular-checkbox:checked + label {background:url(../image/icon/btn4.png) -90px -75px no-repeat;}
+.regular-checkbox:checked + label:hover{ background-position:-125px -75px;}
+.regular-checkbox:checked + label:active{ background-position:-160px -75px;}
+.regular-checkbox:checked + label:after{content: '';background:url(../image/icon/btn4.png) -90px -75px no-repeat;position: absolute;top: 0px;left: 0px;}
+
+.regular-checkboxXiao {display: none;}
+.regular-checkboxXiao + label{background:url(../image/icon/btn4.png) -3px 0px no-repeat;width:18px; height:14px;display: inline-block;position: relative; margin-right: 3px;margin-bottom:-2px}
+.regular-checkboxXiao + label:hover{ background-position:-33px 0px;}
+.regular-checkboxXiao + label:active{ background-position:-63px 0px;}
+
+.regular-checkboxXiao:checked + label {background:url(../image/icon/btn4.png) -93px 0px no-repeat;}
+.regular-checkboxXiao:checked + label:hover{ background-position:-128px 0px;}
+.regular-checkboxXiao:checked + label:active{ background-position:-163px 0px;}
+.regular-checkboxXiao:checked + label:after{content: '';background:url(../image/icon/btn4.png) -93px 0px no-repeat;position: absolute;top: 0px;left: 0px;}
+
+/*****开关**按钮*******/
+.on_off{display: inline-block;width: 80px;height: 30px;margin-left: 0px; text-align:left; margin-bottom:-10px;}
+.on_off_mar0{ margin:0;}
+.chk_3+label{ background:url(../image/icon/btn.png) -808px 0 no-repeat;padding:4px;border-radius: 3px;display:block;position: relative;width: 80px;height: 30px;font-size:14px; cursor:pointer;line-height:30px;color:#f4f1e0;}
+.chk_3+label:after{content: 'OFF ';position: absolute;top: 0;left: 0;text-indent:44px; width: 100%;height: 100%; text-shadow: 0 2px 3px rgba(0,0,0,0.3);}
+.chk_3+label:hover{background:url(../image/icon/btn.png) -808px -38px no-repeat;}
+.chk_3+label:active{background:url(../image/icon/btn.png) -808px -76px no-repeat;}
+
+.chk_3+label:before{content:'';position: absolute;background:#e6e6e6;top:5px;left: 6px;z-index: 9;width: 32px; height:20px;-webkit-transition: all 0.1s ease-in;transition: all 0.1s ease-in;border-radius: 3px;}
+.chk_3+label:hover:before{ background-color:#fff;}
+.chk_3+label:active:before{ background-color:#e6e6e6;}
+
+.chk_3:checked+label:before{ background-color:#f4f1e0}
+.chk_3:checked+label:hover:before{ background-color:#fff;}
+.chk_3:checked+label:active:before{ background-color:#d7d0ab;}
+
+.chk_3:checked+label:after{content: 'ON';position: absolute;left:0px;border-radius: 3px;text-indent: 6px; text-shadow: 3px 3px 3px #2a5f7a;background:url(../image/icon/btn.png) -533px 0 no-repeat;}
+.chk_3:checked+label:hover:after{background:url(../image/icon/btn.png) -533px -38px no-repeat;}
+.chk_3:checked+label:active:after{background:url(../image/icon/btn.png) -533px -76px no-repeat;}
+.chk_3:checked+label:before{content: '';position: absolute;text-indent:15px;left:40px;}
+
+/*****单选**按钮*******/
+.regular-radio {display: none;}
+.regular-radio + label { margin-bottom:-4px;-webkit-appearance: none;background-color: #fff;border: 1px solid #cacece;box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);padding: 9px;border-radius: 50px;display: inline-block;position: relative;}
+.regular-radio:checked + label:after {content: ' ';width: 12px;height: 12px;border-radius: 50px;position: absolute;top: 3px;background: #3b8bb3;box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);text-shadow: 0px;left: 3px;font-size: 32px;}
+.regular-radio:checked + label { margin-bottom:-4px; background-color: #e9ecee;color: #3b8bb3;border: 1px solid #adb8c0;box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1), inset 0px 0px 10px rgba(0,0,0,0.1);}
+.regular-radio + label:active, .regular-radio:checked + label:active {box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);}
+
+
+
+

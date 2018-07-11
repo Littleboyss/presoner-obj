@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+    <title>智慧医疗云</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="/Public/Admin/css/select2.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public/Admin/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/Admin/css/windowCss.css" />
+</head>
+<body style="height: 100%;">
+    <div class="wrap">
+       <div class="mainNav">
+           <!--图标-左侧-->
+           <div class="mainNavLeft ">
+               <div class="mainNavLogo">
+                  <img src="/Public/Admin/image/sg_logo.png" height="81" width="136" alt="logo">
+               </div>
+              <!--  <div class="mainNavBarName" >
+                   <select class="js-example-data-array-selected mainNavBarSel">
+                       <option value="0" selected="selected">超级玩家</option>
+                   </select>
+               </div> -->
+               <ul class="mainNavLeftUl flexed">
+                   {if condition="in_array('Hospital/index', session('auth'))"}<li class="shouYe action" data-url="{:url('Hospital/index')}"><i></i><span>医院管理</span></li>{/if}
+                   {if condition="in_array('User/index', session('auth'))"}<li class="gkGLi" data-url="{:url('user/index')}"><i></i><span>患者管理</span></li>{/if}
+                   {if condition="in_array('News/index', session('auth'))"}<li class="mbGLi" data-url="{:url('News/index')}"><i></i><span>新闻管理</span></li>{/if}
+                   {if condition="in_array('Role/lst', session('auth'))"}<li class="gkGLi" data-url="{:url('role/lst')}"><i></i><span>角色管理</span></li>{/if}
+                   {if condition="in_array('Auth/lst', session('auth'))"}<li class="gkGLi" data-url="{:url('auth/lst')}"><i></i><span>权限管理</span></li>{/if}
+                   {if condition="in_array('Admin/adminadmin', session('auth'))"}<li class="xtGLi" data-url="{:url('admin/admin/adminadmin')}"><i></i><span>管理员管理</span></li>{/if}
+                   {if condition="in_array('Admin/system', session('auth')) || session('id') == 1"}<li class="xtGLi" data-url="{:url('admin/admin/system')}"><i></i><span>系统管理</span></li>{/if}
+               </ul>
+           </div>
+           <!--图标-右侧-->
+           <div class="mainNavRt">
+               <div class="user">
+                   <div class="userDiv">
+                       <!-- <img src="image/pto.jpg" alt="头像"/> -->
+                       <p>
+                           <span><?php echo session('username');?></span>
+                           <a href="{:url('index/logout')}">注销</a>
+                       </p>
+                   </div>
+                   <!-- <div class="userBtn">
+                        <p>加加网吧大渡口店</p>
+                        <div class="btnGroup">
+                            <button class="btn Lv90Btn geRenBtn">个人资料</button>
+                            <button class="btn Lan90Btn">退出登录</button>
+                        </div>
+                   </div> -->
+               </div>
+              <!--  <ul class="flexed userUl">
+                   <li class="helpCenter"  data-url=""><i></i><span>帮助中心</span></li>
+                   <li class="suggestion touSuJYBtn" ><i></i><span>投诉建议</span></li>
+               </ul> -->
+           </div>
+       </div>
+       <div class="iframediv">
+           <iframe src="{:url(session('auth')[0])}" frameborder="0" width="100%" height="100%"></iframe>
+       </div>
+    </div>
+    <script type="text/javascript" src="/Public/Admin/libs/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/Public/Admin/libs/layer/layer.js"></script>
+    <script type="text/javascript" src="/Public/Admin/libs/js/select2.min.js"></script>
+    <script type="text/javascript" src="/Public/Admin/libs/js/nav.js"></script>
+    <script>
+        //点击个人资料按钮
+        $(".geRenBtn").click(function(){
+            top.layer.config({
+                extend: 'mySkin/mySkinStyle.css', //加载layer扩展样式
+                skin: 'layer-ext-mySkin'
+            });
+            top.layer.open({
+                title: '在线调试',
+                type: 2,
+                area: ['404px','63%'],
+                scrollbar: false,
+                content: 'geRenZiLiaoTC.html'
+            });
+        });
+        //投诉与建议
+        $(".touSuJYBtn").click(function(){
+            top.layer.config({
+                extend: 'mySkin/mySkinStyle.css', //加载layer扩展样式
+                skin: 'layer-ext-mySkin'
+            });
+            top.layer.open({
+                title: '投诉/建议',
+                type: 2,
+                area: ['879px','53%'],
+                scrollbar: false,
+                content: 'touSuJyTC.html'
+            });
+        });
+
+        $(".mainNavBarSel").select2({
+
+        });
+    </script>
+</body>
+</html>

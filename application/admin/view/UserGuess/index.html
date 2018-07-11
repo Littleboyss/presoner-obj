@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>报名列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/select2.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/select2_lh.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/htmlCss.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/windowCss.css" />
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/layer/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/nav.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/public.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/BeatPicker.min.js"></script>
+    <style type="text/css">
+    .current {
+        padding: 2px 7px;
+        display: inline-block;
+        float: left;
+        color: #2da995;
+    }
+    </style>
+</head>
+<body>
+    <ul class="leftMenu nav nav-tabs" role="tablist">
+        <include file="nav_list" />
+    </ul>
+    <div class="main tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="userList">
+            <!--顶部栏目标题-->
+            <div class="topTit flexed2">
+                <span>报名列表</span>
+            </div>
+            <!--顶部文字介绍-->
+            <div class="secondTxt mgb30">
+                <form class="form-inline" action="{:U('UserGuess/index')}" method="post">
+                    <div class="form-group  select120 mar_r12 eventid">
+                        <label for="id_1">报名ID</label>
+                        <input name="id" type="text" value="<?php echo I('post.id');?>" class="form-control" id="id_1" placeholder="">
+                    </div>
+                    <div class="form-group  select120 mar_r12 eventid">
+                        <label for="id_2">用户ID</label>
+                        <input name="uid" type="text" value="<?php echo I('post.uid');?>" class="form-control" id="id_2" placeholder="">
+                    </div>
+                    <div class="form-group  select120 mar_r12 eventid">
+                        <label for="id_3">赛事ID</label>
+                        <input name="match_id" type="text" value="<?php echo I('post.match_id');?>" class="form-control" id="id_3" placeholder="">
+                    </div>
+                    <!-- div class="form-group  select120 mar_r12 eventid">
+                        <label for="id_2">用户名：</label>
+                        <input name="username" type="text" value="<?php echo I('post.username');?>" class="form-control" id="id_2" placeholder="">
+                    </div> -->
+                    <button type="submit" class="btn sLv120Btn middle mar_r12"><i class=" chaXunShaiXuan"></i>查询</button>
+                </form>
+            </div>
+
+<div class="Inner">
+    <div class="box boxShow">
+        <table id="checkList" class="csTable">
+            <thead>
+                <tr align="center" class="h_tr">
+                    <th  style="width:20px" class="userId"><input type="checkbox" name="check_all"></th>
+                    <th align="center" >报名ID</th>
+                    <th align="center">用户id</th>
+                    <th align="center">比赛id</th>
+                    <th align="center">报名费</th>
+                    <th align="center">报名时间</th>
+                    <th align="center">状态</th>
+                    <th align="center">排名</th>
+                    <th align="center">奖金</th>
+                    <th align="center">是否排除结算</th>
+                    <th align="center">禁领奖金</th>
+                    <th align="center">战绩</th>
+                </tr>
+            </thead>
+            <tbody id="checkList_tbody">
+                <foreach name="data" item="vo">
+                    <tr align='left'>
+                        <td style="width:20px" class="userId"><input type="checkbox" name="ids[]" value="{$vo.id}"></td>
+                        <td align="center">{$vo.id}</td>
+                        <td align="center">{$vo.uid}</td>
+                        <td align="center">{$vo.match_id}</td>
+                        <td align="center">{$vo['cost']/100}&nbsp;元</td>
+                        <td align="center">{$vo.add_time|date="Y-m-d H:i",###}</td>
+                        <td align="center">{$vo['now_msg']}</td>
+                        <td align="center">{$vo.rank}</td>
+                        <td align="center">{$vo['reward']/100}&nbsp;元</td>
+                        <td align="center">
+                            
+                            <a href="javascript:;"  dataid="{$vo.id}" status="{$vo.out_rank}" onclick="set_sell(this)" dataname="out_rank">
+                                <if condition="$vo['out_rank'] == 0"><img src="/images/no.gif" title="点击开启" />
+                                    <else/><img src="/images/yes.gif" title="点击关闭" /></a>
+                            </if>
+                        </td>
+                        <td align="center">
+                            <if condition="$vo['status'] == 2">
+                                <a href="javascript:;" dataid="{$vo.id}" status="{$vo.status}" onclick="set_status(this)" dataname="status">
+                                    <img src="/images/yes.gif" title="点击开启" />
+                                </a>
+                            <elseif condition="$vo['status'] eq 1"/>已领取
+                            <else/>
+                                <a href="javascript:;" dataid="{$vo.id}" status="{$vo.status}" onclick="set_status(this)" dataname="status">
+                                    <img src="/images/no.gif" title="点击关闭" />
+                                </a>
+                            </if>
+                        </td>
+                        <td align="center">
+                            <a href="javascript:;" class="view" onclick="view({$vo.id})">查看</a>
+                        </td>
+                    </tr>
+                    <tbody id="{$vo.id}" hidden=""> </tbody>
+                </foreach>
+                <tr>
+                    <td  colspan="12" align="center"><input type="submit"  id="all_out" value="批量排除结算" class="btn sLv120Btn"> <input type="submit" id="all_ban" value="批量禁领奖金" class="btn sLv120Btn"> </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="nav_a clear_b">
+            <span class="mar_l15"><em class="cor_b"><i class="cor_pad"></i></em></span>
+            <div class="nav_c nav_right">
+                {$show}
+            </div>
+        </div>                   
+    </div>
+</div>
+</body>
+<script>
+function getids(){
+    var chk_value =[]; 
+    $('input[name="ids[]"]:checked').each(function(){ 
+        chk_value.push($(this).val()); 
+    }); 
+    if (chk_value.length==0) {
+        layer.alert('你还没有选择任何内容！');
+        return false;
+    } 
+    return chk_value;
+}
+$('#all_out').click(function(){
+    var ids = getids();
+    if (ids) {
+        send_data(ids,1)
+        location.reload();
+    }
+})
+$('#all_ban').click(function(){
+    var ids = getids();
+    if (ids) {
+        send_data(ids,2)
+        location.reload();
+    }
+})
+$('#all_return').click(function(){
+    var ids = getids();
+    if (ids) {
+        send_data(ids,3)
+        location.reload();
+    }
+})
+function send_data(ids,todo){
+    $.ajax({
+        dataType: "json",
+        url: "{:U('muti_status')}",
+        data:{ 
+            ids  : ids,
+            todo : todo
+        },
+        type: 'post',
+        success: function(data) {
+            location.reload();
+        }
+    });
+}
+$("input[name='check_all']").click(function () {  
+    $("input[name='ids[]']").each(function () {  
+        this.checked = !this.checked;  
+    })  
+});
+function set_sell(obj){
+    if ($(obj).attr('status') == 1) {
+        var setStatus = 0;
+    } else {
+        var setStatus = 1;
+    }
+    var id = $(obj).attr('dataid');
+    $.ajax({
+        dataType: "json",
+        url: "{:U('out_rank')}",
+        data:{ 
+            id : id,
+            status : setStatus,
+        },
+        type: 'post',
+        success: function(data) {
+            if (data && data == 1) {
+                if (setStatus == 1) {
+                    $(obj).html('<img src="/images/yes.gif" title="点击关闭" />');
+                    $(obj).attr('status', 1);
+                } else {
+                    $(obj).html('<img src="/images/no.gif" title="点击开启" />');
+                    $(obj).attr('status', 0);
+                }
+            }
+        }
+    });
+}
+function set_status(obj){
+    if ($(obj).attr('status') == 0) {
+        var setStatus = 2;
+    } else {
+        var setStatus = 0;
+    }
+    console.log(setStatus);
+    var id = $(obj).attr('dataid');
+    $.ajax({
+        dataType: "json",
+        url: "{:U('status')}",
+        data:{ 
+            id : id,
+            status : setStatus,
+        },
+        type: 'post',
+        success: function(data) {
+            if (data && data == 1) {
+                if (setStatus == 2) {
+                    $(obj).attr('status', 2);
+                    $(obj).html('<img src="/images/yes.gif" title="点击关闭" />');
+                } else {
+                    $(obj).attr('status', 0);
+                    $(obj).html('<img src="/images/no.gif" title="点击开启" />');
+                }
+            }else{
+                alert(data.info)
+            }
+        }
+    });
+}
+
+function view(id) {
+    $.ajax({
+        type: "post",
+        url: "{:U('UserGuess/show_record')}",
+        data: { id: id},
+        cache: false,
+        dataType: "json",
+        success: function(data) {
+
+            if (data.status == 0) {
+                var html ='';
+                html += "<div class=\'pad_10\'>";
+                html += "<div class=\'table-list\'>";
+                html += "<table width=\'100%\' cellspacing=\'0\'  class=\'csTable\'>";
+                html += "<thead>";
+                html += "<tr>";
+                html += "<th>游戏昵称</th>";
+                html += "<th>游戏开始时间</th>";
+                html += "<th>详情</th>";
+                html += "<th>得分</th>";
+                html += "</tr>";
+                html += "</thead>";
+                html += "<tbody>";
+                $.each(data.data,function(i,item){
+                    html += "<tr>";
+                    html += "<td align=\'center\'align=\'center\'>"+item.pubg_name+"</td>";
+                    html += "<td align=\'center\'>"+item.start_time+"</td>";
+                    html += "<td align=\'center\'>排名"+item.rank+" 杀 "+item.kill+" </td>"
+                    //"游戏积分"+item.point+"</td>";
+                    html += "<td align=\'center\'> "+item.score+"分</td>";
+                    html += "</tr>";
+                })
+                html += "            </tbody>";
+                html += "        </table>";
+                html += "    </div>";
+                html += "</div>";
+                layer.open({
+                  type: 1,
+                  fixed :true,
+                  scrollbar:false,
+                  title: '比赛记录',
+                  zIndex: layer.zIndex,
+                  area: ['600px', '400px'],
+                  shadeClose:true,
+                  resize:false,
+                  content: html, //这里content是一个普通的String
+                 
+                });
+            }else{
+                layer.alert(data.info)
+            }
+        }
+    })
+}
+
+</script>
+</body>
+
+</html>

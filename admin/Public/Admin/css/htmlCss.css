@@ -1,0 +1,100 @@
+
+
+.secondTxt2{padding:15px 30px; background: #fff;-moz-box-shadow:0px 3px 10px rgba(0,0,0,0.1); -webkit-box-shadow:0px 3px 10px rgba(0,0,0,0.1); box-shadow:0px 3px 10px rgba(0,0,0,0.1);}
+.secondTxt2 em{ line-height: 30px; }
+.secondTxt2 p span{ line-height: 30px;margin-right: 20px; }
+
+.jiaoJieBan{width: 740px;}
+.jiaoJieBan tr th:nth-child(1){width: 20%;text-align: center;padding: 0;}
+.jiaoJieBan tr th:nth-child(2){width: 60%;text-align: center;}
+.jiaoJieBan tr th:nth-child(3){width: 20%;text-align: center;}
+
+.jiaoJieBan tr td:nth-child(1) input{text-align: center;text-indent: 0;}
+.jiaoJieBan tr td:nth-child(2) input{width: 80%;}
+.jiaoJieBan tr td input[readonly]{background-color: #f4f2e7;}
+.jiaoJieBan tr td input[readonly]:hover{border-color: #d9d9d9;}
+.jiaoJieBan tr td input[readonly]:active{border-color: #d9d9d9;}
+.tabSech>span{margin:0 8px;}
+.tabSech>span:first-child{margin-left: 0;}
+.tabSech .btn{margin: 0 15px;}
+.jiaojiebanDiv{width: 100%;overflow: hidden;}
+.jiaojiebanDiv>div{float: left;width: 50%;overflow: hidden;}
+.jiaojiebanDiv>div.jjbLeft2 p:first-child,.jiaojiebanDiv>div.jjbRight2 p:first-child{margin-bottom: 30px;}
+.jiaojiebanDiv>div.jjbLeft p:not(:first-child),.jiaojiebanDiv>div.jjbRight2 p:not(:first-child){margin-top: 30px;}
+.jiaojiebanDiv>div.jjbRight table:not(:last-child){margin-bottom: 30px;}
+.jiaojiebanDiv>div.jjbRight2 table:not(:last-child){margin-bottom:0;}
+.jiaojiebanDiv>div.jjbLeft{padding-right: 15px;}
+.jiaojiebanDiv>div.jjbRight{padding-left: 15px;}
+.leftTitle2{width: 100%;height: 48px;padding: 15px 0;background-color:#f2f2f2;color:#666;text-align: center;}
+.leftTitle{width: 100%;color:#f4f1e0;height: 48px;}
+.leftTitle span{width:130px;height:100%;text-align: center;background-color:#3b8bb3;float: left; padding: 15px 0;}
+.leftTitle em{height:100%;width:calc(100% - 130px);background-color: #68add0;float: left; padding: 15px 0;text-align: left;text-indent: 30px;}
+.jiaoJieBanTable{width: 100%;}
+.jjbLeft .jiaoJieBanTable thead tr th:first-child{width: 130px;text-align: center;padding: 0;}
+.jjbLeft .jiaoJieBanTable tbody tr td:first-child{width: 130px;text-align: center;padding: 0;background-color: #3b8bb3;color:#f4f1e0;border-bottom-color: #4792b7;}
+.jjbLeft .jiaoJieBanTable tbody tr:last-child td{border: 0;}
+.jjbLeft .jiaoJieBanTable tfoot tr td{border: 0;padding:15px 0;text-align: center;}
+.jjbLeft .jiaoJieBanTable tfoot tr td:nth-child(odd){background-color: #666;color:#f4f1e0;}
+.jjbLeft .jiaoJieBanTable tfoot tr td:nth-child(even){background-color:#f2f2f2;}
+.jjbLeft .hejiTable thead tr th:first-child,.hejiTable tbody tr td:first-child{width: 130px;padding: 0;text-align: center;}
+.jjbLeft .hejiTable tfoot tr td{color:#3b8bb3;font-size: 20px;background-color:#f2f2f2;text-align: left;line-height: 48px;height: 48px;padding: 0 0 0 15px;}
+.jjbLeft .hejiTable tfoot tr td:first-child{width: 130px;background-color:#3b8bb3;color:#f4f1e0;font-size: 14px;padding: 0;text-align: center;}
+
+.rightTitle{width: 100%;color:#f4f1e0;height: 48px;}
+.rightTitle span{width:130px;height:100%;text-align: center;background-color:#2da995;float: left; padding: 15px 0;}
+.rightTitle em{height:100%;width:calc(100% - 130px);background-color: #3bbba6;float: left; padding: 15px 0;text-align: left;text-indent: 30px;}
+.jjbRight .jiaoJieBanTable thead tr th:first-child{width: 130px;text-align: center;padding: 0;}
+.jjbRight .jiaoJieBanTable tbody tr td:first-child{width: 130px;text-align: center;padding: 0;background-color: #2da995;color:#f4f1e0;border-bottom-color: #39ae9b;}
+.jjbRight .jiaoJieBanTable tbody tr:last-child td{border: 0;}
+.jjbRight .jiaoJieBanTable tfoot tr td{border: 0;padding:15px  0;text-align: center;}
+.jjbRight .jiaoJieBanTable tfoot tr td:first-child{background-color: #666;color:#f4f1e0;}
+.jjbRight .jiaoJieBanTable tfoot tr td:not(:first-child){background-color:#f2f2f2;}
+.jjbRight .hejiTable thead tr th:first-child,.hejiTable tbody tr td:first-child{width: 130px;padding: 0;text-align: center;}
+.jjbRight .hejiTable tfoot tr td{color:#2da995;font-size: 20px;background-color:#f2f2f2;text-align: left;line-height: 48px;height: 48px;padding: 0 0 0 15px;}
+.jjbRight .hejiTable tfoot tr td:first-child{width: 130px;background-color:#2da995;color:#f4f1e0;font-size: 14px;padding: 0;text-align: center;}
+.jjbRight2 .jiaoJieBanTable tfoot tr td{border: 0;padding:15px 0;text-align: center;}
+.jjbRight2 .jiaoJieBanTable tfoot tr td:nth-child(odd){background-color: #666;color:#f4f1e0;}
+.jjbRight2 .jiaoJieBanTable tfoot tr td:nth-child(even){background-color:#f2f2f2;}
+
+.Inner .tabtit2{background-color: #fff;padding: 30px 30px 0;height: auto;line-height: initial; overflow: hidden; position: relative;}
+.dxTable th:nth-child(1){width: 18%;}
+.dxTable th:nth-child(3){width: 42%;}
+.duanxinTs{line-height: 30px;margin-bottom: 15px;color:#fb615f;}
+.colorHui{color:#b3b3b3;}
+.duanxinNum{padding: 20px 30px;background-color: #f7f7f7;border:1px solid #e6e6e6;width: 575px;}
+.duanxinNum p{line-height: 30px;margin-right: 12px;height:40px;}
+.duanxinNum p span{margin-right: 12px;}
+.duanxinNum p em{margin: 0 4px;font-size: 20px;}
+.duanxinYuJing{margin-bottom: 20px;overflow: hidden;}
+.duanxinYuJing .text{margin: 0 10px;}
+
+/*短信发送*/
+.Inner .fromUl  li>span:before{content: '';position: absolute;top:10px;right: 10px;width:12px;height: 12px;background: url("../image/icon/btn2.png")no-repeat -190px -5px #fff; }
+.qYellowBg{background-color: #f4f2e7;width: 100%;padding: 20px ;}
+
+.mgb5{margin-bottom: 5px;}
+.tabInne22{padding:20px 30px 30px;}
+.tabInne22 .csTable tr td:first-child{padding-left: 30px;}
+.tabInne22 .csTable tr td{padding: 8px 0;}
+
+
+/*收入统计*/
+.spTongJi{width: 100%;}
+.tjLine{width: 60%;height: 325px;background: url(../image/icon/syTjbg.png)!important;border-right: 1px solid #ddd;margin-top: 19px;}
+.tjLine>div{width: 100%;height: 100%;padding: 82px 18px 0 36px;}
+.tjTale{width: 40%;height: 344px;padding-left: 20px;}
+.tjTale .csTable{height: 100%;}
+.tjTale .csTable thead th:first-child{width: 20%;padding: 0;text-align: center;}
+.tjTale .csTable tbody td:first-child{background-color: #3b8bb3;color:#f4f1e0;border-bottom-color: #4792b7;width: 20%;padding: 0;text-align: center;}
+.tjTale .csTable tbody td:last-child{width: 20%;text-align: center;}
+.tjTale .csTable tbody tr:last-child td{border: 0;}
+.tjTale .csTable tfoot td{background-color: #f2f2f2;border: 0;}
+.tjTale .csTable tfoot td:first-child{width: 20%;padding: 0;text-align: center;background-color: #666;color:#f4f1e0;}
+
+
+
+
+
+
+
+

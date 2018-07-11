@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>赛事修改</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/BeatPicker.min.css" /> -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/select2.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/select2_lh.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/htmlCss.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/windowCss.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/libs/simditor/simditor.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/libs/layer/css/layui.css" />
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.js"></script>
+    <!-- <script type="text/javascript" src="__PUBLIC__/Admin/libs/layer/layer.js"></script> -->
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/layer/layui.all.js"></script>
+    <!--  <script type="text/javascript" src="__PUBLIC__/Admin/libs/laydate/laydate.js"></script> -->
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/nav.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/public.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/simditor/module.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/simditor/hotkeys.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/simditor/uploader.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/simditor/simditor.js"></script>
+</head>
+
+<body>
+    <ul class="leftMenu nav nav-tabs" role="tablist">
+        <include file="nav_list" />
+    </ul>
+    <div class="main tab-content">
+        <div role="tabpanel" class="tab-pane fade in active">
+            <!------顶部栏目标题-------->
+            <div class="topTit flexed2">
+                <span>赛事修改</span>
+            </div>
+            <!--内容-->
+            <div class="Inner">
+                <div class="box boxShow">
+                    <!--表格列表-->
+                    <!-- <div class="table-list"> -->
+                    <form class="form-inline" action="{:U('edit')}" method="POST" id='addFrom' enctype="multipart/form-data">
+                        <table class="tablelist">
+                            <tr class="typeList">
+                                <td class="lftTit" width="150">赛事名称</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <input type="text" name="name" value="{$data['name']}" class="text input270" />
+                                    <!--input80是输入框宽度80,更改宽度直接改标签-->
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">玩法</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <select name="game_type"  id="game_type">
+                                        <option value="3" <if condition="$data['game_type'] ==3">selected</if>> 积分赛</option>
+                                        <option value="1" <if condition="$data['game_type'] ==1">selected</if>> 人头赛</option>
+                                        <option value="2" <if condition="$data['game_type'] ==2">selected</if>> 吃鸡赛</option>
+                                        <option value="4" <if condition="$data['game_type'] ==4">selected</if>> 组队赛</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">模式</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <select name="play_type"  id="play_type">
+                                        <option value="1" <if condition="$data['play_type'] ==1">selected</if>> 单人</option>
+                            <option value="2" <if condition="$data['play_type'] ==2">selected</if>> 双排</option>
+                            <option value="3" <if condition="$data['play_type'] ==3">selected</if>> 四排</option>
+                                        
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">赛事标题图片</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <input type="text" name="img_title"  id="ico1" value="{$data.img_title}" class="text input270" />
+                                    <!--input80是输入框宽度80,更改宽度直接改标签-->
+                                    <button type="button" class="layui-btn" id="wqico1"><i class="layui-icon"></i>上传图片</button>
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">赛事详情图片</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <input type="text"  class="large text input270" id="ico2" name="img_detail" value="{$data.img_detail}">
+                                    <input type="button" class="layui-btn" id="wqico2" value="上传图片">
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">是否自动投注</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <select name="is_auto_guess">
+                                        <option value="1" <if condition="$data['is_auto_guess'] ==1">selected</if>> 是</option>
+                                        <option value="2" <if condition="$data['is_auto_guess'] ==2">selected</if>> 否</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">时长</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <input type="text" name="game_time" class="text input80" value="{$data['game_time']}" class="" />
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">赛事自动结算时间</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <input type="text" name="balance_time" value="{$data.balance_time|date="Y-m-d H:i:s",###}" class="text input270" id="balance" />
+                                    <button type="button" class="layui-btn" id="balance1">选择</button>
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">局数</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <input type="text" name="times" class="text input80" value="{$data['times']}" class="" />
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">报名费</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <input type="text" name="cost" class="text input80"  value="{$data['cost']/100}" class="" /> 元
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">基础奖金</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <input type="text" name="base_price" value="{$data['base_price']/100}" class="text input80" /> 元
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">追加奖金</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <input type="text" placeholder="0-100" class="text input80" name="add_price" value="{$data['add_price']}"  /> %
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">允许报名人数</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <input type="text" name="join_num" class="text input80" value="{$data['join_num']}" class="" />
+                                </td>
+                            </tr>
+                            
+                            <tr class="typeList">
+                                <td class="lftTit">分配规则</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <select name="rule_type">
+                                        <option value="0" <if condition="$data['rule_type'] ==0">selected</if>>默认</option>
+                                        <option value="1" <if condition="$data['rule_type'] ==1">selected</if>>完成规定局数,人人有奖</option>
+                                    </select>
+                                    <!-- <span style="cursor: pointer;" id="show_rule">查看/修改</span> -->
+                                    <!-- <span id="add_rule">添加</span> -->
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">简介</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <textarea id="content" name="content" placeholder="" autofocus>{$data.content}</textarea>
+                                </td>
+                            </tr>
+                        </table>
+                       
+                        <div class="flexed mar_t20" >
+                            <input type="hidden" name="id" value="{$data.id}">
+                            <button type="submit" style="margin: auto;" class="mar_r20 btn sLan170Btn txtShadow"><em class="queDing"></em>修改</button>
+                        </div>
+                        
+                    </form>
+                    <br />
+                    <br />
+                    <br />
+                </div>
+
+            </div>  
+        </div>
+    </div>
+    </div>
+    <!--     <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/BeatPicker.min.js"></script> -->
+    <script>
+    $('tr').click(function() {
+        var add_price = $('input[name="add_price"]').val();
+        var cost = $('input[name="cost"]').val();
+        var now_join = $('input[name="now_join"]').val();
+        $('#now_price').html('添加奖金=' + add_price*cost*now_join/100 +'元')
+    });
+    var editor1 = new Simditor({
+        textarea: $('#content')
+    });
+
+    upload('ico1', 'wqico1');
+    upload('ico2', 'wqico2');
+
+    function upload(ico1, wqico1) {
+        layui.use('upload', function() {
+            var inputs = '#' + ico1;
+            var input = $(inputs);
+            var upload = layui.upload;
+            var elem = '#' + wqico1;
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: elem,
+                url: '/index.php?m=Admin&c=Admin&a=upload',
+                before: function(obj) {
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result) {
+                        $('#demo1').attr('src', result); //图片链接（base64）
+                    });
+                },
+                done: function(res) {
+                    //如果上传失败
+                    if (res.error == 0) {
+                        input.val(res.url);
+                        return layer.msg('上传成功');
+                    } else {
+                        return layer.msg('上传失败');
+                    }
+                    //上传成功
+                },
+                error: function() {
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function() {
+                        uploadInst.upload();
+                    });
+                }
+            });
+        })
+    }
+
+    function date(elem) {    
+        lay(elem+'1').on('click', function(e){ //假设 sign_start1 是一个按钮
+          layui.use('laydate', function() {
+            var laydate = layui.laydate;
+            laydate.render({
+              elem: elem
+              ,type: 'datetime'
+              ,format: 'yyyy-MM-dd HH:mm:ss'
+              ,show: true //直接显示
+              ,closeStop: elem+'1' //这里代表的意思是：点击 test1 所在元素阻止关闭事件冒泡。如果不设定，则无法弹出控件
+            });
+          })
+        });
+    }
+    date('#sign_start');
+    date('#sign');
+    date('#start');
+    date('#end');
+    date('#balance');
+$("#show_rule").click(function(){
+   var id =  $("input[name='id']").val();
+    show_rule(id); 
+})
+function show_rule(id){
+	layui.use('layer', function(){
+        var layer = layui.layer;
+        layer.open({
+            type: 2,
+            fixed: true,
+            scrollbar: false,
+            title: '奖金分配规则',
+            zIndex: layer.zIndex,
+            area: ['600px', '400px'],
+            shadeClose: true,
+            resize: false,
+          content: "{:U('Match/edit_rule',array('id' => I('id')))}", //这里content是一个普通的String
+          success: function(layero){
+            layer.setTop(layero); //重点2
+          }
+        });
+    }); 
+}
+    $('#game_type').change(function(){
+        if ($(this).val() == 4) {
+            $('#play_type').find('option').eq(0).hide();
+            $('#play_type').val(2);
+        }else{
+            $('#play_type').find('option').eq(0).show();
+        }
+    })       
+    </script>
+</body>
+
+</html>

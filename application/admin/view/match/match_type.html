@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>赛事类别管理</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/BeatPicker.min.css" /> -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/select2.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/select2_lh.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/htmlCss.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/windowCss.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/libs/layer/css/layui.css" />
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/layer/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/laydate/laydate.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/nav.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/public.js"></script>
+</head>
+
+<body>
+    <ul class="leftMenu nav nav-tabs" role="tablist">
+        <include file="nav_list" />
+    </ul>
+    <div class="main tab-content">
+        <div role="tabpanel" class="tab-pane fade in active">
+            <!--顶部栏目标题-->
+            <div class="topTit flexed2">
+                <span>赛事类别管理</span>
+            </div>
+
+            <!--内容-->
+            <div class="Inner">
+                <div class="box boxShow">
+                    <!--表格列表-->
+                    <table class="csTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>标题</th>
+                                <th>玩法</th>
+                                <th>报名费</th>
+                                <th>参与人数</th>
+                                <th>奖励</th>
+                                <th>局数</th>
+                                <th>完成规则</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <foreach name="data" item="vo">
+                                <tr>
+                                    <td style="text-align: center;padding-left: 0px;">{$vo.id}</td>
+                                    <td><a href="{:U('UserGuess/index',array('match_id'=>$vo['id']))}">{$vo.name}</a></td>
+                                    <td>
+                                        <?php echo c('game_type')[$vo['game_type']];?>
+                                    </td>
+                                    <td>{$vo['cost']/100}&nbsp;元</td>
+                                    <td>{$vo['join_num']}</td>
+                                    <td>{$vo['times']}</td>
+                                    <if condition="$vo['price_type'] == 0">
+                                        <td>基础奖金{$vo['base_price']/100}&nbsp;元,追加奖金{$vo.add_price}%</td>
+                                    <else />
+                                        <td>商品id{$vo['price_type']}</td>
+                                    </if>
+                                    <if condition="$vo['rule_type'] == 0">
+                                        <td>默认奖励规则</td>
+                                    <elseif condition="$vo['rule_type'] == 1" />
+                                        <td>人人可得</td>
+                                    </if>
+                                    <td align="center">
+                                        <div class="flexed0">
+                                            <a href="{:U('edit_type',array('id'=>$vo['id']))}" class="btn2 bianJiBtn">编辑</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </foreach>
+                        </tbody>
+                    </table>
+                    <!--右对齐-->
+                    <div class="nav_a clear_b">
+                        <span class="mar_l15"><em class="cor_b"><i class="cor_pad"></i></em></span>
+                        <div class="nav_c nav_right">
+                            {$show}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<div class="per">
+    <div class="progress" >
+        <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 0%;">
+            <div class="progress-value"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+</script>
+</body>
+
+</html>

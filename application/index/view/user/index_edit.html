@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en" class="te6_size">
+<head>
+    <title>特牛对战平台-个人中心</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="/Public/front/css/swiper.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public/front/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public/front/js/layer/skin/mySkin/mySkinStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public/front/css/te6_style.css"/>
+
+    <script type="text/javascript" src="/Public/front/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/Public/front/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/Public/front/js/swiper.jquery.min.js"></script>
+    <script type="text/javascript" src="/Public/front/js/te6_script.js"></script>
+</head>
+<body class="te6_size">
+    <div class="te6_tc te6_grTc">
+        <div class="te6_grTcLeft">
+            <ul class="te6_grTcLList">
+                <li class="action">个人信息</li>
+                <li id="match-history">参赛历史</li>
+                <li id="myteam">我的队伍</li>
+            </ul>
+        </div>
+        <div class="te6_myteam">
+            <div class="te6_grXx ">
+                <h2>特牛账户信息
+                <a class="te6_grXxBJi" target="_blank" href="<?php echo session('member.jump_url') ? session('member.jump_url') : ''; ?>"></a></h2>
+                <table class="te6_table">
+                    <tbody>
+                    <tr>
+                        <td style="width: 96px"><span class="te6_grXxImgN">头像</span></td>
+                        <td><div class="te6_grXxImg" ><img src="<?php echo session('member.face') ? session('member.face') : ''; ?>" alt="<?php echo session('member.nickname') ? session('member.nickname') : ''; ?>"/></div></td>
+                    </tr>
+                    <tr>
+                        <td>昵称</td>
+                        <td><span><?php echo session('member.nickname') ? session('member.nickname') : ''; ?></span></td>
+                    </tr>
+                    <tr>
+                        <td>绑定手机</td>
+                        <td id="user-bind-phone">
+                            <span><?php echo session('member.phone') ? substr_replace(session('member.phone'),'****',3,4) : ''; ?></span>
+
+                            <?php
+                                if (empty(session('member.phone'))) {
+                            ?>
+                            <a class="te6_btn te6_btnYl te6_jBBtn" onclick="showbindphone(2);"><span>绑定</span></a>
+                            <?php
+                                }
+                            ?>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h2>第三方账号绑定</h2>
+                <table class="te6_table">
+                    <tbody>
+                    <tr>
+                        <td style="width: 96px">Steam账户</td>
+                        <td id="steam-bind">
+                            <span><?php echo session('member.steamuser') ? session('member.steamuser') : ''; ?></span>
+                            <?php
+                                if (session('member.steamuser')) {
+                            ?>
+                            <a class="te6_btn te6_btnYl te6_jBBtn" onclick="unbindsteamuser();"><span>解绑</span></a>
+                            <?php
+                                } else {
+                            ?>
+                            <a class="te6_btn te6_btnYl te6_jBBtn" onclick="bindsteamuser();"><span>绑定</span></a>
+                            <?php
+                                }
+                            ?>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h2 class="te6_mt40">余额</h2>
+                <table class="te6_table">
+                    <tbody>
+                    <tr>
+                        <td style="width: 96px"><p class="te6_yuE"><em id="user-have-money-text"><?php echo $userInfo['data']? sprintf('%.2f', $userInfo['data']['balance'] / 100.0) : 0; ?></em><span>元</span></p></td>
+                        <td>
+                            <a class="te6_btn <?php echo intval($userInfo['data']['now_money']) > 49900 ? 'te6_btnGy' : 'te6_btnYl te6_txBtn';?>"><span>提现</span></a>
+                            <a class="te6_btn te6_btnYl te6_jlBtn"><span>记录</span></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="te6_grCsLs hide">
+                <div class="te6_tcTableDiv">
+                    <table class="te6_tcTable">
+                        <thead>
+                        <tr>
+                            <td>时间</td>
+                            <td>报名号</td>
+                            <td style="width:138px;">比赛名称</td>
+                            <td>报名费(元) </td>
+                            <td>当前进度</td>
+                            <td>剩余时长</td>
+                            <td>奖金</td>
+                            <td width="50"></td>
+                        </tr>
+                        </thead>
+                        <tbody id="match-history-data">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="te6_pag">
+                    <p class="te6_pagTs">*当您完成比赛所需局数后，可立即报名下一场比赛 </p>
+                    <div id="match-history-page">
+
+                    </div>
+                </div>
+            </div>
+            <div class="te6_grXx hide " id="my_team">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 领奖弹窗 -->
+<!--    <div style="display:none;" id="te6_ljTc">-->
+<!--        <div class="te6_tc te6_ljTc">-->
+<!--            <p class="te6_ljP"><em>Step 1 </em><span>扫码关注微信公众号</span></p>-->
+<!--            <div class="te6_ljEwM"><img src="/Public/front/images/ye6ewm.png"/></div>-->
+<!--            <p class="te6_ljP"><em>Step 2 </em><span>回复您的兑换码领取微信红包</span></p>-->
+<!--            <a class="te6_btn te6_btnYl te6_lJDhBtn"><span>发送兑换码</span></a>-->
+<!--            <p class="te6_yqTs" id="lingjiang-phone">绑定手机号：--><?php //echo session('member.phone') ? substr_replace(session('member.phone'),'****',3,4) : ''; ?><!--</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <!-- 绑定手机号弹窗 -->
+    <div style="display:none;" id="te6_bindphone">
+        <div class="te6_tc te6_ljTc">
+            <div class="algCenter te6_mb12"><input type="text" class="te6_txt te6_txt280 " id="bind-phone-phone" placeholder="手机号"/></div>
+            <div class="algCenter te6_mb12"><input type="text" class="te6_txt te6_txt180 " id="bind-phone-verifycode" placeholder="图片验证码"/><a class="te6_yzM" onclick="getverifycode();"><img src="" id="verify_code"/></a></div>
+            <div class="algCenter te6_mb30 "><input type="text" class="te6_txt te6_txt180 " id="bind-phone-phonecode" placeholder="短信验证码"/><a class="te6_btn te6_btnYl te6_sendBtn">发送验证码</a></div>
+            <input type="hidden" value="" id="captchaKey" />
+            <input type="hidden" value="" id="bindphone" />
+            <input type="hidden" value="1" id="bindtype"/>
+            <a class="te6_btn te6_loadBtn te6_btnYl te6_btnFm" id="bind-phone-submit" onclick="bindphone(1);">提交</a>
+            <p class="te6_ljBP">为了您能够顺利领取奖金，请先绑定手机号。</p>
+        </div>
+    </div>
+
+    <!--提现记录-->
+    <div id="te6_txJL" style="display: none">
+        <div class="te6_tc te6_txJLTc">
+            <div style="height: 208px;overflow: hidden">
+                <table class="te6_tcTable">
+                    <thead>
+                    <tr>
+                        <td style="width: 120px;">时间</td>
+                        <td>详情</td>
+                        <td>金额</td>
+                    </tr>
+                    </thead>
+                    <tbody id="record-list">
+                    </tbody>
+                </table>
+            </div>
+            <div class="te6_pag">
+                <div>
+                    <p>仅显示最近25条记录</p>
+                    <a class="te6_mP" id="record-last">上一页</a>
+                    <span><i id="current-money-record-page">1</i>/<b id="max-money-record-page">1</b></span>
+                    <a class="te6_mP" id="record-next">下一页</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--提现-->
+    <div id="te6_tx" style="display: none">
+        <div class="te6_tc te6_txTc">
+            <p id="tx-text">今日提现额度已用<?php echo sprintf('%.2f', $userInfo['data']['now_money'] / 100.0);?>元，剩余<?php echo sprintf('%.2f', (49900 - $userInfo['data']['now_money']) / 100.0);?>元</p>
+            <p><input type="text" class="te6_txt te6_txt180 " placeholder="输入金额 " id="day-want-get"><span>元</span></p>
+            <p id="lingjiang-phone">绑定手机号：<?php echo session('member.phone') ? substr_replace(session('member.phone'),'****',3,4) : ''; ?></p>
+            <div>
+                <a class="te6_btn te6_btnYl te6_txQRBtn"><span>确认</span></a>
+            </div>
+        </div>
+        <input type="hidden" value="<?php echo 49900 - $userInfo['data']['now_money'];?>" id="day-max-get"/>
+        <input type="hidden" value="<?php echo $userInfo['data']['now_money'];?>" id="day-now-get"/>
+        <input type="hidden" value="<?php echo $userInfo['data']['balance'];?>" id="user-have-money"/>
+    </div>
+
+    <!--提现2-->
+    <div id="te6_tx2" style="display: none">
+        <div class="te6_tc te6_txTc2">
+            <div class="te6_ljEwM"><img src="/Public/front/images/ye6ewm.png"></div>
+            <p><span>扫码关注微信公众号</span></p>
+            <p><span>发送兑换码领取奖励</span></p>
+        </div>
+    </div>
+
+    <!--绑定Steam-->
+    <div id="te6_bds1" style="display: none">
+        <div class="te6_tc te6_bdsTc te6_bdsTc1" style="display: none">
+            <p class="te6_bdsTcTitle">检测到当前登录帐号</p>
+            <p class="te6_bdsTcTxt2" id="steam-nick-name">“你们别怕我来了”</p>
+            <p class="te6_bdsTcTxt">如果这不是您的帐号，请您在Steam中选择更改用户 登录您的Steam帐号后点击刷新按钮。</p>
+            <div>
+                <a class="te6_btn te6_btnYl te6_bdsTcQRBtn" onclick="submitSteamInfoForBind();"><span>确定绑定</span></a>
+                <a class="te6_btn te6_btnBl te6_bdsTcSXBtn" onclick="getSteamInfo();"><span>刷新</span></a>
+            </div>
+        </div>
+
+        <div class="te6_tc te6_bdsTc te6_bdsTc2" >
+            <p class="te6_bdsTcTxt2">请登录Steam客户端完成绑定</p>
+            <p class="te6_bdsTcTxt">为了您能够顺利参与比赛，请先绑定您的Steam帐号 我们将打开您的Steam客户端，您登录后即可绑定。</p>
+            <div>
+                <a class="te6_btn te6_btnYl te6_bdsTcQRBtn"><span>正在登陆...</span></a>
+            </div>
+        </div>
+
+        <input type="hidden" value="" id="user-steam-id"/>
+        <input type="hidden" value="" id="user-steam-name"/>
+    </div>
+
+    <script>
+        var global_page           = 1;
+        var _index_user_index     = 0;
+        var check_bind_success    = 0;
+        var check_steam_start     = 0;
+        var check_get_steaminfo   = 0;
+        var money_record_page     = 1;
+        var max_money_record_page = 1;
+
+        var  mallTime = {
+            mallT:null,
+            isClick:true,
+            mallTFn:function(t,elem,str,str2){
+                var _this=this;
+                _this.isClick=false;
+                $(elem).html(str+"("+t+"s)");
+                _this.mallT =setInterval(function(){
+                    t--;
+                    $(elem).html(str+"("+t+"s)");
+                    if(t < 0){
+                        t = 60;
+                        $(elem).html(str2).removeClass("action");
+                        _this.isClick=true;
+                        clearInterval(_this.mallT);
+                    }
+                },1000);
+            }
+        };
+
+        function getMatchHistory (page) {
+            global_page = page;
+            $.ajax({
+                type       : "POST",
+                url        : "{:url('/user/getmatchhistory')}",
+                data       : {"page":page,"username":$('#user-name', parent.document).val()},
+                dataType   : "json",
+                beforeSend : function(XMLHttpRequest){
+                },
+                error      : function(XMLHttpRequest, textStatus, errorThrown){
+                    layer.config({
+                        extend: 'mySkin/mySkinStyle.css', //加载layer扩展样式
+                        skin: 'layer-ext-mySkin'
+                    });
+                    layer.alert("网络错误!");
+                },
+                success    : function(data) {
+                    var html      = '';
+                    var operation = '';
+                    if (data.data.list.length > 0) {
+                        $(data.data.list).each(function (i,n) {
+//                            if (n.status == 0 && n.match_status == 5 && parseInt(n.reward) > 0) {
+//                                operation = '<a class="te6_btn te6_btnYl te6_lJBtn send_code" data-id="' + n.id + '"><span>领奖</span></a>';
+//                            } else {
+//                                operation = '';
+//                            }
+
+                            html += '<tr>' +
+                                '   <td>' + n.add_time + '</td>' +
+                                '   <td>' + n.id + '</td>' +
+                                '   <td><div class="te6_grTd" onclick="jumpToMatch(' + n.match_id + ');" style="cursor:pointer;">' + n.name + '</div></td>' +
+                                '   <td>' + (parseInt(n.cost) > 0 ? (parseInt(n.cost) / 100).toString().fixed(2) : '-') + '</td>' +
+                                '   <td>' + n.now_msg + '</td>' +
+                                '   <td>' + (n.last_time == undefined ? '-' : n.last_time) +'</td>' +
+                                '   <td>' + (parseInt(n.reward) > 0 ? (parseInt(n.reward) / 100).toString().fixed(2) : '-') +'</td>' +
+                                '   <td>' + operation +'</td>' +
+                                '</tr>';
+                        });
+
+                        create_page(data.data.page, data.data.pagecount);
+                    } else {
+                        $('#match-history-page').html('');
+                    }
+
+                    $('#match-history-data').html(html);
+                }
+            });
+        }
+
+        $(document).on('click', '#match-history', function () {
+            getMatchHistory(1);
+            global_page = 1;
+        });
+
+        function create_page(page, pagecount) {
+            var up_page   = page - 1;
+            var down_page = page + 1;
+            var up_page_str = '';
+            var down_page_str = '';
+            var now_cool_page = Math.ceil(page / 5);
+            var max_cool_page = Math.ceil(pagecount / 5);
+            var pre_page      = "";
+            var pre_row       = 0;
+            var next_page     = "";
+            var next_row      = 0;
+            var link_page     = "";
+            var page_temp     = 0;
+            var end_page      = "";
+
+            if (up_page > 0){
+                up_page_str = '<a class="te6_mP up-page" onclick="getMatchHistory(' + up_page + ');">上一页</a>';
+            } else {
+                up_page_str = '<a class="te6_mP up-page" onclick="getMatchHistory(1);">上一页</a>';
+            }
+
+            if (down_page <= pagecount){
+                down_page_str = '<a class="te6_mP down-page" onclick="getMatchHistory(' + down_page + ');">下一页</a>';
+            } else {
+                down_page_str = '<a class="te6_mP down-page" onclick="getMatchHistory(' + pagecount + ');">下一页</a>';
+            }
+
+            if (now_cool_page == 1) {
+                pre_page = "";
+            } else {
+                pre_row  = page - 5;
+                pre_page = '<em onclick="getMatchHistory(' + pre_row + ');">...</em>';
+            }
+
+            if (now_cool_page == max_cool_page) {
+                next_page = "";
+                end_page  = '';
+            } else {
+                next_row  = page + 5;
+                next_page = '<em onclick="getMatchHistory(' + next_row + ');">...</em>';
+                end_page  = '<em onclick="getMatchHistory(' + pagecount + ');">' + pagecount + '</em>';
+            }
+
+            for (var i = 1; i <= 5; i++) {
+                page_temp = (now_cool_page - 1) * 5 + i;
+                if (page_temp != page) {
+                    if (page_temp <= pagecount) {
+                        link_page += '<em onclick="getMatchHistory(' + page_temp + ');">' + page_temp + '</em>';
+                    } else {
+                        break;
+                    }
+                } else {
+                    if(pagecount != 1){
+                        link_page += '<em class="action">' + page_temp + '</em>';
+                    }
+                }
+            }
+
+            $('#match-history-page').html(up_page_str + pre_page + link_page + next_page + end_page + down_page_str);
+        }
+
+        $(document).on("click",".te6_txBtn",function(e){
+            e.preventDefault();
+
+            var user_money = parseInt($('#user-have-money').val());
+            if (isNaN(user_money) || user_money == 0) {
+                layer.msg('余额不足，无法提现！');
+                return false;
+            }
+            if (user_money < 1000) {
+                layer.msg('余额不足10元，无法提现！');
+                return false;
+            }
+
+            $.ajax({
+                type       : "POST",
+                url        : "{:url('/user/checkphone')}",
+                data       : {"username":$('#user-name', parent.document).val()},
+                dataType   : "json",
+                beforeSend : function(XMLHttpRequest){
+                },
+                error      : function(XMLHttpRequest, textStatus, errorThrown){
+                    layer.config({
+                        extend: 'mySkin/mySkinStyle.css', //加载layer扩展样式
+                        skin: 'layer-ext-mySkin'
+                    });
+                    layer.msg("网络错误！");
+                },
+                success    : function(data) {
+                    if (data.code == 1) {
+                        var day_max_get = parseInt($('#day-max-get').val());
+                        var day_now_get = parseInt($('#day-now-get').val());
+
+                        if (isNaN(day_max_get)) {
+                            day_max_get = 0;
+                        }
+
+                        if (isNaN(day_now_get)) {
+                            day_now_get = 0;
+                        }
+
+                        $('#tx-text').html('今日提现额度已用' + (day_now_get / 100.0).toFixed(2) + '元，剩余' + (day_max_get / 100.0).toFixed(2)+ '元');
+
+                        $('#day-want-get').val('');
+
+                        _index_user_index = layer.open({
+                            title   : '提取',
+                            type    : 1,
+                            area    : ['400px', '314px'],
+                            resize  : false,
+                            content : $("#te6_tx")
+                        });
+                    } else {
+                        layer.alert('您尚未绑定手机号，请先绑定手机', function () {
+                            showbindphone (1);
+                        });
+                    }
+                }
+            });
+        });
+
+        /*提现2*/
+        $(".te6_txQRBtn").on("click",function(e){
+            e.preventDefault();
+            var test           = /^(([1-9][0-9]*)|(([0]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/;
+            var want_get_money = $('#day-want-get').val();
+            var day_max_get    = $('#day-max-get').val();
+
+            if (!test.test(want_get_money)) {
+                layer.msg('您输入的金额不正确');
+                return false;
+            }
+
+            if (day_max_get == '' || day_max_get == undefined) {
+                day_max_get = 0;
+            }
+
+            want_get_money = parseFloat(want_get_money) * 100;
+            day_max_get    = parseInt(day_max_get);
+
+            if (want_get_money > day_max_get) {
+                layer.msg('今日您所提现金额已达上限');
+                return false;
+            }
+
+            $.ajax({
+                type       : "POST",
+                url        : "{:url('/user/getmoney')}",
+                data       : {'money':want_get_money, "username":$('#user-name', parent.document).val()},
+                dataType   : "json",
+                beforeSend : function(XMLHttpRequest){
+                },
+                error      : function(XMLHttpRequest, textStatus, errorThrown){
+                    layer.config({
+                        extend: 'mySkin/mySkinStyle.css', //加载layer扩展样式
+                        skin: 'layer-ext-mySkin'
+                    });
+                    layer.msg("网络错误！");
+                },
+                success    : function(data) {
+                    if (data.code == 1) {
+                        layer.close(_index_user_index);
+
+                        $('#day-max-get').val(49900 - parseInt(data.data.now_money));
+                        $('#day-now-get').val(parseInt(data.data.now_money));
+                        $('#user-have-money').val(data.data.balance);
+                        $('#user-have-money-text').html((parseInt(data.data.balance) / 100.0).toFixed(2));
+
+                        layer.open({
+                            title: '关注微信-提取余额',
+                            type: 1,
+                            area: ['400px', '360px'],
+                            resize:false,
+                            content:$("#te6_tx2")
+                        });
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }
+            });
+        });
+
+        $(".te6_sendBtn").on("click",function(e){
+            e.preventDefault();
+
+            var phone = $('#bind-phone-phone').val();
+            var captchakey = $('#captchaKey').val();
+            var verifycode = $('#bind-phone-verifycode').val();
+
+            if (phone == undefined || phone == "") {
+                layer.msg('请填写您的手机号码');
+                return false;
+            }
+
+            if (verifycode == undefined || verifycode == "") {
+                layer.msg('请填写您的验证码');
+                return false;
+            }
+
+            if(mallTime.isClick){
+                $(this).addClass("action");
+                mallTime.mallTFn(60,".te6_sendBtn","重发","发送验证码");
+
+                getphonecode (phone, captchakey, verifycode);
+            }
+        });
+
+        /*提现记录*/
+        $(".te6_jlBtn").on("click",function(e){
+            e.preventDefault();
+
+            $.ajax({
+                type       : "POST",
+                url        : "/index.php/user/checkloginstatus",
+                data       : {"username":$('#user-name', parent.document).val()},
+                dataType   : "json",
+                beforeSend : function(XMLHttpRequest){
+                },
+                error      : function(XMLHttpRequest, textStatus, errorThrown){
+                    layer.config({
+                        extend: 'mySkin/mySkinStyle.css', //加载layer扩展样式
+                        skin: 'layer-ext-mySkin'
+                    });
+                    layer.msg("网络错误！");
+                },
+                success    : function(data) {
+                    if (data.code == 1) {
+                        layer.open({
+                            title: '余额记录 ',
+                            type: 1,
+                            area: ['400px', '314px'],
+                            resize:false,
+                            content:$("#te6_txJL")
+                        });
+
+                        getMoneyRecordList(1);
+                    } else {
+                        layer.msg('您尚未登录，请登录后再进行操作');
+                    }
+                }
+            });
+        });
+
+        function showbindphone (type) {
+            getverifycode();
+            $('#bindtype').val(type);
+            _index_user_index = layer.open({
+                title   : '绑定手机号',
+                type    : 1,
+                area    : ['400px', '480px'],
+                resize  : false,
+                content : $('#te6_bindphone')
+            });
+        }
+
+        function bindphone () {
+            var ssid   = $.cookie('ssid');
+            var userid = $.cookie('userid');
+            var phone  = $('#bindphone').val();
+            var phonecode = $('#bind-phone-phonecode').val();
+
+            $.ajax({
+                type       : "POST",
+                url        : "{:url('user/bindphone')}",
+                data       : {'ssid':ssid, 'userid':userid, 'phone':phone, 'phonecode':phonecode, "username":$('#user-name', top.document).val()},
+                dataType   : "json",
+                beforeSend : function(XMLHttpRequest){
+                },
+                error      : function(XMLHttpRequest, textStatus, errorThrown){
+                },
+                success    : function(data) {
+                    if (data.code == 1) {
+                        var bind_type = $('#bindtype').val();
+
+                        if (bind_type == 1) {
+                            $('#lingjiang-phone').html('绑定手机号：' + phone.substring(0, 3) + "****" + phone.substring(7, 11));
+
+                            layer.close(_index_user_index);
+
+                            $('#user-bind-phone').html('<span>' + phone.substring(0, 3) + "****" + phone.substring(7, 11) + '</span>');
+
+                            _index_user_index = layer.open({
+                                title   : '提取',
+                                type    : 1,
+                                area    : ['400px', '314px'],
+                                resize  : false,
+                                content : $("#te6_tx")
+                            });
+                        } else {
+                            $('#user-bind-phone').html('<span>' + phone.substring(0, 3) + "****" + phone.substring(7, 11) + '</span>');
+
+                            layer.close(_index_user_index);
+                        }
+                    } else {
+                        layer.msg('绑定失败');
+                    }
+                }
+            });
+        }
+
+        function getphonecode (phone, captchakey, verifycode) {
+            $.ajax({
+                type       : "GET",
+                url        : "https://uc.te6.com/api/phonecode",
+                data       : {'phone':phone,'type':'bindphone','captchaKey':captchakey,'captchaValue':verifycode},
+                dataType   : "jsonp",
+                beforeSend : function(XMLHttpRequest){
+                },
+                error      : function(XMLHttpRequest, textStatus, errorThrown){
+                },
+                success    : function(data) {
+                    if (data.errno == 0 && data.data) {
+                        layer.msg('发送成功');
+                        $('#bindphone').val(phone);
+                    } else {
+                        layer.msg('发送失败');
+                        $('#bindphone').val('');
+                    }
+                    getverifycode();
+                }
+            });
+        }
+
+        function getverifycode () {
+            $.ajax({
+                type       : "GET",
+                url        : "https://uc.te6.com/captcha/get",
+                data       : {},
+                dataType   : "jsonp",
+                beforeSend : function(XMLHttpRequest){
+                },
+                error      : function(XMLHttpRequest, textStatus, errorThrown){
+                },
+                success    : function(data) {
+                    $('#verify_code').attr('src', data.data.url);
+                    $('#captchaKey').val(data.data.captchaKey);
+                }
+            });
+        }
+
+        function bindsteamuser () {
+            _js_regnotify('{"owner":"","to":"te6box","body":{"method":"getSteamState","content":{}}}', function(data){
+                var json = eval('(' + data + ')');
+                if (json.errno == 0) {
+                    if (json.data.state == 1) {
+                        // 已经启动，进入绑定程序
+                        $('.te6_bdsTc2').hide();
+                        $('.te6_bdsTc1').show();
+
+                        getSteamInfo ();
+                        check_get_steaminfo = window.setInterval(function () {
+                            getSteamInfo();
+                        }, 500);
+
+                        _index_user_index = layer.open({
+                            title: '绑定Steam ',
+                            type: 1,
+                            area: ['420px', '310px'],
+                            resize:false,
+                            content:$("#te6_bds1")
+                        });
+                    } else{
+                        // 未启动，进行调起
+                        $('.te6_bdsTc1').hide();
+                        $('.te6_bdsTc2').show();
+
+                        _index_user_index = layer.open({
+                            title: '绑定Steam ',
+                            type: 1,
+                            area: ['420px', '310px'],
+                            resize:false,
+                            content:$("#te6_bds1")
+                        });
+
+                        _js_regnotify('{"owner":"","to":"te6box","body":{"method":"startSteam","content":{}}}', function(data){
+                            var json2 = eval('(' + data + ')');
+                            if (json2.errno == 0) {
+                                // 启动成功，等待进入
+                                getSteamInfo ();
+                                check_get_steaminfo = window.setInterval(function () {
+                                    getSteamInfo();
+                                }, 500);
+                            } else {
+                                // 启动不成功，等待玩家手动启动
+                                checkSteamStart ();
+                                check_steam_start = window.setInterval(function () {
+                                    checkSteamStart();
+                                }, 500);
+                            }
+                        });
+                    }
+                    // } else {
+                    //     layer.alert('无法启动Steam客户端，请手动运行并登录后重试');
+                    // }
+                } else {
+                    layer.alert('Steam启动检测失败，请重启游戏盒子后重试');
+                }
+            });
+        }
+
+        function checkbindsuccess () {
+            $.ajax({
+                type       : "POST",
+                url        : "{:url('user/checkbindsuccess')}",
+                data       : {"username":$('#user-name', parent.document).val()},
+                dataType   : "json",
+                beforeSend : function(XMLHttpRequest){
+                },
+                error      : function(XMLHttpRequest, textStatus, errorThrown){
+                },
+                success    : function(data) {
+                    if (data.code == 1) {
+                        window.clearInterval(check_bind_success);
+                        $('#steam-bind').html(
+                            '<span>' + data.data + '</span>' +
+                            '<a class="te6_btn te6_btnYl te6_jBBtn" onclick="unbindsteamuser();"><span>解绑</span></a>'
+                        );
+
+                        $(parent.document.getElementById('main-iframe').contentWindow.document).find("#steam-data").html(data.data);
+                    }
+                }
+            });
+        }
+
+        function unbindsteamuser () {
+            $.ajax({
+                type       : "POST",
+                url        : "{:url('user/unbindsteamuser')}",
+                data       : {"username":$('#user-name', parent.document).val()},
+                dataType   : "json",
+                beforeSend : function(XMLHttpRequest){
+                },
+                error      : function(XMLHttpRequest, textStatus, errorThrown){
+                },
+                success    : function(data) {
+                    if (data.code == 1) {
+                        layer.msg('解绑成功');
+                        $('#steam-bind').html(
+                            '<span></span>' +
+                            '<a class="te6_btn te6_btnYl te6_jBBtn" onclick="bindsteamuser();"><span>绑定</span></a>'
+                        );
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }
+            });
+        }
+
+        function jumpToMatch (match_id) {
+            parent.layer.closeAll();
+            $('#main-iframe', parent.document).attr("src", '<?php echo url('/match/matchdetail') . '?match_id=';?>' + match_id);
+        }
+
+        function checkSteamStart () {
+            _js_regnotify('{"owner":"","to":"te6box","body":{"method":"getSteamState","content":{}}}', function(data){
+                var json = eval('(' + data + ')');
+                if (json.errno == 0) {
+                    if (json.data.state == 1) {
+                        // 检测到正在运行，则开始检测登录信息
+                        window.clearInterval(check_steam_start);
+
+                        getSteamInfo ();
+                        check_get_steaminfo = window.setInterval(function () {
+                            getSteamInfo();
+                        }, 500);
+                    }
+                } else {
+                    layer.alert('Steam启动检测失败，请重启游戏盒子后重试');
+                }
+            });
+        }
+
+        function getSteamInfo () {
+            _js_regnotify('{"owner":"","to":"te6box","body":{"method":"getSteamRecentUseInfo","content":{}}}', function(data){
+                var json = eval('(' + data + ')');
+                if (json.errno == 0) {
+                    window.clearInterval(check_get_steaminfo);
+
+                    $('#user-steam-id').val(json.data.userid);
+                    $('#user-steam-name').val(json.data.persona_name);
+                    $('#steam-nick-name').html('“' + json.data.persona_name + '”');
+
+                    $('.te6_bdsTc2').hide();
+                    $('.te6_bdsTc1').show();
+                }
+            });
+        }
+
+        function submitSteamInfoForBind () {
+            var steam_id   = $('#user-steam-id').val();
+            var steam_name = $('#user-steam-name').val();
+
+            if (steam_id == '' || steam_id == undefined) {
+                layer.alert('还未检测到您登陆的Steam信息，请稍后');
+                return false;
+            }
+
+            if (steam_name == '' || steam_name == undefined) {
+                layer.alert('还未检测到您登陆的Steam信息，请稍后');
+                return false;
+            }
+
+            $.ajax({
+                type       : "POST",
+                url        : "{:url('user/bindsteamuser')}",
+                data       : {"username":$('#user-name', parent.document).val(), 'steamid':steam_id, 'steamname':steam_name},
+                dataType   : "json",
+                beforeSend : function(XMLHttpRequest){
+                },
+                error      : function(XMLHttpRequest, textStatus, errorThrown){
+                },
+                success    : function(data) {
+                    layer.close(_index_user_index);
+                    if (data.code == 1) {
+
+                        layer.msg('绑定成功');
+
+                        $('#steam-bind').html(
+                            '<span>' + steam_name + '</span>' +
+                            '<a class="te6_btn te6_btnYl te6_jBBtn" onclick="unbindsteamuser();"><span>解绑</span></a>'
+                        );
+
+                        $(parent.document.getElementById('main-iframe').contentWindow.document).find("#steam-data").html(steam_name);
+                    }else{
+                        layer.msg(data.msg);
+                    }
+                }
+            });
+        }
+        function get_team_info(){
+            $.ajax({
+                type     : "POST",
+                url      : "{:url('user/team_info')}",
+                data     : {"username":$('#user-name', parent.document).val()},
+                dataType : "json",
+                beforeSend :function(XMLHttpRequest){
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    layer.msg("网络错误！");
+                },
+                success: function(json){
+                    var data = json.data;
+                    var html = ''
+                    if (data.status == 2) {
+                        html+=" <h2 >您还未有队伍，请创建或者参加一支队伍</h2>";
+                        html+="                <table class=\'te6_table\'>";
+                        html+="                    <tbody>";
+                        html+="                    <tr>";
+                        html+="                        <td style='text-align: left;'>";
+                        html+="                            <a class=\'te6_btn  te6_btnYl \' id='create_team'><span>创建队伍</span></a>";
+                        html+="                        </td>";
+                        html+="                    </tr>";
+                        html+="                    <tr>";
+                        html+="                        <td>";
+                        html+="                            <input type='text' class='te6_txt te6_txt100 te6_mt20 ' placeholder='请输入队伍id' id='team_name'></div><span id='join_team'>加入队伍</span></a>";
+                        html+="                        </td>";
+                        html+="                    </tr>";
+                        html+="                    </tbody>";
+                        html+="                </table>";
+                        html +=''
+                        $('#my_team').html(html);
+                    }else if(data.status == 0) {
+                        var team_data = data.data;
+                        if (team_data['team_name']) {
+                            html+=" <h5 >请将您的队伍ID发送给好友，指导好友在此页面输入队伍ID进行组队</h2>";
+                            html+=" <h2 >您的队伍ID："+team_data['team_name']+" <a class=\'te6_btn  te6_btnYl \' id='del_team'><span>解散队伍</span></a></h2>";
+                        }else{
+                            html+=" <h2 ><a class=\'te6_btn  te6_btnYl \' id='quit_team'><span>退出队伍</span></a></h2>";
+                        }
+                        html+="                <table class=\'te6_table\'>";
+                        html+="                    <tbody>";
+                        html+="                    <tr>";
+                        html+="                        <th style='text-align: left;'>";
+                        html+="          队长:"+team_data['team_leader']['nickname']+"                  ";
+                        html+="                        </th>";
+                        html+="                    </tr>";
+                        html+="                    <tr><td>队员</td></tr>";
+                        html+="                    <tr>";
+                        if (team_data['teammate_info'] != null) {
+                            $.each(team_data['teammate_info'],function(i,item){
+
+                                html+="                        <td>"+item['nickname'];
+                                html+="                        </td>";
+                                if (team_data['team_name']) {
+                                    html+="<a class=\'te6_btn  te6_btnYl \' id='kick_off' data='"+item['uid']+"'><span>踢出队伍</span></a>";
+                                    html+="                        </td>";
+                                }
+                            })
+                        }
+                        html+="                    </tr>";
+                        html+="                    </tbody>";
+                        html+="                </table>";
+                        // html +=''
+                        $('#my_team').html(html);
+                    }
+                    //console.log(data.team_name);
+                }
+            });
+        }
+        function create_team(){
+            $.ajax({
+                type     : "POST",
+                url      : "{:url('user/create_team')}",
+                data     : {"username":$('#user-name', parent.document).val()},
+                dataType : "json",
+                beforeSend :function(XMLHttpRequest){
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    layer.msg("网络错误！");
+                },
+                success: function(json){
+                    var data = json.data;
+                    if (data.status == 0) {
+                        layer.msg("队伍创建成功！");
+                        get_team_info() 
+                    }else{
+                        layer.msg(data.info);
+                    }
+                    console.log(data);
+                }
+            });
+        }
+        function join_team(team_name){
+            $.ajax({
+                type     : "POST",
+                url      : "{:url('user/join_team')}",
+                data     : {"username":$('#user-name', parent.document).val(),team_name:team_name},
+                dataType : "json",
+                beforeSend :function(XMLHttpRequest){
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    layer.msg("网络错误！");
+                },
+                success: function(json){
+                    var data = json.data;
+                    if (data.status == 0) {
+                        layer.msg("加入队伍成功！");
+                        get_team_info() 
+                    }else{
+                        layer.msg(data.info);
+                    }
+                    console.log(data);
+                }
+            });
+        }
+         function del_team(){
+            $.ajax({
+                type     : "POST",
+                url      : "{:url('user/del_team')}",
+                data     : {"username":$('#user-name', parent.document).val()},
+                dataType : "json",
+                beforeSend :function(XMLHttpRequest){
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    layer.msg("网络错误！");
+                },
+                success: function(json){
+                    var data = json.data;
+                    if (data.status == 0) {
+                        layer.msg("队伍解散成功！");
+                        get_team_info() 
+                    }else{
+                        layer.msg(data.info);
+                    }
+                    console.log(data);
+                }
+            });
+        }
+         function quit_team(){
+            $.ajax({
+                type     : "POST",
+                url      : "{:url('user/quit_team')}",
+                data     : {"username":$('#user-name', parent.document).val()},
+                dataType : "json",
+                beforeSend :function(XMLHttpRequest){
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    layer.msg("网络错误！");
+                },
+                success: function(json){
+                    var data = json.data;
+                    if (data.status == 0) {
+                        layer.msg("你已成功退出队伍！");
+                        get_team_info() 
+                    }else{
+                        layer.msg(data.info);
+                    }
+                    console.log(data);
+                }
+            });
+        }
+        function kick_off(uid){
+            $.ajax({
+                type     : "POST",
+                url      : "{:url('user/kick_off')}",
+                data     : {"username":$('#user-name', parent.document).val(),uid:uid},
+                dataType : "json",
+                beforeSend :function(XMLHttpRequest){
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    layer.msg("网络错误！");
+                },
+                success: function(json){
+                    var data = json.data;
+                    if (data.status == 0) {
+                        layer.msg("你已成功将其踢出队伍！");
+                        get_team_info() 
+                    }else{
+                        layer.msg(data.info);
+                    }
+                    console.log(data);
+                }
+            });
+        }
+        $(document).on("click","#create_team",function(e){
+            create_team()
+        })
+        $(document).on("click","#del_team",function(e){
+            del_team()
+        })
+        $(document).on("click","#quit_team",function(e){
+            quit_team()
+        })
+        $(document).on("click","#kick_off",function(e){
+            var uid = $(this).attr('data');
+            kick_off(uid)
+        })
+        $(document).on("click","#join_team",function(e){
+            var team_name = $('#team_name').val();
+            if (team_name =='') {
+                layer.msg("请输入队伍ID");
+                return false;
+            }else{
+                join_team(team_name)
+            }
+        })
+        get_team_info()
+    </script>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?d87523d9389dda0dd4e5acc81353d9c0";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</body>
+</html>
