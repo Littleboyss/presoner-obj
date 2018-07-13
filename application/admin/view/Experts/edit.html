@@ -93,7 +93,14 @@
                                 <td class="lftTit">专长</td>
                                 <td class="rgtInfo">
                                     <i></i>
-                                    <input type="text" name="specialty" value="{$ExpertsInfo.specialty}" class="text input270" />
+                                    <select name="specialty">
+                                    {foreach name="cal" item="vo"}
+                                        <option value="{$vo['id']}" 
+                                            {if condition="$vo['id'] == $ExpertsInfo['specialty']"}
+                                                selected="selected" 
+                                            {/if}
+                                        >{$vo[0]}</option>
+                                    {/foreach}
                                 </td>
                             </tr>
                             <tr class="typeList">

@@ -55,7 +55,7 @@
                                     <td><img src="{$vo.avatar}" width="70"></td>
                                     <td>{$vo.name}</td>
                                     <td>{$vo.nickname}</td>
-                                    <td>{$vo.specialty}</td>
+                                    <td><?php echo config('cal')[$vo['specialty']-1];?></td>
                                     <td>
                                       <a class="btn2 bianJiBtn" onclick="show_schedule({$vo.id})">排班表</a>
                                       <a class="btn2 bianJiBtn" href="{:Url('edit', array('id' => $vo['id']))}">修改</a>

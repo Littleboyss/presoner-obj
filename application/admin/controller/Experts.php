@@ -23,6 +23,9 @@ class Experts extends Main
             $this->error('添加失败' . $error);
             exit;
         }
+        $authModel = model('Auth');
+        $data      = $authModel->tree(config('cal_array'));
+        $this->assign('cal', $data);
         return $this->fetch();
     }
     public function index()
@@ -54,6 +57,9 @@ class Experts extends Main
                 $this->error('修改失败' . $ExpertsModel->getError());
             }
         }
+        $authModel = model('Auth');
+        $data      = $authModel->tree(config('cal_array'));
+        $this->assign('cal', $data);
         $ExpertsInfo = $ExpertsModel->find($id);
         $this->assign('ExpertsInfo', $ExpertsInfo);
         return $this->fetch();
@@ -73,18 +79,65 @@ class Experts extends Main
     // 查看排班表
     public function showSchedule()
     {
-        $id           = $this->request->param('id');
+        $id            = $this->request->param('id');
         $ScheduleModel = model("Schedule");
         if ($this->request->isPost()) {
             $post_data = $this->request->post();
-            $res = $ScheduleModel->where(['eid'=>$id])->order('weeks asc')->select()->toArray();
+            $res       = $ScheduleModel->where(['eid' => $id])->order('weeks asc')->select()->toArray();
             if ($res) {
                 foreach ($res as $key => $value) {
                     $res[$key]['weeks'] = getWeeks($value['weeks']);
                 }
-                $this->returnMsg(0,'获取成功',$res);
+                $this->returnMsg(0, '获取成功', $res);
             }
         }
-        $this->returnMsg(1,'获取失败');
+        $this->returnMsg(1, '获取失败');
+    }
+    // 显示选择专家界面
+    public function selectEid()
+    {
+        $id           = $this->request->param('id');
+        $ExpertsModel = model("Experts");
+        $ScheduleModel = model("Schedule");
+        $where = [];
+        $this->assign('map', ['specialty'=>0,'weeks'=>0,]);
+        if ($this->request->isPost()) {
+            $post_data = $this->request->post();
+            $where = $post_data;
+            // 特长查询分类下的科
+            if ($where['specialty'] != 0) {
+                $authModel = model('Auth');
+                $cal_data      = $authModel->tree(config('cal_array'),$where['specialty']);
+                $specialty_id=[];
+                array_unshift($specialty_id,$where['specialty']);
+                if ($cal_data) {
+                    $specialty_id = array_column($cal_data, 'id');
+                    $specialty_ids = implode(',', $specialty_id);
+                    $where['specialty'] = ['in',$specialty_ids];
+                }
+            }else{
+                unset($where['specialty']);
+            }
+            // 排班
+            if($where['weeks'] != 0){    
+                $list = $ScheduleModel->where(['weeks'=>$where['weeks']])->group('eid')->column('eid');
+                if ($list) {
+                    $in_data = implode(',', $list);               
+                    $where['id'] = ['in',$list];
+                }
+            }
+            unset($where['weeks']);
+            $this->assign('map', $post_data);
+        }
+        $data  = $ExpertsModel->where($where)->paginate(10);
+        $page  = $data->render();
+        $weeks = [1 => '星期一', 2 => '星期二', 3 => '星期三', 4 => '星期四', 5 => '星期五', 6 => '星期六', 7 => '星期天'];
+        $authModel = model('Auth');
+        $cal_data      = $authModel->tree(config('cal_array'));
+        $this->assign('cal', $cal_data);
+        $this->assign('data', $data);
+        $this->assign('weeks', $weeks);
+        $this->assign('page', $page);
+        return $this->fetch();
     }
 }

@@ -37,7 +37,7 @@ class User extends Main
             } else {
                 $data[$key]['Experts'] = $Experts->where('id =' . $value['eid'])->value('name');
             }
-            $data[$key]['hospital'] = $Hospital->where('id =' . $value['hospital_id'])->value('name');
+            $data[$key]['hospital'] = $Hospital->where('id =' . $value['hospital_id'])->value('nickname');
         }
         $page = $data->render();
         $this->assign('data', $data);
@@ -103,6 +103,21 @@ class User extends Main
     //
     public function getEid()
     {
+        $UserModel = model('User');
+        $Hospital  = model('Hospital');
+        $Experts   = model('Experts');
+        $data      = $UserModel->where(['eid'=>0])->paginate(10);
+        foreach ($data as $key => $value) {
+            if ($value['eid'] == 0) {
+                $data[$key]['Experts'] = '暂无';
+            } else {
+                $data[$key]['Experts'] = $Experts->where('id =' . $value['eid'])->value('name');
+            }
+            $data[$key]['hospital'] = $Hospital->where('id =' . $value['hospital_id'])->value('nickname');
+        }
+        $page = $data->render();
+        $this->assign('data', $data);
+        $this->assign('page', $page);
         return $this->fetch();
     }
     // 重设密码

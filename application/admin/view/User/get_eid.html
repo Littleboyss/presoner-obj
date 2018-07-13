@@ -24,7 +24,6 @@
 
 <body>
     <ul class="leftMenu nav nav-tabs" role="tablist">
-        {include file="../application/admin/view/User/nav_list.html"}
     </ul>
     <div class="main tab-content">
         <div role="tabpanel" class="tab-pane fade in active">
@@ -68,7 +67,8 @@
                                     <td>{$vo.hospital}</td>
                                     <td>
                                       <a class="btn2 bianJiBtn" onclick="show_history({$vo.id})">查看病历</a>
-                                      <a class="btn2 bianJiBtn" onclick="reset({$vo.id})">重设密码</a>
+                                      <a class="btn2 bianJiBtn" onclick="select_eid({$vo.id})">选择专家</a>
+                                      <!-- <a class="btn2 bianJiBtn" onclick="reset({$vo.id})">重设密码</a> -->
                                     </td>
                                 </tr>
                             {/foreach}
@@ -88,43 +88,54 @@
 </body>
 </body>
 <script type="text/javascript">
-    // layui.use('layer', function(){
-    //     var layer = layui.layer;
-    //     layer.open({
-    //         type: 2,
-    //         fixed: true,
-    //         scrollbar: false,
-    //         title: '奖金分配规则',
-    //         zIndex: layer.zIndex,
-    //         area: ['600px', '400px'],
-    //         shadeClose: true,
-    //         resize: false,
-
-    //       success: function(layero){
-    //         layer.setTop(layero); //重点2
-    //       }
-    //     });
-    // }); 
-    function reset(id) {
-        $.ajax({    
-            type: 'POST',   
-            dataType: "json", 
-            url: '/index.php/User/reset',    
-            data: {id : id},
-            success: function(json) {
-                console.log(json)
-                layer.msg(json.msg,
-                        {icon: 1,time: 2000 }
-                    );
+    function select_eid(id){
+        layer.open({
+            type: 2,
+            fixed: true,
+            scrollbar: false,
+            title: '选择专家',
+            zIndex: layer.zIndex,
+            area: ['1000px', '400px'],
+            shadeClose: true,
+            resize: false,
+            content: "{:Url('Experts/selectEid')}", //这里content是一个普通的String
+            success: function(layero) {
+                layer.setTop(layero); //重点2
             }
-        })
+        });
+        // $.ajax({    
+        //     type: 'POST',   
+        //     dataType: "json", 
+        //     url: '/index.php/Experts/selectEid',    
+        //     data: {id : id},
+        //     success: function(json) {
+        //         console.log(json)
+        //         layer.msg(json.msg,
+        //                 {icon: 1,time: 2000 }
+        //             );
+        //     }
+        // })
     }
+    // function reset(id) {
+    //     $.ajax({    
+    //         type: 'POST',   
+    //         dataType: "json", 
+    //         url: '/index.php/User/reset',    
+    //         data: {id : id},
+    //         success: function(json) {
+    //             console.log(json)
+    //             layer.msg(json.msg,
+    //                     {icon: 1,time: 2000 }
+    //                 );
+    //         }
+    //     })
+    // }
     function show_history(id) {
         //var id = $('this').attr('data');
         $.ajax({    
             type: 'POST',   
              dataType: "json", 
-             url: '/index.php/User/view_history',    
+             url: '/index.php/User/viewHistory',    
              data: {id : id},
              success: function(json) {
                 if (json.status == 0) {
@@ -145,7 +156,6 @@
                             html +="<td align=\'center\'>"+ val.vtime+"</td>";
                         html +="</tr>";
                     });
-                        html +="</tbody>";
                     html +="</table>";
                         layer.open({
                             fixed: true,
