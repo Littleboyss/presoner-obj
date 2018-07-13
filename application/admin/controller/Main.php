@@ -61,7 +61,7 @@ class Main extends \think\Controller
         if (!empty($extra_data)) {
             $items['extra_data'] = $extra_data;
         }
-        $this->ajaxReturn($items);
+        echo json_encode($items);
         exit;
     }
     // 展示分页

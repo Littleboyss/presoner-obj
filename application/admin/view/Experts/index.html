@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>患者列表</title>
+    <title>专家列表</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.css" />
     <!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/BeatPicker.min.css" /> -->
@@ -24,13 +24,13 @@
 
 <body>
     <ul class="leftMenu nav nav-tabs" role="tablist">
-        {include file="../application/admin/view/User/nav_list.html"}
+        {include file="../application/admin/view/Experts/nav_list.html"}
     </ul>
     <div class="main tab-content">
         <div role="tabpanel" class="tab-pane fade in active">
             <!------顶部栏目标题-------->
             <div class="topTit flexed2">
-                <span>患者列表</span>
+                <span>专家列表</span>
             </div>
             
             <!--内容-->
@@ -41,13 +41,10 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>头像</th>
+                                <th>登录名</th>
                                 <th>姓名</th>
-                                <th>性别</th>
-                                <th>年龄</th>
-                                <th>联系方式</th>
-                                <th>系统账号</th>
-                                <th>负责专家</th>
-                                <th>录入医院</th>
+                                <th>专长</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
@@ -55,20 +52,13 @@
                             {foreach name="data" item="vo"}
                                 <tr>
                                     <td>{$vo.id}</td>
-                                    <td>{$vo.name}</td> 
-                                    {if condition="$vo['sex'] eq 1"} 
-                                        <td>男</td>
-                                    {else /}
-                                        <td>女</td>    
-                                    {/if}
-                                    <td>{$vo.age}</td>
-                                    <td><?php echo hidePhone($vo['phone']);?></td>
-                                    <td>{$vo.idcard}</td>
-                                    <td>{$vo.Experts}</td>
-                                    <td>{$vo.hospital}</td>
+                                    <td><img src="{$vo.avatar}" width="70"></td>
+                                    <td>{$vo.name}</td>
+                                    <td>{$vo.nickname}</td>
+                                    <td>{$vo.specialty}</td>
                                     <td>
-                                      <a class="btn2 bianJiBtn" onclick="show_history({$vo.id})">查看病历</a>
-                                      <a class="btn2 bianJiBtn" onclick="reset({$vo.id})">重设密码</a>
+                                      <a class="btn2 bianJiBtn" onclick="show_schedule({$vo.id})">排班表</a>
+                                      <a class="btn2 bianJiBtn" href="{:Url('edit', array('id' => $vo['id']))}">修改</a>
                                     </td>
                                 </tr>
                             {/foreach}
@@ -86,73 +76,43 @@
         </div>
     </div>
 </body>
+
 </body>
 <script type="text/javascript">
-    // layui.use('layer', function(){
-    //     var layer = layui.layer;
-    //     layer.open({
-    //         type: 2,
-    //         fixed: true,
-    //         scrollbar: false,
-    //         title: '奖金分配规则',
-    //         zIndex: layer.zIndex,
-    //         area: ['600px', '400px'],
-    //         shadeClose: true,
-    //         resize: false,
-
-    //       success: function(layero){
-    //         layer.setTop(layero); //重点2
-    //       }
-    //     });
-    // }); 
-    function reset(id) {
-        $.ajax({    
-            type: 'POST',   
-            dataType: "json", 
-            url: '/index.php/User/reset',    
-            data: {id : id},
-            success: function(json) {
-                console.log(json)
-                layer.msg(json.msg,
-                        {icon: 1,time: 2000 }
-                    );
-            }
-        })
-    }
-    function show_history(id) {
+    function show_schedule(id) {
         //var id = $('this').attr('data');
         $.ajax({    
             type: 'POST',   
              dataType: "json", 
-             url: '/index.php/User/view_history',    
+             url: '/index.php/Experts/showSchedule',    
              data: {id : id},
              success: function(json) {
                 if (json.status == 0) {
                     html = '';
                     html +="<table  class=\'csTable\' cellspacing=\'0\'>";
-                        html +="<thead>";
-                            html +="<tr>";
-                                html +="<th  width=\"300\">描述</th>";
-                                html +="<th >详情</th>";
-                                html +="<th width=\"100\">就诊时间</th>";
-                            html +="</tr>";
-                        html +="</thead>";
+                        // html +="<thead>";
+                        //     html +="<tr>";
+                        //         html +="<th  width=\"300\">描述</th>";
+                        //         html +="<th >详情</th>";
+                        //         html +="<th width=\"100\">就诊时间</th>";
+                        //     html +="</tr>";
+                        // html +="</thead>";
                         html +="<tbody>";
                     $.each(json.data, function(index, val) {
                         html +="<tr>";
-                            html +="<td align=\'center\'>"+ val.descrip+"</td>";
-                            html +="<td align=\'center\'>"+ val.content+"</td>";
-                            html +="<td align=\'center\'>"+ val.vtime+"</td>";
+                            html +="<td align=\'center\'>"+ val.weeks+"</td>";
+                            html +="<td align=\'center\'>"+ val.time_stemp+"</td>";
                         html +="</tr>";
                     });
                         html +="</tbody>";
                     html +="</table>";
                         layer.open({
+                            type:1,
                             fixed: true,
                             scrollbar: false,
-                            title: '患者病历',
+                            title: '排班表',
                             zIndex: layer.zIndex,
-                            area: ['1000px', '400px'],
+                            area: ['400px', '300px'],
                             shadeClose: true,
                             resize: false,
                             content: html

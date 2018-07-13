@@ -24,11 +24,12 @@
                <ul class="mainNavLeftUl flexed">
                    {if condition="in_array('Hospital/index', session('auth'))"}<li class="shouYe action" data-url="{:url('Hospital/index')}"><i></i><span>医院管理</span></li>{/if}
                    {if condition="in_array('User/index', session('auth'))"}<li class="gkGLi" data-url="{:url('user/index')}"><i></i><span>患者管理</span></li>{/if}
+                   {if condition="in_array('Experts/index', session('auth'))"}<li class="gkGLi" data-url="{:url('Experts/index')}"><i></i><span>专家管理</span></li>{/if}
+                   {if condition="in_array('User/getEid', session('auth'))"}<li class="gkGLi" data-url="{:url('User/getEid')}"><i></i><span>治疗管理</span></li>{/if}
                    {if condition="in_array('News/index', session('auth'))"}<li class="mbGLi" data-url="{:url('News/index')}"><i></i><span>新闻管理</span></li>{/if}
                    {if condition="in_array('Role/lst', session('auth'))"}<li class="gkGLi" data-url="{:url('role/lst')}"><i></i><span>角色管理</span></li>{/if}
                    {if condition="in_array('Auth/lst', session('auth'))"}<li class="gkGLi" data-url="{:url('auth/lst')}"><i></i><span>权限管理</span></li>{/if}
                    {if condition="in_array('Admin/adminadmin', session('auth'))"}<li class="xtGLi" data-url="{:url('admin/admin/adminadmin')}"><i></i><span>管理员管理</span></li>{/if}
-                   {if condition="in_array('Admin/system', session('auth')) || session('id') == 1"}<li class="xtGLi" data-url="{:url('admin/admin/system')}"><i></i><span>系统管理</span></li>{/if}
                </ul>
            </div>
            <!--图标-右侧-->
