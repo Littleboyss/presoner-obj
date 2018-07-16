@@ -1,0 +1,15 @@
+{if condition="in_array('User/getEid', session('auth'))"}
+    <li class="menuDiv active" role="presentation">
+        <a class="menuTitle" href="{:Url('User/getEid')}">患者列表</a>
+    </li>
+{/if}
+{if condition="in_array('CasePlan/index', session('auth'))"}
+    <li class="menuDiv active" role="presentation">
+        <a class="menuTitle" href="{:Url('CasePlan/index')}">治疗计划</a>
+    </li>
+{/if}
+{if condition="in_array('User/issue', session('auth'))"}
+    <li class="menuDiv active" role="presentation">
+        <a class="menuTitle" href="{:Url('User/issue')}">不适患者列表</a>
+    </li>
+{/if}

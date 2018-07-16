@@ -1,0 +1,52 @@
+/*比赛中*/
+#chart_box {
+  width: 500px;
+}
+#chart_box ul {
+  width: 100%;
+}
+#chart_box ul li {
+  position: relative;
+  width: 100%;
+  padding: 0 75px;
+  padding-top: 25px;
+  list-style-type: none;
+}
+#chart_box ul li .lazy {
+  position: absolute;
+}
+#chart_box ul li .name {
+  font-size: 14px;
+  color: #808080;
+}
+#chart_box ul li .title {
+  font-size: 14px;
+  color: #333333;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+#chart_box ul .left .lazy {
+  top: 20px;
+  left: 15px;
+}
+#chart_box ul .left .title {
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  padding: 10px 10px;
+}
+#chart_box ul .left .title img {
+  width: 256px;
+  height: 408px;
+}
+#chart_box ul .right .lazy {
+  top: 20px;
+  right: 15px;
+}
+#chart_box ul .right .name {
+  text-align: right;
+}
+#chart_box ul .right .title {
+  border-radius: 8px;
+  background-color: #f7f7f7;
+  padding: 10px 10px;
+}

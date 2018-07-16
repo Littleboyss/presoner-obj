@@ -1,6 +1,8 @@
 <?php
 //命名空间
 namespace app\admin\Controller;
+ 
+Use think\DB;
 
 //定义类
 class User extends Main
@@ -25,6 +27,7 @@ class User extends Main
         }
         return $this->fetch();
     }
+    // 患者列表页
     public function index()
     {
         $UserModel = model('User');
@@ -44,6 +47,7 @@ class User extends Main
         $this->assign('page', $page);
         return $this->fetch();
     }
+    // 患者信息修改
     public function edit()
     {
         $id        = $this->request->param('id');
@@ -100,13 +104,13 @@ class User extends Main
         }
         $this->returnMsg(1, '获取失败');
     }
-    //
+    // 治疗管理
     public function getEid()
     {
         $UserModel = model('User');
         $Hospital  = model('Hospital');
         $Experts   = model('Experts');
-        $data      = $UserModel->where(['eid'=>0])->paginate(10);
+        $data      = $UserModel->order('eid desc')->paginate(10);
         foreach ($data as $key => $value) {
             if ($value['eid'] == 0) {
                 $data[$key]['Experts'] = '暂无';
@@ -134,5 +138,28 @@ class User extends Main
             }
         }
         $this->returnMsg(1, '密码重置失败');
+    }
+    // 患者交流信息
+    public function msg()
+    {
+        $uid  = $this->request->param('uid');
+        $Msg  = model('Msg');
+        $data = $Msg->where(['uid' => $uid])->select();
+        $this->assign('data', $data);
+        return $this->fetch();
+    }
+    // 服药期间不适患者列表
+    public function issue()
+    {
+        $UserModel        = model("User");
+        $model = model('UserIssue');
+        $data = $model->order('addtime desc')->paginate(10);
+        foreach ($data as $key => $value) {
+            $data[$key]['name'] = $UserModel->where(['id'=>$value['uid']])->value('name');
+        }
+        $page = $data->render();
+        $this->assign('data', $data);
+        $this->assign('page', $page);
+        return $this->fetch();
     }
 }

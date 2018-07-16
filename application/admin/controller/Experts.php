@@ -107,11 +107,11 @@ class Experts extends Main
             // 特长查询分类下的科
             if ($where['specialty'] != 0) {
                 $authModel = model('Auth');
-                $cal_data      = $authModel->tree(config('cal_array'),$where['specialty']);
+                $cal_datas      = $authModel->tree(config('cal_array'),$where['specialty']);
                 $specialty_id=[];
                 array_unshift($specialty_id,$where['specialty']);
-                if ($cal_data) {
-                    $specialty_id = array_column($cal_data, 'id');
+                if ($cal_datas) {
+                    $specialty_id = array_column($cal_datas, 'id');
                     $specialty_ids = implode(',', $specialty_id);
                     $where['specialty'] = ['in',$specialty_ids];
                 }
@@ -124,6 +124,8 @@ class Experts extends Main
                 if ($list) {
                     $in_data = implode(',', $list);               
                     $where['id'] = ['in',$list];
+                }else{
+                    $where['id'] = 0;
                 }
             }
             unset($where['weeks']);
@@ -133,8 +135,7 @@ class Experts extends Main
         $page  = $data->render();
         $weeks = [1 => '星期一', 2 => '星期二', 3 => '星期三', 4 => '星期四', 5 => '星期五', 6 => '星期六', 7 => '星期天'];
         $authModel = model('Auth');
-        $cal_data      = $authModel->tree(config('cal_array'));
-        $this->assign('cal', $cal_data);
+        $this->assign('cal',config('cal_array'));
         $this->assign('data', $data);
         $this->assign('weeks', $weeks);
         $this->assign('page', $page);
