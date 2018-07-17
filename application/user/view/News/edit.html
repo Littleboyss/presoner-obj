@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/BeatPicker.min.css" /> -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/select2.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/select2_lh.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/htmlCss.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/windowCss.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/libs/layer/css/layui.css" />
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.js"></script>
+    <!-- <script type="text/javascript" src="__PUBLIC__/Admin/libs/layer/layer.js"></script> -->
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/layer/layui.all.js"></script>
+    <!--  <script type="text/javascript" src="__PUBLIC__/Admin/libs/laydate/laydate.js"></script> -->
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/nav.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/public.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/Ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/Ueditor/ueditor.all.min.js"></script>
+    <title>新闻修改</title>
+    <style type="text/css">
+    label .error {
+        color: #F00;
+    }
+    </style>
+</head>
+
+<body>
+    <ul class="leftMenu nav nav-tabs" role="tablist">
+        {include file="../application/admin/view/News/nav_list.html"}
+    </ul>
+    <div class="main tab-content">
+        <div role="tabpanel" class="tab-pane fade in active">
+            <!--顶部栏目标题-->
+            <div class="topTit flexed2">
+                <span>新闻修改</span>
+            </div>
+            <!--内容-->
+            <div class="Inner">
+                <div class="box boxShow">
+                    <form class="form-inline" action="" method="POST" id='addFrom' enctype="multipart/form-data">
+                        <table class="tablelist">
+                            <tr class="typeList">
+                                <td class="lftTit">标题</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <input type="text" name="title" value="{$data.title}" class="text input270" />
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">缩略图</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <input type="text" class="text input270" id="ico1" name="img" value="{$data.img}" style="margin-top: 3px">
+                                    <button type="button" class="layui-btn" id="wqico1">上传图片</button>
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">选择分类</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <select name="catid">
+                                        {volist name="category" id="vo"}
+
+                                        <option value="{$vo.catid}" 
+                                            {if condition="$vo['catid'] eq $data['catid']"}
+                                             selected="selected"
+                                            {/if}
+                                        >{$vo.catename}</option>
+                                        {/volist}
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">重点推荐</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <select name="isfocus">
+                                        <option value="1">是</option>
+                                        <option value="2" 
+                                            {if condition="$data['isfocus'] eq 2"}
+                                                selected="selected"
+                                            {/if}
+                                        >否</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">跳转链接</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <select name="is_jump_link" id="is_jump">
+                                        <option value="2">否</option>
+                                        <option value="1" 
+                                            {if condition="$data['is_jump_link'] eq 1"}
+                                                selected="selected"
+                                            {/if}
+                                        >是</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="typeList" id="link" style="display: none;">
+                                <td class="lftTit">跳转链接地址</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <input type="text" name="link" value="{$data.link}" class="text input270" />
+                                </td>
+                            </tr>
+                            <tr class="typeList">
+                                <td class="lftTit">描述</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <textarea id="content" name="introduce" placeholder="" style="width:1024px;height:200px;" autofocus>{$data.introduce}</textarea>
+                                </td>
+                            </tr>
+                            <tr class="typeList" id="contentdiv">
+                                <td class="lftTit">详情</td>
+                                <td class="rgtInfo">
+                                    <i></i>
+                                    <textarea id="contents" name="content" placeholder="" style="width:1024px;height:500px;" autofocus>{$data.content}</textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="flexed mar_t20">
+                            <input type="hidden" name="id" value="{$data.id}">
+                            <button type="submit" style="margin: auto;" class="mar_r20 btn sLan170Btn txtShadow"><em class="queDing"></em>保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+upload('ico1', 'wqico1', 250, 400);
+// upload('ico2', 'wqico2',320,180);
+
+function upload(ico1, wqico1, width, height) {
+    layui.use('upload', function() {
+        var inputs = '#' + ico1;
+        var input = $(inputs);
+        var upload = layui.upload;
+        var elem = '#' + wqico1;
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: elem,
+            data: { width: width, height: height, name: 'image' },
+            url: '/index.php/admin/upload',
+            before: function(obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result) {
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            },
+            done: function(res) {
+                //如果上传失败
+                if (res.error == 0) {
+                    input.val(res.url);
+                    return layer.msg('上传成功');
+                } else {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+            },
+            error: function() {
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function() {
+                    uploadInst.upload();
+                });
+            }
+        });
+    })
+}
+
+var ue1 = UE.getEditor('contents');
+change()
+$('#is_jump').click(function(){
+    change()
+})
+function change(){
+    var flag = $('#is_jump').val();
+    $('#link').hide();
+    if (flag == 1) {
+        $('#link').show();
+        $('#contentdiv').hide();
+    }else{
+        $('#link').hide();
+        $('#contentdiv').show();
+    }
+}
+
+</script>
+
+</html>

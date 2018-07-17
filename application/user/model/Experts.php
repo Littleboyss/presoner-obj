@@ -3,23 +3,22 @@
 namespace app\admin\model;
 
 //定义类
-class User extends Common
+class Experts extends Common
 {
     //条件判断
     public $add_rule = [
-        'name|登录名'    => 'unique:user|require|max:64', // unique后加数据表(不带前缀)
-        'password|密码' => 'require|max:32', // unique后加数据表(不带前缀)
-
+        'name|登录名'    => 'unique:experts|require|max:20', // unique后加数据表(不带前缀)
+        'specialty|特长' => 'require|max:50', 
+        'sex|性别' => 'require', 
     ];
     public $edit_rule = [
-        'name|权限名称' => 'require|max:64',
     ];
 
     //插入数据时给密码进行加密
     public function _before_insert(&$data)
     {
         $salt             = config('password_pre');
-        $data['password'] = md5(md5($data['password']) . $salt);
+        $data['password'] = md5(md5('123456') . $salt);
         $data['addtime']  = time();
     }
 

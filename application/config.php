@@ -13,12 +13,12 @@
 return [
     // 使用自己定义的过滤函数
     'default_filter'        => 'removeXSS',
-    // 默认模块名
-    'default_module'        => 'admin',
-    // 默认控制器名
-    'default_controller'    => 'Index',
-    // 默认操作名
-    'default_action'        => 'index',
+    // // 默认模块名
+    // 'default_module'        => 'admin',
+    // // 默认控制器名
+    // 'default_controller'    => 'Index',
+    // // 默认操作名
+    // 'default_action'        => 'index',
     // 模版页面字符串替换
     'view_replace_str'      => [
         '__PUBLIC__' => '/Public',
