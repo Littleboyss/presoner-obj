@@ -96,9 +96,12 @@ class Experts extends Main
     // 显示选择专家界面
     public function selectEid()
     {
-        $id           = $this->request->param('id');
+        $uid           = $this->request->param('uid');
+        $User = model('User');
         $ExpertsModel = model("Experts");
         $ScheduleModel = model("Schedule");
+        $eid = $User->where(['id'=>$uid])->value('eid');
+        $this->assign('eid',$eid);
         $where = [];
         $this->assign('map', ['specialty'=>0,'weeks'=>0,]);
         if ($this->request->isPost()) {
@@ -137,8 +140,23 @@ class Experts extends Main
         $authModel = model('Auth');
         $this->assign('cal',config('cal_array'));
         $this->assign('data', $data);
+        $this->assign('uid', $uid);
         $this->assign('weeks', $weeks);
         $this->assign('page', $page);
         return $this->fetch();
+    }
+    // 完成专家选择
+    public function choice()
+    {
+        $User = model('User');
+        $id        = $this->request->param('uid');
+        $eid        = $this->request->param('eid');
+        //dump($id);dump($eid);exit;
+        $res = $User->save(['eid'=>$eid], ['id' => $id]);
+        if($res){
+            $this->returnMsg(0,'完成专家选择');
+        }else{
+            $this->returnMsg(1,'专家选择失败');
+        }
     }
 }

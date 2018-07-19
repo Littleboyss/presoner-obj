@@ -78,7 +78,11 @@
                         <tbody>
                             {foreach name="data" item="vo"}
                                 <tr>
-                                    <td> <input type="radio" name="choice"  value="{$vo.id}" > </td>
+                                    <td> <input type="radio" name="choice"  value="{$vo.id}" 
+                                        {if condition ="$vo.id eq $eid"}
+                                            checked
+                                        {/if}
+                                        > </td>
                                     <td><img src="{$vo.avatar}" width="70"></td>
                                     <td>{$vo.name}</td>
                                     <td>{$vo.nickname}</td>
@@ -88,6 +92,7 @@
                                     </td>
                                 </tr>
                             {/foreach}
+                        <tr><td colspan="6"><button  class="btn  sLv120Btn  mar_r12 choice">确认</button></td></tr>
                         </tbody>
                     </table>
                     <!--右对齐-->
@@ -144,5 +149,23 @@
              }    
         });  
     };
+    $('.choice').click(function(){
+        var eid = $("input[name='choice']:checked").val();
+        var uid = {$uid};
+        $.ajax({
+            url: '/index.php/Experts/choice',
+            type: 'POST',
+            dataType: 'json',
+            data: {uid : uid,eid : eid},
+            success:function(json){
+        
+                layer.msg(json.info,
+                        {icon: 1,time: 2000 }
+                    );
+        
+            }
+        });
+        console.log(eid)
+    })
 </script>
 </html>

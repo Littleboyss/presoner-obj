@@ -102,7 +102,7 @@
             area: ['1000px', '400px'],
             shadeClose: true,
             resize: false,
-            content: "{:Url('Experts/selectEid')}", //这里content是一个普通的String
+            content: "{:Url('Experts/selectEid')}?uid="+id, //这里content是一个普通的String
             success: function(layero) {
                 layer.setTop(layero); //重点2
             }

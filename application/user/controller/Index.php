@@ -35,8 +35,8 @@ class Index extends \think\Controller
     {
         $request   = $this->request;
         $post_data = $request->post();
-        if (!$post_data['username']) {
-            $this->error('用户名为空');
+        if (!$post_data['idcard']) {
+            $this->error('账号为空');
         }
         if (!$post_data['password']) {
             $this->error('密码为空');
@@ -44,18 +44,18 @@ class Index extends \think\Controller
         if (!$post_data['code']) {
             $this->error('验证码为空','index');
         }
-        $Admin = model('admin');
-        if(!$Admin->_checkCode($post_data['code'])){
+        $User = model('User');
+        if(!$User->_checkCode($post_data['code'])){
             $this->error('验证码错误','index');
         }
         //登陆验证
-        $status = $Admin->login($post_data['username'], $post_data['password']);
+        $status = $User->login($post_data['idcard'], $post_data['password']);
         if ($status == 1) {
             $this->error('用户名不存在','index');
         } elseif ($status == 2) {
             $this->error('密码错误');
         } elseif ($status == 3) {
-            $this->redirect('Admin/index');
+            $this->redirect('User/index');
         }
     }
     public function logout(){
