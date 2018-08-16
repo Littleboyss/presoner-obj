@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文章内容</title>
+
+
+</head>
+<body>
+        <input name="title" type="text" size="50" value="{$p.title}" maxlength="15" onkeyup="javascript:setShowLength(this, 15, 'cost_tpl_title_length');">
+        <span class="red" id="cost_tpl_title_length">还可以输入15字数</span> 
+
+        <script>
+        function setShowLength(obj, maxlength, id) 
+        { 
+        var rem = maxlength - obj.value.length; 
+        var wid = id; 
+        if (rem < 0){ 
+        rem = 0; 
+        } 
+        document.getElementById(wid).innerHTML = "还可以输入" + rem + "字数"; 
+        } 
+        </script>
+</body>
+</html>
+
+    

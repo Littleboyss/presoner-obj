@@ -128,7 +128,12 @@ class News extends Main
         }
     }
     // 分类删除
-    public function Categorydell(){
-
+    public function show(){
+        $id        = $this->request->param('id');
+        $NewsModel = model("News");
+        $data     = $NewsModel->find($id);
+        $this->assign('category', $category);
+        $this->assign('data', $data);
+        return $this->fetch();
     }
 }

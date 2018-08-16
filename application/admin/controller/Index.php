@@ -12,7 +12,6 @@ class Index extends \think\Controller
     public function _initialize()
     {
         $this->request = Request::instance();
-        Url::root('/index.php');
     }
     public function index()
     {

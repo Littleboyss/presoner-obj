@@ -113,7 +113,7 @@
         $.ajax({    
             type: 'POST',   
              dataType: "json", 
-             url: '/index.php/User/viewHistory',    
+             url: '/User/viewHistory',    
              data: {id : id},
              success: function(json) {
                 if (json.status == 0) {

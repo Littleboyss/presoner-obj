@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文章内容</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <style>
+        body{
+            background: #fff;
+        }
+
+        .header{
+            width: 100%;
+            height: 80px;
+            background: #0183FF;
+            box-shadow: 0 4px 10px 0 rgba(21,23,82,0.30);
+        }
+        .header>img{
+            margin: 25px 0 0 120px;
+        }
+        /* .contain{
+            width: 100%;
+            height: auto;
+            background: #fff;
+        } */
+        .container{
+            width: 720px;
+            margin: 0 auto;
+            padding-top: 120px;
+            padding-bottom: 117px;
+            /* background: #fff; */
+        }
+        .article-title{
+            font-family: PingFangSC-Semibold;
+            font-size: 26px;
+            color: #363E46;
+            line-height: 37px;
+        }
+
+        .classify{
+            color: rgba(54,62,70,.6);
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+        }
+        .tips{
+            display: inline-block;
+            margin-top: 20px;
+            margin-right: 20px;
+        }
+        .tips-card{
+            display: inline-block;
+            width: 60px;
+            height: 22px;
+            background: #F2F3F5;
+            border-radius: 2px;
+            font-family: PingFangSC-Regular;
+            font-size: 12px;
+            color: rgba(54,62,70,.8);
+            line-height: 22px;
+            text-align: center;
+            margin-left: 10px;
+        }
+        .tips-card:first-child{
+            margin-left: 0px;
+        }
+
+        .article-img{
+            margin-top: 40px;
+            width: 720px;
+            height: auto; 
+        }
+
+        .content{
+            margin-top: 40px;
+            margin-bottom: 56px;
+            display: inline-block;
+            width: 100%;
+            height: auto;
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #363E46;
+            letter-spacing: 1px;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+            <header class="header">
+                <div class="header-content">
+                    <img src="./imgs/home-logo.png" alt="logo">
+                    <button class="login-btn">登录</button>
+                </div>
+            </header>
+            <!-- 内容 -->
+            <div class="container">
+                <h2 class="article-title">医疗区块链报告：医疗保险企业落地最快，基因组学在国内还是空白</h2>
+                <div class="tips">
+                    <span class="tips-card">其他科室</span>
+                </div>
+                <span class="classify">母婴健康 · 2018/07/16</span>
+                <img src="./imgs/article-img.png"  class="article-img" alt="图片">
+                <div class="content">
+                        在医疗领域，区块链也有非常多的应用场景可以利用。最近的很多报道，加速了区块链技术在金融领域的升温，但也声称医疗健康领域在这方面的进展比较缓慢。但Winkelspecht指出，医疗健康行业是最早应用区块链技术的行业之一。 
+
+                        在医疗健康领域中，哪些信息可以用区块链进行存储来保证安全性？医疗健康的“交易”部分将包括所提供医疗服务的具体事件的记录，可以是病人病历信息，其次还有医院内部信息、设备交换信息、药品流通信息、保险合同信息等，都是需要很高安全保障的重要信息，并且不能被篡改。
+                        
+                        医疗机构面临着无法跨平台安全共享数据的问题。在医疗服务商之间建立良好的数据协作，有助于进一步提高诊断准确率，改善治疗效果，降低医疗成本。
+                        
+                        基于区块链技术，医疗产业链中的参与方实现对网络访问权限的共享，同时也不会对数据的安全性和完整性造成威胁。
+                        
+                        医疗领域生成了患者主诉、生命体征、检查结果、病史、疾病诊断、处方、药物、手术记录等非常多的医疗数据。
+                        
+                        这些数据的电子化进程虽然已经基本完成，但是在数据共享、数据保护方面的工作还做得很差。而区块链技术也可以帮助这些医疗健康数据更好地用起来，保护起来。
+                        
+                        动脉网在连续发布多篇区块链技术知识普及文章后，现已经完成医疗健康领域的企业数据收集和统计，发布《医疗区块链产业报告》。
+                        
+                        《医疗区块链产业报告》全文目录如下，全文共3万字，后面是部分内容的节选。
+                </div>
+                
+            </div>
+            <footer class="footer-copy">
+                <div class="footer-text">
+                    Copyright @ 医疗智慧云<br>
+                    互联网医疗信息服务资格证书(鄂)-经营性-2018-0000      网站备案编号： 鄂ICP备18000000号
+                </div>
+            </footer>
+            
+            <!-- 登录 -->
+            <div class="login">
+                <div class="login-modal">
+                    <img src="./imgs/logo-login.png" class="logo-login-img" alt="logo">
+                    <input type="text" class="login-account login-input" placeholder="请输入患者账号/专家账号">
+                    <input type="password" class="login-password login-input" placeholder="请输入密码">
+                    <span class="error-tip">账号或密码错误，请重新输入。</span>
+                    <button type="button" class="login-sumbit">登&nbsp;录</button>
+                </div>
+            </div>
+        
+
+
+        <script type="text/javascript" src="./js/plugins/jquery-1.9.1.min.js"></script>
+        <script>
+            $(function(){
+                // 登录弹框
+                $('.login-btn').bind('click',function(){
+                    $('.login').css('display','inline-block');
+                })
+            })
+        
+        </script>
+</body>
+</html>

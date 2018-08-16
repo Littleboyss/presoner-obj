@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/Public/Admin/libs/js/bootstrap-3.3.4.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/Public/Admin/css/BeatPicker.min.css" /> -->
+    <link rel="stylesheet" type="text/css" href="/Public/Admin/css/select2.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/Admin/css/select2_lh.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/Admin/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/Admin/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/Admin/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/Admin/css/htmlCss.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/Admin/css/windowCss.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/Admin/libs/layer/css/layui.css" />
+    <script type="text/javascript" src="/Public/Admin/libs/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="/Public/Admin/libs/js/bootstrap-3.3.4.js"></script>
+    <script type="text/javascript" src="/Public/Admin/libs/layer/layer.js"></script>
+    <script type="text/javascript" src="/Public/Admin/libs/laydate/laydate.js"></script>
+    <script type="text/javascript" src="/Public/Admin/libs/js/nav.js"></script>
+    <script type="text/javascript" src="/Public/Admin/libs/js/public.js"></script>
+    <title>角色管理</title>
+</head>
+
+<body>
+    <ul class="leftMenu nav nav-tabs" role="tablist">
+        <li class="menuDiv active" role="presentation">
+            <a class="menuTitle" href="javascript:;">角色列表</a>
+        </li>
+        <li class="menuDiv" role="presentation">
+            <a class="menuTitle" href="{:Url('add')}">角色添加</a>
+        </li>
+    </ul>
+    <div class="main tab-content">
+        <div role="tabpanel" class="tab-pane fade in active">
+            <div class="Inner">
+                <div class="box boxShow">
+                    <table class="csTable">
+                        <thead>
+                            <tr>
+                                <th class="num">序号</th>
+                                <th class="name">角色名称</th>
+                                <th class="name">权限列表</th>
+                                <th class="operate">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 循环体 -->
+                            <?php foreach ($roleData as $k => $v): ?>
+                            <tr>
+                                <td class="num">
+                                    <?php echo $v['id'];?>
+                                </td>
+                                <td class="name">
+                                    <?php echo $v['role_name'];?>
+                                </td>
+                                <td class="name">
+                                    <?php echo $v['auth_list']=='*' ? '所有权限' : $v['auth_name'];?>
+                                </td>
+                                <td class="operate">
+                                    <!-- id为1的用户不能修改和删除 没有必要显示 -->
+                                    <?php if($v['id'] > 1):?>
+                                    <a href="<?php echo Url('Role/edt',array('id'=>$v['id']), false);?>">编辑</a>&nbsp;&nbsp;<a href="javascript:;" class="del" id="{$v['id']}" >删除</a>
+                                    <!-- 可以为的为html标签增加自己定义的属性 id-->
+                                    <?php endif;?>
+                                </td>
+                            </tr>
+                            <?php endforeach ?>
+                            <!--  end -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+<script type="text/javascript" src="/Public/Admin/js/jquery.js"></script>
+<script type="text/javascript" src="/Public/Admin/js/common.js"></script>
+<script type="text/javascript" src="/Public/Admin/js/WdatePicker.js"></script>
+<script type="text/javascript" src="/Public/Admin/js/jquery.pagination.js"></script>
+<script type="text/javascript">
+$(".select-title").on("click", function() {
+    $(".select-list").hide();
+    $(this).siblings($(".select-list")).show();
+    return false;
+})
+$(".select-list").on("click", "li", function() {
+    var txt = $(this).text();
+    $(this).parent($(".select-list")).siblings($(".select-title")).find("span").text(txt);
+})
+
+$('.pagination').pagination(100, {
+    callback: function(page) {
+        alert(page);
+    },
+    display_msg: true,
+    setPageNo: true
+});
+
+$("tbody").find("tr:odd").css("backgroundColor", "#eff6fa");
+
+showRemind('input[type=text], textarea', 'placeholder');
+$(".del").click(function(event) {
+    var _id = $(this).attr('id');
+    var _This = this; 
+    $.ajax({
+        url: '{:Url('ajaxDel')}',
+        type: 'GET',
+        data: { 'id': _id },
+        dataType: 'json',
+        success: function(json) {
+            if (json.status == 0) {
+                top.layer.msg(json.info,
+                    {icon: 1,time: 2000 }
+                );
+                $(_This).parent().parent().remove(); 
+            }else{
+                top.layer.msg(json.info,
+                    {icon: 2,time: 2000 }
+                );
+            }
+        }
+    });
+    return false;
+});
+</script>
+
+</html>

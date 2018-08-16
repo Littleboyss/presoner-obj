@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>医院-患者管理</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" type="text/css" href="./css/hospital.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/pagination.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/page.css"/>
+    <style>
+        
+        /* 内容 */
+       
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="./imgs/home-logo.png" alt="logo">
+            <div class="hospital-manage fr">
+                <div class="hospital-name">华中科技大学同济医学院附属同济医院<span ></span></div>
+                <ul class="hospital-exit">
+                    <li class="hospital-update-info">
+                        修改信息
+                    </li>
+                    <li>
+                        退出登录
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- 内容 -->
+
+
+    <div class="container patient-manage">
+        <div class="patient-manage-add">
+            <a href="javascript:;">添加</a>
+        </div>
+        <div class="container-table">
+            <table class="table">
+                <thead class="thead">
+                    <tr>
+                        <th>患者照片</th>
+                        <th>患者姓名</th>
+                        <th>性别</th>
+                        <th>年龄</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    <tr>
+                        <td>
+                            <img src="./imgs/male.png" class="sex" alt="">
+                        </td>
+                        <td>
+                            张泽刚
+                        </td>
+                        <td>
+                            男
+                        </td>
+                        <td>29</td>
+                        <td>
+                            <div class="green-circular"></div>
+                            <span>治疗中</span>
+                        </td>
+                        <td>
+                            <a href="#" class="td-btn">查看病例</a>
+                            <a href="#" class="td-btn">治疗记录</a>
+                            <a href="#" class="td-btn">咨询记录</a>
+                            <a href="#" class="td-btn">发送消息</a>
+                            <!-- <button type="button" class="td-btn">查看病例</button>
+                            <button type="button" class="td-btn">治疗记录</button>
+                            <button type="button" class="td-btn">咨询记录</button>
+                            <button type="button" class="td-btn">发送消息</button> -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="./imgs/male.png" class="sex" alt="">
+                        </td>
+                        <td>
+                            张泽刚
+                        </td>
+                        <td>
+                            男
+                        </td>
+                        <td>29</td>
+                        <td>
+                            <div class="green-circular"></div>
+                            <span>治疗中</span>
+                        </td>
+                        <td>
+                            <a href="#" class="td-btn">查看病例</a>
+                            <a href="#" class="td-btn">治疗记录</a>
+                            <a href="#" class="td-btn">咨询记录</a>
+                            <a href="#" class="td-btn">发送消息</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="./imgs/male.png" class="sex" alt="">
+                        </td>
+                        <td>
+                            张泽刚
+                        </td>
+                        <td>
+                            男
+                        </td>
+                        <td>29</td>
+                        <td>
+                            <div class="green"></div>
+                            <span>治疗中</span>
+                        </td>
+                        <td>
+                            <a href="#" class="td-btn">查看病例</a>
+                            <a href="#" class="td-btn">治疗记录</a>
+                            <a href="#" class="td-btn">咨询记录</a>
+                            <a href="#" class="td-btn">发送消息</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="./imgs/female.png" class="sex" alt="">
+                        </td>
+                        <td>
+                            机敏
+                        </td>
+                        <td>
+                            女
+                        </td>
+                        <td>21</td>
+                        <td>
+                            <div class="gray"></div>
+                            <span>治疗中</span>
+                        </td>
+                        <td>
+                            <a href="#" class="td-btn">查看病例</a>
+                            <a href="#" class="td-btn">治疗记录</a>
+                            <a href="#" class="td-btn">咨询记录</a>
+                            <a href="#" class="td-btn">发送消息</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="./imgs/male.png" class="sex" alt="">
+                        </td>
+                        <td>
+                            张泽刚
+                        </td>
+                        <td>
+                            男
+                        </td>
+                        <td>29</td>
+                        <td>
+                            <div class="green-circular"></div>
+                            <span>治疗中</span>
+                        </td>
+                        <td>
+                            <a href="#" class="td-btn">查看病例</a>
+                            <a href="#" class="td-btn">治疗记录</a>
+                            <a href="#" class="td-btn">咨询记录</a>
+                            <a href="#" class="td-btn">发送消息</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="./imgs/female.png" class="sex" alt="">
+                        </td>
+                        <td>
+                            机敏
+                        </td>
+                        <td>
+                            女
+                        </td>
+                        <td>21</td>
+                        <td>
+                            <div class="gray-circular"></div>
+                            <span>治疗中</span>
+                        </td>
+                        <td>
+                            <a href="#" class="td-btn">查看病例</a>
+                            <a href="#" class="td-btn">治疗记录</a>
+                            <a href="#" class="td-btn">咨询记录</a>
+                            <a href="#" class="td-btn">发送消息</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="./imgs/male.png" class="sex" alt="">
+                        </td>
+                        <td>
+                            张泽刚
+                        </td>
+                        <td>
+                            男
+                        </td>
+                        <td>29</td>
+                        <td>
+                            <div class="green-circular"></div>
+                            <span>治疗中</span>
+                        </td>
+                        <td>
+                            <a href="#" class="td-btn">查看病例</a>
+                            <a href="#" class="td-btn">治疗记录</a>
+                            <a href="#" class="td-btn">咨询记录</a>
+                            <a href="#" class="td-btn">发送消息</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="./imgs/female.png" class="sex" alt="">
+                        </td>
+                        <td>
+                            机敏
+                        </td>
+                        <td>
+                            女
+                        </td>
+                        <td>21</td>
+                        <td>
+                            <div class="gray-circular"></div>
+                            <span>治疗中</span>
+                        </td>
+                        <td>
+                            <a href="#" class="td-btn">查看病例</a>
+                            <a href="#" class="td-btn">治疗记录</a>
+                            <a href="#" class="td-btn">咨询记录</a>
+                            <a href="#" class="td-btn">发送消息</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="./imgs/male.png" class="sex" alt="">
+                        </td>
+                        <td>
+                            张泽刚
+                        </td>
+                        <td>
+                            男
+                        </td>
+                        <td>29</td>
+                        <td>
+                            <div class="green-circular"></div>
+                            <span>治疗中</span>
+                        </td>
+                        <td>
+                            <a href="#" class="td-btn">查看病例</a>
+                            <a href="#" class="td-btn">治疗记录</a>
+                            <a href="#" class="td-btn">咨询记录</a>
+                            <a href="#" class="td-btn">发送消息</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="./imgs/female.png" class="sex" alt="">
+                        </td>
+                        <td>
+                            机敏
+                        </td>
+                        <td>
+                            女
+                        </td>
+                        <td>21</td>
+                        <td>
+                            <div class="gray-circular"></div>
+                            <span>治疗中</span>
+                        </td>
+                        <td>
+                            <a href="#" class="td-btn">查看病例</a>
+                            <a href="#" class="td-btn">治疗记录</a>
+                            <a href="#" class="td-btn">咨询记录</a>
+                            <a href="#" class="td-btn">发送消息</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+            <!-- 分页 -->
+        <div id="pagination"></div>
+    </div>
+    <footer class="footer-copy">
+        <div class="footer-text">
+            Copyright @ 医疗智慧云<br>
+            互联网医疗信息服务资格证书(鄂)-经营性-2018-0000      网站备案编号： 鄂ICP备18000000号
+        </div>
+    </footer>
+    <!-- 登陆免责协议 -->
+    <div class="hospotal-popup">
+        <div class="hospotal-contect">
+            <div class="base-info">
+                <label for="">医院</label>
+                <input type="text" placeholder="华中科技大学同济医学院附属同济医院">
+            </div>
+            <div class="base-info">
+                <label class="title" for="">简介</label>
+                <textarea maxlength="200" onkeyup="javascript:setShowLength(this, 200, 'hospotal-sizes');" placeholder="华中科技大学同济医学院附属同济医院位于湖北省武汉市解放大道1095号（主院区）、湖北省武汉市东湖新技术开发区高新大道501号（光谷院区）、湖北省武汉市蔡甸区新天大道288号（中法新城院区），始建于1900年，是一所集医疗、教学、科研为一体的三级医院。"></textarea>
+                <span id="hospotal-size"><font id="hospotal-sizes">200</font>/200</span>
+            </div>
+            
+        </div>
+        <div class="submit-btn">
+            <a href="javascript:;" class="exit">取消</a>
+            <a href="javascript:;" class="confirm">确定</a>
+        </div>
+    </div>
+    <!-- 填写患者资料弹窗 -->
+    <div class="hospotal-info-popup">
+        <div class="hospotal-modal">
+            <div class="hospotal-head">
+                <h2>填写患者资料</h2>
+                <span class="close black"></span>
+            </div>
+            <div class="personal-user">
+                <div class="base-info">
+                    <span for="">姓名</span>
+                    <input  class="miss" type="text" placeholder="张泽刚">
+                </div>
+                <div class="base-info sex">
+                    <span for="" class="fl">性别</span>
+                    <div class="male fl">
+                        <input  id="male" type="radio" name="item" value="male" checked>
+                        <label for="male"></label>
+                        <span>男</span>
+                    </div>
+                    <div class="female fl">
+                        <input id="female" type="radio" name="item" value="female">
+                        <label for="female"></label>
+                        <span>女</span>
+                    </div>
+                </div>
+                <div class="base-info">
+                    <span for="">年龄</span>
+                    <input type="number" placeholder="28">   
+                </div>
+                <div class="base-info">
+                    <span for="">联系方式</span>
+                    <input type="number" placeholder="17677778888" maxlength="11">   
+                </div>
+                <div class="base-info">
+                    <span for="">身份证</span>
+                    <input type="type" placeholder="421123199501241217" maxlength="18">   
+                </div>
+                <div class="xieyi">
+                    <input id="xieyi" type="checkbox" name="item" value="xieyi">
+                    <label for="xieyi"></label>
+                    已告知患者并患者知情协议
+                </div>
+            </div>
+            <div class="submit-btn">
+                <a href="javascript:;" class="confirm">添加</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="./js/plugins/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="./js/plugins/pagination.min.js"></script>
+    <script type="text/javascript" src="./js/layer-v3.1.1/layer/layer.js"></script>
+    <script>
+        //限制字数
+        function setShowLength(obj, maxlength, id) 
+        { 
+            var rem = maxlength - obj.value.length; 
+            var wid = id; 
+            if (rem < 0){ 
+                rem = 0; 
+            } 
+            document.getElementById(wid).innerHTML = "" + rem + ""; 
+        }
+        $(function(){
+            // 分页
+            $("#pagination").whjPaging({
+                css: 'css-2',
+                pageSizeOpt: [
+                    {value: 10, text: '10/页', selected: true},
+                    {value: 20, text: '20/页'},
+                    {value: 30, text: '30/页'}
+                ],
+                previousPage: '<',
+                nextPage: '>',
+                totalSize: 90,
+                totalPage: 18,
+                isShowTotalSize: false,
+                isShowTotalPage: false,
+                isShowRefresh: false,
+                isShowSkip: false,
+                callBack: function (currPage, pageSize) {
+                    console.log('currPage:' + currPage + '     pageSize:' + pageSize);
+                }
+            });
+
+            //退出功能
+            $(".hospital-name").bind('click',function(){
+                $(".hospital-exit").css("display","block");
+            })
+
+            //医院信息弹窗
+            $('.hospital-update-info').on('click', function(){
+                layer.open({
+                type: 1,
+                area: ['640px', '436px'],
+                skin:'hospotal-popup',
+                title: '医院信息',
+                shadeClose: false, //点击遮罩关闭
+                content: $('.hospotal-popup')
+                });
+            });
+            //医院信息弹窗
+            $('.patient-manage-add').bind('click',function(){
+                $('.hospotal-info-popup').css('display','block');
+            });
+            $('.close.black').bind('click',function(){
+                $('.hospotal-info-popup').css('display','none');
+            });
+      
+        })
+    </script>
+</body>
+</html>

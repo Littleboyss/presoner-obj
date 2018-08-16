@@ -11,7 +11,6 @@ class Main extends \think\Controller
     {
         parent::__construct();
         $this->request = Request::instance();
-        Url::root('/index.php');
         //判断用户是否登陆
         $this->initSessions();
 

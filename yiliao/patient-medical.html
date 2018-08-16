@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>患者-查看病历</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/patient.css">
+    <style>
+  
+ 
+        .content-bingli-img{
+            font-size: 0px;
+            line-height: 0;
+            margin-top: 16px;
+        }
+        .content-bingli-img img{
+            width: 155px;
+            height: 155px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        .content-bingli-img img:nth-child(4n){
+            margin-right: 0px;
+        }
+
+        .message{
+            padding-bottom: 20px;
+            display: none;
+        }
+        .content-text{
+            margin-top: 20px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: rgba(54,62,70,.8);
+            line-height: 20px;
+        }
+        .content-li:last-child{
+            margin-bottom: 0px;
+        }
+        
+    </style>
+</head>
+<body>
+        
+        <header class="header">
+            <div class="header-content">
+                <img src="./imgs/home-logo.png" alt="logo">
+                <ul class="navigation">
+                    <li class="navigation-li">我的资讯</li>
+                    <li class="navigation-li">患者管理</li>
+                    <li class="navigation-li">回复管理</li>
+                    <li class="navigation-li">排班管理</li>
+                    <li class="navigation-li">我的信息</li>
+                </ul>
+                <button class="logout-btn">退出</button>
+            </div>
+        </header>
+        <!-- 内容 -->
+        <div class="container check-medical">
+            <ul class="content">
+                <li class="content-li">
+                    <span class="content-li-time">2018/5/30</span>
+                    <div class="content-li-bar-open">
+                        <span>查看</span>
+                        <img src="./imgs/down.png" alt="箭头" >
+                    </div>
+                    <div class="content-li-bar-close">
+                        <span>收起</span>
+                        <img src="./imgs/up.png" alt="箭头" >
+                    </div>
+                    <div class="message">
+                        <div class="content-bingli-img">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                        </div>
+                        <div class="content-text">
+                            主诉:指促使患者就诊的主要症状(或体征)及其持续时间。<br><br>
+
+                            现病史:<br><br>
+                            
+                            既往史:否认“高血压”、“冠心病”、“糖尿病”等病史,否认“肝炎”、“结核”等传染病史,无手术史、外伤史及血制品输注史,无食物药物过敏史,预防接种按计划进行。<br><br>
+                            
+                            系统回顾:<br><br>
+                            
+                            呼吸系统:无咳嗽、咳血、胸痛、发热、盗汗史。<br><br>
+                            
+                            循环系统:无心慌、气短、紫绀、心前区疼、下肢水肿及高血压史。<br><br>
+                            
+                            消化系统:无食欲不振、反酸、嗳气、吞咽困难、呕吐、腹痛、腹胀、腹泻及黑便史。<br><br>
+                            
+                            泌尿生殖系统:无尿急、尿频、尿痛、血尿、夜尿增多以及颜面浮肿史。<br><br>
+                            
+                            血液系统:无苍白、乏力、皮下淤血及出血点、鼻衄、齿龈出血史。<br><br>
+                            
+                            内分泌及代谢:无发育畸形,性功能改变,第二性征变化及性格的改变,有无闭经、泌乳、肥胖等改变;有无营养障碍、多饮、多食、视野障碍等史;有无皮肤色素沉着、毛发分布异常等。
+                        </div>
+                    </div>
+                </li>
+                <li class="content-li">
+                    <span class="content-li-time">2018/5/30</span>
+                    <div class="content-li-bar-open">
+                        <span>查看</span>
+                        <img src="./imgs/down.png" alt="箭头" >
+                    </div>
+                    <div class="content-li-bar-close">
+                        <span>收起</span>
+                        <img src="./imgs/up.png" alt="箭头" >
+                    </div>
+                    <div class="message">
+                        <div class="content-bingli-img">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                        </div>
+                        <div class="content-text">
+                            主诉:指促使患者就诊的主要症状(或体征)及其持续时间。<br><br>
+
+                            现病史:<br><br>
+                            
+                            既往史:否认“高血压”、“冠心病”、“糖尿病”等病史,否认“肝炎”、“结核”等传染病史,无手术史、外伤史及血制品输注史,无食物药物过敏史,预防接种按计划进行。<br><br>
+                            
+                            系统回顾:<br><br>
+                            
+                            呼吸系统:无咳嗽、咳血、胸痛、发热、盗汗史。<br><br>
+                            
+                            循环系统:无心慌、气短、紫绀、心前区疼、下肢水肿及高血压史。<br><br>
+                            
+                            消化系统:无食欲不振、反酸、嗳气、吞咽困难、呕吐、腹痛、腹胀、腹泻及黑便史。<br><br>
+                            
+                            泌尿生殖系统:无尿急、尿频、尿痛、血尿、夜尿增多以及颜面浮肿史。<br><br>
+                            
+                            血液系统:无苍白、乏力、皮下淤血及出血点、鼻衄、齿龈出血史。<br><br>
+                            
+                            内分泌及代谢:无发育畸形,性功能改变,第二性征变化及性格的改变,有无闭经、泌乳、肥胖等改变;有无营养障碍、多饮、多食、视野障碍等史;有无皮肤色素沉着、毛发分布异常等。
+                        </div>
+                    </div>
+                </li>
+                <li class="content-li">
+                    <span class="content-li-time">2018/5/30</span>
+                    <div class="content-li-bar-open">
+                        <span>查看</span>
+                        <img src="./imgs/down.png" alt="箭头" >
+                    </div>
+                    <div class="content-li-bar-close">
+                        <span>收起</span>
+                        <img src="./imgs/up.png" alt="箭头" >
+                    </div>
+                    <div class="message">
+                        <div class="content-bingli-img">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                        </div>
+                        <div class="content-text">
+                            主诉:指促使患者就诊的主要症状(或体征)及其持续时间。<br><br>
+
+                            现病史:<br><br>
+                            
+                            既往史:否认“高血压”、“冠心病”、“糖尿病”等病史,否认“肝炎”、“结核”等传染病史,无手术史、外伤史及血制品输注史,无食物药物过敏史,预防接种按计划进行。<br><br>
+                            
+                            系统回顾:<br><br>
+                            
+                            呼吸系统:无咳嗽、咳血、胸痛、发热、盗汗史。<br><br>
+                            
+                            循环系统:无心慌、气短、紫绀、心前区疼、下肢水肿及高血压史。<br><br>
+                            
+                            消化系统:无食欲不振、反酸、嗳气、吞咽困难、呕吐、腹痛、腹胀、腹泻及黑便史。<br><br>
+                            
+                            泌尿生殖系统:无尿急、尿频、尿痛、血尿、夜尿增多以及颜面浮肿史。<br><br>
+                            
+                            血液系统:无苍白、乏力、皮下淤血及出血点、鼻衄、齿龈出血史。<br><br>
+                            
+                            内分泌及代谢:无发育畸形,性功能改变,第二性征变化及性格的改变,有无闭经、泌乳、肥胖等改变;有无营养障碍、多饮、多食、视野障碍等史;有无皮肤色素沉着、毛发分布异常等。
+                        </div>
+                    </div>
+                </li>
+                <li class="content-li">
+                    <span class="content-li-time">2018/5/30</span>
+                    <div class="content-li-bar-open">
+                        <span>查看</span>
+                        <img src="./imgs/down.png" alt="箭头" >
+                    </div>
+                    <div class="content-li-bar-close">
+                        <span>收起</span>
+                        <img src="./imgs/up.png" alt="箭头" >
+                    </div>
+                    <div class="message">
+                        <div class="content-bingli-img">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                        </div>
+                        <div class="content-text">
+                            主诉:指促使患者就诊的主要症状(或体征)及其持续时间。<br><br>
+
+                            现病史:<br><br>
+                            
+                            既往史:否认“高血压”、“冠心病”、“糖尿病”等病史,否认“肝炎”、“结核”等传染病史,无手术史、外伤史及血制品输注史,无食物药物过敏史,预防接种按计划进行。<br><br>
+                            
+                            系统回顾:<br><br>
+                            
+                            呼吸系统:无咳嗽、咳血、胸痛、发热、盗汗史。<br><br>
+                            
+                            循环系统:无心慌、气短、紫绀、心前区疼、下肢水肿及高血压史。<br><br>
+                            
+                            消化系统:无食欲不振、反酸、嗳气、吞咽困难、呕吐、腹痛、腹胀、腹泻及黑便史。<br><br>
+                            
+                            泌尿生殖系统:无尿急、尿频、尿痛、血尿、夜尿增多以及颜面浮肿史。<br><br>
+                            
+                            血液系统:无苍白、乏力、皮下淤血及出血点、鼻衄、齿龈出血史。<br><br>
+                            
+                            内分泌及代谢:无发育畸形,性功能改变,第二性征变化及性格的改变,有无闭经、泌乳、肥胖等改变;有无营养障碍、多饮、多食、视野障碍等史;有无皮肤色素沉着、毛发分布异常等。
+                        </div>
+                    </div>
+                </li>
+                <li class="content-li">
+                    <span class="content-li-time">2018/5/30</span>
+                    <div class="content-li-bar-open">
+                        <span>查看</span>
+                        <img src="./imgs/down.png" alt="箭头" >
+                    </div>
+                    <div class="content-li-bar-close">
+                        <span>收起</span>
+                        <img src="./imgs/up.png" alt="箭头" >
+                    </div>
+                    <div class="message">
+                        <div class="content-bingli-img">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                            <img src="./imgs/ct.png" class="bingli-img"  alt="">
+                        </div>
+                        <div class="content-text">
+                            主诉:指促使患者就诊的主要症状(或体征)及其持续时间。<br><br>
+
+                            现病史:<br><br>
+                            
+                            既往史:否认“高血压”、“冠心病”、“糖尿病”等病史,否认“肝炎”、“结核”等传染病史,无手术史、外伤史及血制品输注史,无食物药物过敏史,预防接种按计划进行。<br><br>
+                            
+                            系统回顾:<br><br>
+                            
+                            呼吸系统:无咳嗽、咳血、胸痛、发热、盗汗史。<br><br>
+                            
+                            循环系统:无心慌、气短、紫绀、心前区疼、下肢水肿及高血压史。<br><br>
+                            
+                            消化系统:无食欲不振、反酸、嗳气、吞咽困难、呕吐、腹痛、腹胀、腹泻及黑便史。<br><br>
+                            
+                            泌尿生殖系统:无尿急、尿频、尿痛、血尿、夜尿增多以及颜面浮肿史。<br><br>
+                            
+                            血液系统:无苍白、乏力、皮下淤血及出血点、鼻衄、齿龈出血史。<br><br>
+                            
+                            内分泌及代谢:无发育畸形,性功能改变,第二性征变化及性格的改变,有无闭经、泌乳、肥胖等改变;有无营养障碍、多饮、多食、视野障碍等史;有无皮肤色素沉着、毛发分布异常等。
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="big-bingli-img">
+                <div class="big-img">
+                    <img src="./imgs/ct.png"  alt="">
+                </div> 
+            </div>    
+        </div>
+            
+            
+        
+        <footer class="footer-copy">
+            <div class="footer-text">
+                Copyright @ 医疗智慧云<br>
+                互联网医疗信息服务资格证书(鄂)-经营性-2018-0000      网站备案编号： 鄂ICP备18000000号
+            </div>
+        </footer>
+        
+        
+        
+
+
+        <script type="text/javascript" src="./js/plugins/jquery-1.9.1.min.js"></script>
+    
+        <script>
+            $(function(){
+                _init();
+            })
+        
+            // 初始化函数
+            function _init(){
+                // 给每个查看区域绑定点击事件
+                $('.content-li-bar-open').bind('click',function(){
+                    $(this).css('display','none').next().css('display','inline-block');
+                    $(this).parent('.content-li').find('.message').css({'display':'inline-block','height': 'auto'});
+                })
+               // 给每个收起区域绑定点击事件
+               $('.content-li-bar-close').bind('click',function(){
+                    $(this).css('display','none').prev().css('display','inline-block');
+                    $(this).parent('.content-li').find('.message').css('display','none');
+                })
+
+                // 点击小图显示大图
+                $('.bingli-img').each(function(i,v){
+                    $(v).bind('click',function(){
+                        var imgSrc = $(this).attr('src');
+                        $('.big-bingli-img .big-img img').attr('src',imgSrc);
+                        $('.big-bingli-img').css('display','inline-block');
+                        // console.log($(this).attr('src'))
+                    })
+                })
+                // 关闭大图点击事件
+                $('.big-bingli-img').bind('click',function(){
+                    $(this).css('display','none');
+                })
+            }
+        </script>
+</body>
+</html>

@@ -22,3 +22,7 @@ define('UPLOAD_PATH',ROOT_PATH."Upload/");
 
 // 加载框架引导文件
 require __DIR__ . '/../thinkphp/start.php';
+
+//\think\Route::bind('module','index');
+
+//\think\App::run();

@@ -1,0 +1,39 @@
+
+.whj_jqueryPaginationCss-2 div{
+    height: 28px;
+    /* width: 28px; */
+    line-height: 28px;
+    box-sizing: border-box;
+    margin: 0px;
+    margin-right: 8px;;
+    border-radius: 4px;
+}
+
+.whj_jqueryPaginationCss-2 select{
+    margin: 0px;
+}
+
+
+.whj_jqueryPaginationCss-2 .whj_bgc{
+    background-color: #fff;
+    color: rgba(102,102,102,1);
+    font-family: HelveticaNeue;
+    font-size: 12px;
+}
+
+.whj_jqueryPaginationCss-2 .whj_border{
+    border-width: 0px;
+}
+
+.whj_jqueryPaginationCss-2 .whj_checked{
+    background: #0183FF;
+    color: #FFFFFF;
+}
+
+.whj_border.whj_bgc.whj_hover[name="whj_pageSize"]{
+    width: 83px;
+    text-align: center;
+    padding-left: 18px;
+    box-sizing: border-box;
+    border-radius: 4px;
+}

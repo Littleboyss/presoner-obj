@@ -1,0 +1,604 @@
+.header img{
+    margin-top: 25px;
+}
+
+/* 内容 */
+.container{
+    width: 1200px;
+    height: 100%;
+    margin: 20px auto 0;
+    padding: 80px 0 117px 0;
+    background: #f2f3f5;
+    /* margin-top: 20px; */
+    position: relative;
+    font-size: 0px;
+}
+
+/*患者-我的专家*/
+.my-expert .expert-info{
+    float: left;
+    width: 280px;
+    height: 620px;
+    background: #fff;
+    margin-right: 10px;
+}
+.my-expert .expert-info .expert-area {
+    padding: 40px 20px 0 20px;
+    height: 620px;
+    overflow: auto;
+}
+.my-expert .expert-info .expert-area .expert-face{
+    text-align: center;
+}
+.my-expert .expert-info .expert-area .expert-face img{
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+}
+.my-expert .expert-info .expert-area .expert-face p{
+    font-size: 16px;
+    color: #363E46;
+    padding-top:20px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #F2F3F5;
+}
+.my-expert .expert-info .expert-area .export-text{
+    margin-top: 20px;
+    text-align: center;
+}
+.my-expert .expert-info .expert-area .export-text span{
+    margin-top:20px;
+    display: inline-block;
+    font-size: 12px;
+    color: #363E46;
+    padding: 5px 10px;
+    background: #F2F3F5;
+    border-radius: 4px;
+}
+.my-expert .expert-info .expert-area .export-text p
+{
+    font-size: 12px;
+    color: #363E46;
+    margin-top: 10px;
+    line-height: 20px;
+    text-align: left;
+}
+
+.my-expert .chat-content{
+    display: inline-block;
+    width: 910px;
+    height: 620px;
+    background: #fff;
+}
+
+.my-expert .chat-header{
+    width: 100%;
+    height: 65px;
+    border-bottom: 1px solid #F2F3F5;
+    padding: 15px 20px;
+}
+.my-expert .chat-header .title{
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #363E46;
+    line-height: 22px;
+    margin-top: 6px;
+}
+.my-expert .chat-header a{
+    margin-right: 0;
+}
+
+.my-expert .chat-area{
+    width: 100%;
+    height: 433px;
+    border-bottom: 1px solid #F2F3F5;
+    padding: 0px 20px 10px;
+    overflow: auto;
+}
+.my-expert .chat-area .other,.my-expert .chat-area .me{
+    position: relative;
+    margin-top: 20px;
+}
+.my-expert .chat-area .other .people-img,.my-expert .chat-area .me .people-img{
+    position: absolute;
+    right: 0px;
+    bottom:21px;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0px; 
+}
+.my-expert .chat-area .other .people-img{
+    left: 0px;
+}
+.my-expert .chat-area .other-msg, .my-expert .chat-area .me-msg,.my-expert .chat-area .other .send-img,.my-expert .chat-area .me .send-img{
+    display: inline-block;
+    max-width: 490px;
+    padding: 10px 15px;
+    margin-right: 50px;
+    background: #F2F3F5;
+    border-radius: 20px 20px 20px 4px;
+    font-size: 14px;
+    color: #363E46;
+    line-height: 20px;
+    position: relative;
+}
+.my-expert .chat-area .me .send-img,.my-expert .chat-area .other .send-img{
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 50px;
+    line-height: 0px;
+}
+.my-expert .chat-area .other-msg, .my-expert .chat-area .other .send-img{
+    margin-right: 0;
+    margin-left: 50px;
+}
+
+.my-expert .chat-area .me-msg{
+    background: #0183FF;
+    font-size: 14px;
+    color: #FFFFFF;
+    border-radius: 20px 20px 4px 20px;
+}
+
+.my-expert .chat-area .condition-img{
+    width: 200px;
+    height: 200px;
+}
+.my-expert .chat-area .other-send-time,.my-expert .chat-area .me-send-time{
+    display: block;
+    line-height: 17px;
+    margin-top: 4px;
+    font-size: 12px;
+    color: rgba(54,62,70,.5);
+}
+.my-expert .chat-area .other-send-time{
+    margin-left: 50px;
+}
+.my-expert .chat-area .me-send-time{
+    text-align: right;
+    margin-right: 50px;
+}
+.my-expert .input-area{
+    height: 120px;
+    width: 100%;
+    padding: 15px 20px 0 20px;
+    position: relative;
+}
+.my-expert .input-area textarea{
+    width: 100%;
+    height: 60px;
+    border: none;
+    resize: none;
+    padding: 0;
+    font-size: 14px;
+    color: #363E46;
+}
+.my-expert .input-area .input-area-btn{
+    position: absolute;
+    bottom:10px;
+    right: 20px;
+}
+.my-expert .input-area .input-area-btn span{
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    border:1px solid #0183FF;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #0183FF;
+    text-align: center;
+    line-height: 28px;
+    cursor: pointer;
+}
+.my-expert .input-area .input-area-btn span:hover{
+    background: #80ceff;
+    border-color: #80ceff;
+    color: #fff;
+}
+.my-expert .input-area .input-area-btn span:nth-child(1){
+    margin-right: 25px;
+}
+/*患者-我的治疗*/
+.treatment,.liastre{
+    width: 1200px;
+    background: #fff;
+    padding: 20px;
+}
+.treatment .treatment-cont .table,.liastre .liastre-cont .table{
+    width: 1160px;
+    height: auto;
+    box-sizing: border-box;
+    background: #fff;
+}
+.treatment .treatment-cont .thead,.liastre .liastre-cont .thead {
+    width: 1160px;
+    height: 50px;
+    background: #e5f2ff;
+    border-radius: 4px;
+}
+.treatment .treatment-cont .thead tr,.liastre .liastre-cont .thead tr{
+    border-radius: 4px;
+}
+.treatment .treatment-cont .thead th,.liastre .liastre-cont .thead th{
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    color: #363E46;
+    text-align: left;
+    text-indent: 20px;
+}
+.treatment .treatment-cont .thead th:nth-child(1),.treatment .treatment-cont .tbody tr th:nth-child(1){
+    width: 180px;
+}
+.treatment .treatment-cont .thead th:nth-child(2),.treatment .treatment-cont .tbody tr th:nth-child(2){
+    width: 320px;
+}
+.treatment .treatment-cont .thead th:nth-child(3),.treatment .treatment-cont .tbody tr th:nth-child(3){
+    width: 120px;
+}
+.treatment .treatment-cont .thead th:nth-child(4),.treatment .treatment-cont .tbody tr th:nth-child(4){
+    width: 540px;
+}
+.treatment .treatment-cont .tbody tr,.liastre .liastre-cont .tbody tr{
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    color: #363E46;
+    border-bottom: 1px solid #F2F3F5;
+}
+.treatment .treatment-cont .tbody tr td,.liastre .liastre-cont .tbody tr{
+    text-indent: 20px;
+}
+/*患者-我的近况*/
+.liastre-add{
+    margin-bottom: 10px;
+}
+.liastre-add a{
+    background: #FFFFFF;
+    border: 1px solid #0183FF;
+    border-radius: 4px;
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    line-height: 28px;
+    display: inline-block;
+    color: #0183FF;
+    font-size: 14px;
+}
+.liastre-add a:hover,.liastre-add a.on{
+    color: #fff;
+    background: #0183FF;
+}
+.liastre .liastre-cont .thead th:nth-child(1),.liastre .liastre-cont .tbody tr th:nth-child(1){
+    width: 180px;
+}
+.liastre .liastre-cont .thead th:nth-child(2),.liastre .liastre-cont .tbody tr th:nth-child(2){
+    width: 200px;
+}
+.liastre .liastre-cont .thead th:nth-child(3),.liastre .liastre-cont .tbody tr th:nth-child(3){
+    width: 780px;
+}
+.liastre .liastre-cont .tbody .green-circular,.liastre .liastre-cont .tbody .red-circular{
+    width: 6px;
+    height: 6px;
+    margin-left: 0;
+    position: relative;
+    bottom: 2px;
+}
+/*患者-我的近况  添加弹窗*/
+.liastre-popup{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    z-index: 100;
+  }
+.liastre-popup  .liastre-modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -150px 0 0 -320px;
+    width: 640px;
+    height: 300px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 10px 0 #363E46;
+    border-radius: 4px;
+    background: #F2F3F5;
+}
+.liastre-popup  .liastre-modal .liastre-head{
+    background: #0183FF;
+    border-radius: 4px 4px 0 0;
+    height: 56px;
+    position: relative;
+}
+.liastre-popup  .liastre-modal .liastre-head h2{
+    text-align: center;
+    font-size: 16px;
+    color: #FFF;
+    line-height: 16px;
+    line-height: 56px;
+}
+.liastre-popup  .liastre-modal .liastre-head .close{
+    position: absolute;
+    display: block;
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+    right: 16px;
+    top:22px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.liastre-popup  .liastre-modal .liastre-contect{
+    padding: 20px;
+    position: relative;
+}
+.liastre-popup  .liastre-modal .liastre-contect textarea{
+   
+    width: 600px;
+    height: 154px;
+    border:0;
+    background: #fff;
+    padding: 10px;
+    font-size: 14px;
+    color: #5d646a;
+}
+.liastre-popup  .liastre-modal .liastre-contect textarea::-webkit-input-placeholder{
+    color: #bec1c3;
+}
+.liastre-popup  .liastre-modal .liastre-contect textarea:-moz-placeholder{
+    color: #bec1c3;
+}
+.liastre-popup  .liastre-modal .liastre-contect textarea::-moz-placeholder{
+    color: #bec1c3;
+}
+.liastre-popup  .liastre-modal .liastre-contect textarea:-ms-input-placeholder{
+    color: #bec1c3;
+}
+.liastre-popup  .liastre-modal .liastre-contect #liastre-size{
+    font-size: 14px;
+    color: #5d646a;
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    display: inline-block;
+}
+.liastre-popup  .liastre-modal .submit-btn{
+    text-align: center;
+}
+.liastre-popup  .liastre-modal .submit-btn a{
+    border-radius: 4px;
+    width: 80px;
+    height: 30px;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    line-height: 28px;
+    display: inline-block;
+    background: #0183FF;
+}
+/*患者-查看病历*/
+.check-medical .content{
+    width: 720px;
+    height: auto;
+    margin: 0 auto;
+}
+.check-medical .content .content-li{
+    width: 100%;
+    min-height: 50px;
+    background: #fff;
+    line-height: 50px;
+    margin-bottom: 10px;
+    padding: 0px 20px;
+    box-sizing: border-box; 
+}
+.check-medical .content .content-li:last-child{
+    margin-bottom: 0px;
+}
+.check-medical .content .content-li .content-li-time{
+    font-size: 14px;
+    color: #363E46;
+    font-weight: 600; 
+}
+.check-medical .content .content-li .content-li-bar-open,.check-medical .content .content-li .content-li-bar-close{
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    float: right;
+    font-size: 0px;
+    cursor: pointer;
+}
+.check-medical .content .content-li .content-li-bar-close{
+    display: none;
+}
+.check-medical .content .content-li  .content-li-bar-open span,.check-medical .content .content-li  .content-li-bar-close span{
+    font-size: 12px;
+    color: rgba(54,62,70,.8);
+    margin-right: 20px;
+}
+.check-medical .content .content-li  .content-li-bar-open img,.check-medical .content .content-li  .content-li-bar-close img{
+    position: absolute;
+    right: 0;
+    top: 15px;
+}
+.check-medical .content .content-li .message{
+    padding-bottom: 20px;
+    display: none;
+}
+.check-medical .content .content-li .message .content-bingli-img{
+    font-size: 0px;
+    line-height: 0;
+    margin-top: 16px;
+}
+.check-medical .content .content-li .message .content-bingli-img img{
+    width: 155px;
+    height: 155px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.check-medical .content .content-li .message .content-bingli-img img:nth-child(4n){
+    margin-right: 0px;
+}
+.check-medical .content .content-li .message .content-text{
+    margin-top: 20px;
+    font-size: 14px;
+    color: rgba(54,62,70,.8);
+    line-height: 20px;
+}
+/*患者-我的信息*/
+.patient-info,.patient-info-pwd{
+    width: 1200px;
+    height: auto;
+    background: #fff;
+}
+.patient-info h2,.patient-info-pwd h2{
+    font-size: 16px;
+    color: #363E46;
+    line-height: 16px;
+    border-bottom:1px solid #E7E9EC;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+}
+.patient-info .patient-user,.patient-info-pwd .patient-user{
+    width: 610px;
+    margin: 0 auto;
+}
+
+.base-info{
+    margin-top: 20px;
+    position: relative;
+}
+.base-info span{
+    display: inline-block;
+    font-size: 14px;
+    color: #363E46;
+    opacity: 0.8;
+    line-height: 40px;
+    height: 44px;
+    width: 70px;
+    text-align: right;
+    position: relative;
+    top:5px;
+}
+.base-info input{
+    width: 400px;
+    height: 38px;
+    background: #F2F3F5;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #363E46;
+    border:0;
+    margin-left: 20px;
+    text-indent: 10px;
+    line-height: 38px;
+    border: 1px solid #F2F3F5;
+}
+.base-info input:hover{
+    border-color:#0183FF;
+    background: #fff;
+}
+
+.patient-info .patient-user .sex{
+    font-size: 12px;
+    color: #151752;
+    display: inline-block;
+}
+.patient-info .patient-user .sex .male{
+    margin-left: 15px;
+    position: relative;
+    top:5px;
+}
+.patient-info .patient-user .sex .female{
+    margin-left: 35px;
+    position: relative;
+    top:5px;
+}
+.patient-info .patient-user .sex .male span,.patient-info .patient-user .sex .female span{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    position: relative;
+    top: -1px;
+}
+
+.patient-info .patient-user .sex input[type="radio"]{
+    margin-right: 8px;
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    bottom: 3px;
+    left: 2px;
+}
+.patient-info .patient-user .sex label{
+    position: absolute;
+    left: 5px;
+    top: 12px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid #D9D9D9;
+    right: 10px;
+}
+.patient-info .patient-user .sex input[type="radio"]:checked+label { 
+    background: #FFFFFF;
+    border: 1px solid #0183FF;
+}
+.patient-info .patient-user .sex input[type="radio"]:checked+label::after {
+    position: absolute;
+    content: "";
+    width: 6px;
+    height: 6px;
+    top: 3px;
+    left: 3px;
+    border-top: none;
+    border-left: none; 
+    background: #0183FF;
+    border-radius: 3px;
+    transform: rotate(45deg);
+}
+.patient-info .patient-user .base-info input.miss{
+    border-color:#FA041C;
+}
+.patient-info .submit-btn,.patient-info-pwd .submit-btn{
+    text-align: center;
+}
+.patient-info  .submit-btn a,.patient-info-pwd .submit-btn a{
+    background: #0183FF;
+    border: 1px solid #0183FF;
+    border-radius: 4px;
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    line-height: 28px;
+    display: inline-block;
+    color: #FFFFFF;
+    font-size: 14px;
+    margin:20px auto;
+}
+.patient-info .patient-user .base-info .error-msg{
+    position: absolute;
+    bottom: 12px;
+    right: 80px;
+}
+.patient-info .patient-user .base-info font{
+    position: relative;
+    font-size: 12px;
+    left: 30px;
+    color: #FA041C;
+    padding: 5px 10px;
+    background: #FEE5E8;
+    border-radius: 4px;
+    bottom:0;
+    top:30px;
+}
+
+
+

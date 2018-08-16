@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>患者-我的近况</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/patient.css">
+
+</head>
+<body>   
+    <header class="header">
+        <div class="header-content">
+            <img src="./imgs/home-logo.png" alt="logo">
+            <ul class="navigation">
+                <li class="navigation-li">我的资讯</li>
+                <li class="navigation-li">患者管理</li>
+                <li class="navigation-li">回复管理</li>
+                <li class="navigation-li">排班管理</li>
+                <li class="navigation-li">我的信息</li>
+            </ul>
+            <button class="logout-btn">退出</button>
+        </div>
+    </header>
+    <!-- 内容 -->
+    <div class="container">
+        <div class="liastre-add">
+            <a href="javascript:">添加</a>
+        </div>
+        <section class="liastre">
+           <div class="liastre-cont">
+                <table class="table">
+                    <thead class="thead">
+                        <tr>
+                            <th>状态</th>
+                            <th>添加时间</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+                        <tr>
+                            <td>
+                                <div class="red-circular"></div>
+                                待分配
+                            </td>
+                            <td>
+                                2018/06/19
+                            </td>
+                            <td>
+                                早上醒来后头晕，恶心，浑身无力。
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="green-circular"></div>
+                                已分配
+                            </td>
+                            <td>
+                                2018/06/08
+                            </td>
+                            <td>
+                                咳嗽、发烧。
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+           </div>
+        </section>  
+    </div>
+    <div class="liastre-popup" >
+        <div class="liastre-modal">
+            <div class="liastre-head">
+                <h2>添加近况</h2>
+                <span class="close black"></span>
+            </div>
+            <div class="liastre-contect">
+                <textarea maxlength="50" onkeyup="javascript:setShowLength(this, 50, 'liastre-sizes');"  placeholder="请在此输入状况，将为您安排专家。"></textarea>
+                <span id="liastre-size"><font id="liastre-sizes">50</font>/50</span>
+            </div>
+            <div class="submit-btn">
+                <a href="javascript:;">添加</a>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-copy">
+        <div class="footer-text">
+            Copyright @ 医疗智慧云<br>
+            互联网医疗信息服务资格证书(鄂)-经营性-2018-0000      网站备案编号： 鄂ICP备18000000号
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="./js/plugins/jquery-1.9.1.min.js"></script>
+    <script>
+        function setShowLength(obj, maxlength, id) 
+        { 
+            var rem = maxlength - obj.value.length; 
+            var wid = id; 
+            if (rem < 0){ 
+                rem = 0; 
+            } 
+            document.getElementById(wid).innerHTML = "" + rem + ""; 
+        }
+        $(function(){
+            $('.liastre-add').bind('click',function(){
+                $('.liastre-popup').css('display','block');
+            });
+            $('.close.black').bind('click',function(){
+                $('.liastre-popup').css('display','none');
+            });
+        }) 
+      
+    </script>
+</body>
+</html>

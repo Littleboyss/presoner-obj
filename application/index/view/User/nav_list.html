@@ -1,0 +1,6 @@
+{if condition="in_array('User/index', session('auth'))"}
+    <li class="menuDiv active" role="presentation">
+        <a class="menuTitle" href="{:Url('User/index')}">患者列表</a>
+    </li>
+{/if}
+

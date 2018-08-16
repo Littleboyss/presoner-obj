@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>报名列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/select2.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/select2_lh.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/htmlCss.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/windowCss.css" />
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/layer/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/nav.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/md5.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/public.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/BeatPicker.min.js"></script>
+    <style type="text/css">
+    .current {
+        padding: 2px 7px;
+        display: inline-block;
+        float: left;
+        color: #666;
+    }
+    </style>
+</head>
+<body>
+    <ul class="leftMenu nav nav-tabs" role="tablist">
+       <include file="nav_list" />
+    </ul>
+    <div class="main tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="userList">
+            <!--顶部栏目标题-->
+            <div class="topTit flexed2">
+                <span>报名列表</span>
+            </div>
+            <!--顶部文字介绍-->
+            <div class="secondTxt mgb30">
+                <form class="form-inline" action="{:U('UserGuess/user_code')}" method="post">
+                    <div class="form-group  select120 mar_r12 eventid">
+                        <label for="id_1">报名ID</label>
+                        <input name="guess_id" type="text" value="<?php echo I('post.guess_id');?>" class="form-control" id="id_1" placeholder="">
+                    </div>
+                    <div class="form-group  select120 mar_r12 eventid">
+                        <label for="id_2">兑换码</label>
+                        <input name="code" type="text" value="<?php echo I('post.code');?>" class="form-control" id="id_2" placeholder="">
+                    </div>
+
+                    <button type="submit" class="btn sLv120Btn middle mar_r12"><i class=" chaXunShaiXuan"></i>查询</button>
+                </form>
+            </div>
+
+<div class="Inner">
+    <div class="box boxShow">
+        <table id="checkList" class="csTable">
+            <thead>
+                <tr align="center" class="h_tr">
+                    <th align="center" class="userId">ID</th>
+                    <th align="center">用户id</th>
+                    <th align="center">报名id</th>
+                    <th align="center">报名时间</th>
+                    <th align="center">手机号</th>
+                    <th align="center">奖金</th>
+                    <th align="center">兑换码</th>
+                    <th align="center">操作</th>
+                </tr>
+            </thead>
+            <tbody id="checkList_tbody">
+                <foreach name="code_list" item="vo">
+                    <tr align='left'>
+                        <td align="center">{$vo.id}</td>
+                        <td align="center">{$vo.uid}</td>
+                        <td align="center">{$vo.guess_id}</td>
+                        <td align="center">{$vo.add_time|date="Y-m-d H:i",###}</td>
+                        <td align="center">{$vo['phone']}</td>
+                        <td align="center">{$vo['reward']/100}元</td>
+                        <td align="center">{$vo['code']}</td>
+                        <td align="center">
+                            <a href="javascript:;" class="view" onclick="view('{$vo.code}','{$vo.guess_id}','{$vo.reward}')">验证</a>
+                            <a href="javascript:;" class="view" onclick="change('{$vo.id}')">更改状态</a>
+                        </td>
+                    </tr>
+                    <tbody id="{$vo.id}" hidden=""> </tbody>
+                </foreach>
+            </tbody>
+        </table>
+        <div class="nav_a clear_b">
+            <span class="mar_l15"><em class="cor_b"><i class="cor_pad"></i></em></span>
+            <div class="nav_c nav_right">
+                {$show}
+            </div>
+        </div>                   
+    </div>
+</div>
+</body>
+<script>
+
+function view(code,id,reward) {
+  if( $.md5(id+reward) == code){
+    layer.alert('验证成功!');
+  }else{
+    layer.alert('验证失败!');
+  }
+}
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人信息</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+
+
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="./imgs/home-logo.png" alt="logo">
+            <ul class="navigation">
+                <li class="navigation-li">我的资讯</li>
+                <li class="navigation-li">患者管理</li>
+                <li class="navigation-li">回复管理</li>
+                <li class="navigation-li">排班管理</li>
+                <li class="navigation-li">我的信息</li>
+            </ul>
+            <button class="logout-btn">退出</button>
+        </div>
+    </header>
+    <!-- 内容 -->
+    <div class="container">
+        <section class="personal-info" >
+            <h2 class="title">个人信息</h2>
+            <div class="personal-user">
+                <div class="user-pic" >
+                    <div>
+                        <input type="file" id="camera" multiple="multiple"capture="camera" accept="image/*" />
+                        <img src="imgs/male.png" alt="" id="imgUrl">
+                    </div>
+                    <span class="title">点击更换头像</span>
+                </div>
+                <div class="base-info">
+                    <span for="">姓名</span>
+                    <input type="text" placeholder="张泽刚">
+                </div>
+                <div class="base-info sex">
+                    <span for="" class="fl">性别</span>
+                    <div class="male fl">
+                        <input  id="male" type="radio" name="item" value="male" checked>
+                        <label for="male"></label>
+                        <span>男</span>
+                    </div>
+                    <div class="female fl">
+                        <input id="female" type="radio" name="item" value="female">
+                        <label for="female"></label>
+                        <span>女</span>
+                    </div>
+                </div>
+                <div class="base-info">
+                    <span for="">专长</span>
+                    <input type="text" placeholder="计算机编程" maxlength="20" onkeyup="javascript:setShowLength(this, 20, 'zhuanchang-size');">   
+                    <font id="zhuanchang"><samp id="zhuanchang-size">20</samp>/20</font>       
+                </div>
+                <div class="base-info">
+                    <span class="base-jianjie" for="">基本简介</span>
+                    <textarea maxlength="100" onkeyup="javascript:setShowLength(this, 100, 'base-size');"  placeholder="在计算机软件，硬件开发，系统分析与设计，数据库开发与管理，计算机网络技术，项目管理，软件工程等各个领域，有扎实的理论基础。"></textarea>
+                    <font id="base-jian"><samp id="base-size">100</samp>/100</font>  
+                </div>
+                <div class="submit-btn">
+                    <a href="javascript:;">保存</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer class="footer-copy">
+        <div class="footer-text">
+            Copyright @ 医疗智慧云<br>
+            互联网医疗信息服务资格证书(鄂)-经营性-2018-0000      网站备案编号： 鄂ICP备18000000号
+        </div>
+    </footer>
+    <script type="text/javascript" src="./js/plugins/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        $("#camera").change(function(e) {
+            for (var i = 0; i < e.target.files.length; i++) {
+                var file = e.target.files.item(i);
+                var freader = new FileReader();
+                freader.readAsDataURL(file);
+                freader.onload = function(e) {
+                    var src = e.target.result;
+                    $("#imgUrl").attr("src",src);
+                }
+            }
+        });
+        function setShowLength(obj, maxlength, id) 
+        { 
+            var rem = maxlength - obj.value.length; 
+            var wid = id; 
+            if (rem < 0){ 
+                rem = 0; 
+            } 
+            document.getElementById(wid).innerHTML = "" + rem + ""; 
+        } 
+    </script>
+</body>
+</html>

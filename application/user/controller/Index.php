@@ -12,10 +12,28 @@ class Index extends \think\Controller
     public function _initialize()
     {
         $this->request = Request::instance();
-        Url::root('/index.php');
     }
     public function index()
     {
+        $NewsModel = model('news');
+        $request   = $this->request;
+        if ($request->isPost()) {
+            $post_data      = $request->post();
+            $where['catid'] = $post_data['catid'];
+        } else {
+            $where = [];
+        }
+        $data = $NewsModel->where($where)->paginate(1);
+        
+        foreach ($data as $key => $value) {
+            $data[$key]['catename'] = model('Category')->where('catid =' . $value['catid'])->value('catename');
+        }
+        $page = $data->render();
+        // dump($page);exit;
+        $category = $NewsModel->getCategory();
+        $this->assign('category', $category);
+        $this->assign('data', $data);
+        $this->assign('page', $page);
         $view = new View();
         return $this->fetch('index/index');
     }
@@ -41,27 +59,25 @@ class Index extends \think\Controller
         if (!$post_data['password']) {
             $this->error('密码为空');
         }
-        if (!$post_data['code']) {
-            $this->error('验证码为空','index');
-        }
         $User = model('User');
-        if(!$User->_checkCode($post_data['code'])){
-            $this->error('验证码错误','index');
+        if (!$User->_checkCode($post_data['code'])) {
+            $this->error('验证码错误', 'index');
         }
         //登陆验证
         $status = $User->login($post_data['idcard'], $post_data['password']);
         if ($status == 1) {
-            $this->error('用户名不存在','index');
+            $this->error('用户名不存在', 'index');
         } elseif ($status == 2) {
             $this->error('密码错误');
         } elseif ($status == 3) {
             $this->redirect('User/index');
         }
     }
-    public function logout(){
+    public function logout()
+    {
         // 清除session数据
         session(null);
-        setcookie('id','', time()-1, '/'); // cookie 清除
+        setcookie('id', '', time() - 1, '/'); // cookie 清除
         // cookie(null) TP里面才有
         $this->success('退出成功！', 'index');
         exit();

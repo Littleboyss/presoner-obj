@@ -109,7 +109,7 @@
         $.ajax({    
             type: 'POST',   
             dataType: "json", 
-            url: '/index.php/User/reset',    
+            url: '/User/reset',    
             data: {id : id},
             success: function(json) {
                 console.log(json)
@@ -124,7 +124,7 @@
         $.ajax({    
             type: 'POST',   
              dataType: "json", 
-             url: '/index.php/User/viewHistory',    
+             url: '/User/viewHistory',    
              data: {id : id},
              success: function(json) {
                 if (json.status == 0) {

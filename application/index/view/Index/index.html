@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>医院端-登录</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/common.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/hospital.css">
+</head>
+<body>
+    <div class="hospital-index">
+        <div class="hospital-index-login">
+            <span class="logo">
+                <img src="__PUBLIC__/imgs/hospital-login.png" alt="logo">
+            </span>
+            <div class="hospital-login">
+                <div class="base-info">
+                    <i class="common-icon hospital-login-user"></i>
+                    <input type="text" name="name" placeholder="请输入医院账号">
+                    
+                </div>
+                <div class="base-info">
+                    <i class="common-icon hospital-login-pwd"></i>
+                    <input type="password" name="password" placeholder="请输入医院密码">
+                    <a href="javascript:;" class="hospital-login-submit"> <i class="common-icon hospital-login-enter"></i></a>
+                </div>
+                <div class="error-msg">
+                    <i class="message-fail-white common-icon"></i>
+                        账号或密码错误，请重新输入。
+                </div>
+            </div>
+        </div>
+        <div class="hospital-index-bottom">
+        </div>
+    </div>
+    <!-- 登陆免责协议 -->
+    <div class="agreement-popup">
+        <div class="agreement-modal">
+            <div class="agreement-head">
+                <h2>免责协议</h2>
+                <span class="close black"></span>
+            </div>
+            <div class="agreement-contect agreement-scroll">
+                <p>《侵权责任法》第66条规定了三项免责事由，符合下列规定情形的，应当免除医疗机构的赔偿责任。</p>
+                <p>（一）患者或者其近亲属不配合医疗机构进行符合诊疗规范的诊疗</p>
+                <p>患者或其近亲属不配合医疗机构进行符合诊疗规范的诊疗是医疗机构的当然免责事由，但在这种情形下医疗机构完全免责的前提，必须是医疗机构及其医务人员没有过错。如果医疗机构及其医务人员也有过错的，则不能完全免责。</p>
+                <p>（二）医务人员在抢救生命垂危的患者等紧急情况下已经尽到合理诊疗义务</p>
+                <p>在抢救生命的紧急状态下，医务人员的首要任务是抢救，而非平常状态下对患者的治疗。为了抢救生命，医务人员只要在急救中尽到了合理的诊疗义务，即使造成了患者的损害，也可以免于承担责任。当然，其前提是医务人员尽到合理诊疗义务，即对被抢救的患者诊断是正常的，所采取急救治疗措施是合理的，药品使用是合理规范的，并且将急救措施可能造成的损害尽可能控制在合理限度之内。</p>
+                <p>（三）限于当时的医疗水平难以诊疗</p>
+                <p>医学科学和医疗结果具有不确定性和不可预见性，此外，由于患者个体的差异性，法律对医务人员采取的诊疗行为是否存在过错的判断，只能基于当时医学科学本身的发展，即是否尽到与当时医疗水平相应的诊疗义务。</p>
+            </div>
+            <div class="submit-btn">
+                <a href="javascript:;" id="agree">我同意</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="__PUBLIC__/js/plugins/jquery-1.9.1.min.js"></script>
+    <script>
+        $(function(){
+            $('.hospital-login-submit').bind('click',function(){
+                $('.agreement-popup').css('display','block');
+            });
+            $('.close.black').bind('click',function(){
+                $('.agreement-popup').css('display','none');
+            });
+            $('#agree').bind('click',function(){
+                var name =  ;
+                var name =  ;
+                $.ajax({    
+                    type: 'POST',   
+                    dataType: "json", 
+                    url: '{:url('login')}',    
+                    data: {name : name,password:password},
+                    success: function(json) {
+                        console.log(json)
+                        layer.msg(json.msg,
+                                {icon: 1,time: 2000 }
+                            );
+                    }
+                })
+            });
+        }) 
+    </script>
+</body>
+</html>

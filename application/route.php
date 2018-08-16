@@ -23,4 +23,7 @@ return [
     //     ':id'   => ['admin/Hospital/edit', ['method' => 'get'], ['id' => '\d+']],
     //     ':name' => ['index/hello', ['method' => 'post']],
     // ],
+    '[news]'     => [
+        ':id'   => ['user/news/show', ['method' => 'get'], ['id' => '\d+']],
+    ],
 ];

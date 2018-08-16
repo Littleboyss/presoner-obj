@@ -31,9 +31,9 @@ if (window != top)
             <div class="mian_cent">
                 <div class="login_warp">
                     <h3>用户登录</h3>
-                    <span><input type="text" name='username' class="text" placeholder="用户名" data-placeholder="常用邮箱 / 网易邮箱" /></span>
+                    <span><input type="text" name='username' class="text" placeholder="用户名" data-placeholder="" /></span>
                     <span><input type="password" name='password' class="text" placeholder="密码"/></span>
-                    <span><input type="text" class="text" name='code' placeholder="验证码"/><b><img  id='code' width="114" height="46" src="/index.php/index/getCode" /></b></span>
+                    <span><input type="text" class="text" name='code' placeholder="验证码"/><b><img  id='code' width="114" height="46" src="/index/getCode" /></b></span>
                     <div class="login_btn">
                         <button type="submit" style="cursor: pointer;" class="login_btn">立即登录</button>
                     </div>
@@ -84,7 +84,7 @@ $(function() {
 });
 $(function() {
     $('#code').bind('click', function() {
-        this.src = "/index.php/index/getCode/_=" + Math.random(0, 1000);
+        this.src = "/index/getCode/_=" + Math.random(0, 1000);
     });
     $('#btn').bind('click', function() {
         $('form').submit();

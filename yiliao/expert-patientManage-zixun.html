@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>患者管理-咨询记录</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <style>
+     
+        .header img{
+            margin-top: 25px;
+        }
+        
+        /* 内容 */
+        .container{
+            width: 1200px;
+            height: 100%;
+            margin: 0 auto;
+            margin-bottom: 40px;
+            padding: 80px 0 117px 0;
+            background: #f2f3f5;
+            position: relative;
+        }
+        .container h3{
+            width: 100%;
+            text-align: center;
+            font-family: PingFangSC-Semibold;
+            font-size: 16px;
+            color: #363E46;
+            line-height: 16px;
+            margin: 40px auto 0px;
+        }
+        /* 聊天内容 */
+        .chat{
+            width: 720px;
+            height: 490px;
+            overflow: auto;
+            background: #fff;
+            margin: 0 auto;
+            padding: 20px;
+            font-size: 0px;
+            box-sizing: border-box;
+            position: relative;
+            /* display: none; */
+            margin-top: 20px;
+        }
+        .date-line{
+            width: 100%;
+            height: 1px;
+            background: #F2F3F5;
+            display: inline-block;
+            margin-top: 7px;
+        }
+        .chat-date{
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0 20px;
+            background: #fff; 
+            font-family: PingFangSC-Regular;
+            font-size: 12px;
+            color: rgba(54,62,70,.5);
+        }
+        .message{
+            padding-top: 8px;
+        }
+        .message-li{
+            margin-top: 10px;
+        }
+        .message-li .message-role-time span{
+            font-family: PingFangSC-Regular;
+            font-size: 12px;
+            color: #0183FF;
+            line-height: 17px;
+        }
+        .message-li .message-role-time span:first-child{
+            margin-right: 10px;
+        }
+        .message-content{
+            display: inline-block;
+            line-height: 17px;
+            margin-top: 10px;
+            margin-left: 10px;
+            font-family: PingFangSC-Regular;
+            font-size: 12px;
+            color: #363E46;
+        }
+      
+        
+        .container .no-message{
+            display: none;
+            /* display: inline-block; */
+            margin-top: 80px;
+            width: 100%;
+            text-align: center;
+            font-family: PingFangSC-Regular;
+            font-size: 12px;
+            color: rgba(54,62,70,.5);
+        }
+    </style>
+</head>
+<body>
+        
+        <header class="header">
+            <div class="header-content">
+                <img src="./imgs/home-logo.png" alt="logo">
+                <ul class="navigation">
+                    <li class="navigation-li">我的资讯</li>
+                    <li class="navigation-li">患者管理</li>
+                    <li class="navigation-li">回复管理</li>
+                    <li class="navigation-li">排班管理</li>
+                    <li class="navigation-li">我的信息</li>
+                </ul>
+                <button class="logout-btn">退出</button>
+            </div>
+        </header>
+        <!-- 内容 -->
+        <div class="container">
+            <h3>“张泽刚”的咨询记录</h3>
+            <span class="no-message">暂无记录</span>
+            <div class="chat scroll">
+                <div class="chat-date">2018/03/23</div>
+                <div class="date-line"></div>
+                <ul class="message">
+                    <li class="message-li">
+                        <div class="message-role-time">
+                            <span>我</span>
+                            <span>11:20:39</span>
+                        </div>
+                        <span class="message-content">最近生活中的饮食、运动方面有什么改变吗？</span>
+                    </li>
+                    <li class="message-li">
+                        <div class="message-role-time">
+                            <span>张泽刚</span>
+                            <span>11:22:12</span>
+                        </div>
+                        <span class="message-content">没有，挺正常的。</span>
+                    </li>
+                    <li class="message-li">
+                        <div class="message-role-time">
+                            <span>我</span>
+                            <span>12:30:12</span>
+                        </div>
+                        <span class="message-content">方便的话下午来我办公室了解一下病情。</span>
+                    </li>
+                    <li class="message-li">
+                        <div class="message-role-time">
+                            <span>张泽刚</span>
+                            <span>13:11:58</span>
+                        </div>
+                        <span class="message-content">OK！谢谢医生。</span>
+                    </li><li class="message-li">
+                        <div class="message-role-time">
+                            <span>张泽刚</span>
+                            <span>13:13:39</span>
+                        </div>
+                        <span class="message-content">医生，您办公室在几楼那个房间。</span>
+                    </li>
+                    <li class="message-li">
+                        <div class="message-role-time">
+                            <span>我</span>
+                            <span>13:30:12</span>
+                        </div>
+                        <span class="message-content">就在H8栋21楼，出电梯后右拐走廊尽头就是了。</span>
+                    </li>
+                    <li class="message-li">
+                        <div class="message-role-time">
+                            <span>我</span>
+                            <span>12:30:12</span>
+                        </div>
+                        <span class="message-content">门牌写的是神经内科。</span>
+                    </li>
+                    <li class="message-li">
+                        <div class="message-role-time">
+                            <span>张泽刚</span>
+                            <span>13:34:39</span>
+                        </div>
+                        <span class="message-content">好的，下午见。</span>
+                    </li>
+                    <li class="message-li">
+                            <div class="message-role-time">
+                                <span>张泽刚</span>
+                                <span>13:34:39</span>
+                            </div>
+                            <span class="message-content">好的，下午见。</span>
+                        </li>
+                </ul>
+            </div>
+            <div class="check-date">
+                <div class="arrow">
+                    <img src="./imgs/msg-left-more.png" alt="">
+                </div>
+                <div class="arrow">
+                    <img src="./imgs/msg-left.png" alt="">
+                </div class="arrow">
+                <input  class="Wdate" value="2018/08/06" readonly onclick="WdatePicker({maxDate:'%y-%M-%d',dateFmt: 'yyyy/MM/dd',onpicked: dateChange})" />
+                <div class="arrow">
+                    <img src="./imgs/msg-right.png" alt="">
+                </div>
+                <div class="arrow">
+                    <img src="./imgs/msg-right-more.png" alt="">      
+                </div>
+            </div>
+        </div>
+            
+            
+        
+        <footer class="footer-copy">
+            <div class="footer-text">
+                Copyright @ 医疗智慧云<br>
+                互联网医疗信息服务资格证书(鄂)-经营性-2018-0000      网站备案编号： 鄂ICP备18000000号
+            </div>
+        </footer>
+        
+        
+        
+
+
+        <script type="text/javascript" src="./js/plugins/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="./js/date/WdatePicker.js"></script>
+    
+        <script>
+            $(function(){
+                
+            })
+        
+            // 日期组件的日期改变时触发事件
+            function dateChange(){
+                console.log(22)
+            }
+        </script>
+</body>
+</html>

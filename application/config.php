@@ -23,8 +23,7 @@ return [
     'view_replace_str'      => [
         '__PUBLIC__' => '/Public',
     ],
-    // 路径类型
-    'url_common_param'      => true,
+    
     // 是否开启路由
     'url_route_on'          => true,
     // 日志类型
@@ -32,19 +31,22 @@ return [
         'type' => 'file', // 支持 socket trace file
     ],
     'app_debug'             => true,
-    //
-    'session'               => [
-        'prefix'       => 'tbp',
-        'type'         => 'redis',
-        'auto_start'   => true,
-        'host'         => '127.0.0.1', //'r-2ze3e02dbade9544.redis.rds.aliyuncs.com',   // redis主机
-        'port'         => 6379, // redis端口
-        //'password'     => 'UKB7Vt8sX9j4vR36mlaW',               // 密码
-        'select'       => 5,
-        'persistent'   => false,
-        'session_name' => 'tbp:',
-        'expire'       => 86400 * 3,
-    ],
+    'url_html_suffix' => 'html',
+     // URL普通方式参数 用于自动生成
+    'url_common_param'       => true,
+  
+    // 'session'               => [
+    //     'prefix'       => 'tbp',
+    //     'type'         => 'redis',
+    //     'auto_start'   => true,
+    //     'host'         => '127.0.0.1', //'r-2ze3e02dbade9544.redis.rds.aliyuncs.com',   // redis主机
+    //     'port'         => 6379, // redis端口
+    //     //'password'     => 'UKB7Vt8sX9j4vR36mlaW',               // 密码
+    //     'select'       => 5,
+    //     'persistent'   => false,
+    //     'session_name' => 'tbp:',
+    //     'expire'       => 86400 * 3,
+    // ],
     'desKey'                => '20(*^jh*', // cookie 加密key
     'locked_timeout'        => 10, // 锁等待时间
     'data_cache'            => true, // 是否开启缓存
