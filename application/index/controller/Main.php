@@ -1,5 +1,5 @@
 <?php
-namespace app\user\controller;
+namespace app\index\controller;
 
 use think\Request;
 use think\Url;

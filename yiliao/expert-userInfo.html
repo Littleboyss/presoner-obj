@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>个人信息</title>
     <link rel="stylesheet" href="./css/common.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/expert.css">
 
 
 
@@ -31,10 +31,13 @@
             <h2 class="title">个人信息</h2>
             <div class="personal-user">
                 <div class="user-pic" >
-                    <div>
-                        <input type="file" id="camera" multiple="multiple"capture="camera" accept="image/*" />
-                        <img src="imgs/male.png" alt="" id="imgUrl">
-                    </div>
+                    <div class="layui-upload">
+                        <button type="button" class="layui-btn" id="test1">上传图片</button>
+                        <div class="layui-upload-list">
+                            <img src="imgs/male.png" class="layui-upload-img" id="demo1">
+                            <p id="demoText"></p>
+                        </div>
+                    </div> 
                     <span class="title">点击更换头像</span>
                 </div>
                 <div class="base-info">
@@ -77,18 +80,39 @@
         </div>
     </footer>
     <script type="text/javascript" src="./js/plugins/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="./js/layui/layui.all.js"></script>
     <script type="text/javascript">
-        $("#camera").change(function(e) {
-            for (var i = 0; i < e.target.files.length; i++) {
-                var file = e.target.files.item(i);
-                var freader = new FileReader();
-                freader.readAsDataURL(file);
-                freader.onload = function(e) {
-                    var src = e.target.result;
-                    $("#imgUrl").attr("src",src);
+       layui.use('upload', function(){
+            var $ = layui.jquery
+            ,upload = layui.upload;
+            
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test1'
+                ,url: '/upload/'
+                ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
                 }
-            }
-        });
+                ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                }
+                ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+                }
+            });
+       })
         function setShowLength(obj, maxlength, id) 
         { 
             var rem = maxlength - obj.value.length; 

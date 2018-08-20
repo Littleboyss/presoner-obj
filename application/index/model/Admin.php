@@ -72,22 +72,7 @@ class Admin extends Common
             return 1;
         }
     }
-    public function setCookies()
-    {
-        //判断是否有cookie
-        if (cookie('id') != '') {
-            $id       = cookie('id');
-            $password = cookie('password');
-            $info     = $this->find($id);
-            //判断密码是否正确
-            if ($info['password'] == $password) {
-                //设置session
-                session('id', $info['id']);
-                $this->_getAuthByUserId($info['role_id']);
-                session('username', $info['username']);
-            }
-        }
-    }
+    
     // 把用户的角色的权限取出并放入session中
     public function _getAuthByUserId($role_id)
     {

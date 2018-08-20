@@ -1,6 +1,6 @@
 <?php
 //命名空间
-namespace app\user\model;
+namespace app\index\model;
 
 //定义类
 class Hospital extends Common
@@ -12,26 +12,34 @@ class Hospital extends Common
 
     ];
     public $edit_rule = [
-        'name|权限名称'   => 'require|max:64',
+        'nickname|名称'   => 'require|max:64',
+        'descrip|描述'   => 'require',
     ];
 
-    //插入数据时给密码进行加密
-    public function _before_insert(&$data)
-    {
-        $salt             = config('password_pre');
-        $data['password'] = md5(md5($data['password']) . $salt);
-        $data['addtime']  = time();
-    }
 
-    //修改数据时给密码进行加密
-    public function _before_update(&$data)
+     //登陆验证
+    public function login($name, $password)
     {
-        //判断密码是否为空
-        if ($data['password']) {
-            $salt             = config('password_pre');
-            $data['password'] = md5(md5($data['password']) . $salt);
+        //寻找用户名对应的那条记录
+        $where = array('name' => $name);
+        $info  = $this->where($where)->find();
+        if ($info) {
+            //密码加密
+            $salt     = config('password_pre');
+            $password = md5(md5($password) . $salt);
+            //判断密码是否正确
+            if ($password == $info['password']) {
+                //把id，和usernam存到session中
+                session('id', $info['id']);
+                session('name', $info['name']);
+                //把用户对应得角色的权限取出并放入session中
+                
+                return 3;
+            } else {
+                return 2;
+            }
         } else {
-            unset($data['password']);
+            return 1;
         }
     }
 

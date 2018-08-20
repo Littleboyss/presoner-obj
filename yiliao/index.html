@@ -6,217 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>首页</title>
     <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
     <link rel="stylesheet" type="text/css" href="./css/pagination.css"/>
     <link rel="stylesheet" type="text/css" href="./css/page.css"/>
-    <style>
-        .home{
-            background-color: #f2f3f5;
-            font-size: 14px;
-            width: 100%;
-        }
-        .banner{
-            width: 100%;
-            margin: 0 auto;
-            position: relative;
-        }
-        /* 头部 */
-        .home-header{
-            background: url('./imgs/banner.png') no-repeat center;
-            width: 100%;
-            height: 480px;
-            background-size: cover;
-        }
-        .home-header-content{
-            width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .login-btn{
-            background: #0183FF;
-            width: 80px;
-            height: 30px;
-            position: absolute;
-            top: 0;
-            right: 0;
-            border: 1px solid #fff;
-            border-radius: 4px;
-            font-family: PingFangSC-Regular;
-            font-size: 14px;
-            color: #FFFFFF;
-            box-sizing: border-box;
-            cursor: pointer;
-        }
-        .login-btn:hover{
-            border-width: 0px;
-            background-color: #fff;
-            color: #0183FF; 
-        }
-
-        .home-header img{
-            margin-top: 25px;
-        }
-        
-        /* 头部 */
-        /* 内容 start*/
-        .container{
-            width: 1200px;
-            background: #f2f3f5;
-            margin-left: 120px; 
-            position: relative;
-            margin: 0 auto;
-        }
-        /* 资讯 */
-        .notice{
-            width: 650px;
-            height: 100px;
-            background: #fff;
-            box-shadow: 0 4px 10px 0 rgba(21,23,82,0.30);
-            border-radius: 4px;
-            position: absolute;
-            top: 430px;
-            left: 50%;
-            margin-left: -325px;
-            padding: 0px 25px;
-        }
-
-        .notice-li{
-            /* display: inline-block; */
-            width: 100px;
-            height: 100px;
-            padding: 20px 0px;
-            cursor: pointer;
-            box-sizing: border-box;
-            position: relative;
-            float: left;
-        }
-        .notice-li>img{
-            margin-left: 30px;
-            margin-bottom: 5px;
-        }
-        .notice-li>span{
-            display: inline-block;
-            color: #363E46;
-            opacity: 0.8; 
-            width: 60px;
-            margin-left: 20px;
-            text-align: center;
-        }
-        .notice-li-checked{
-            display: none;
-        }
-        .notice-li:hover>.notice-li-checked{
-            display: inline-block;
-
-        }
-        .notice-li:hover>.notice-li-img{
-            display: none;
-        }
-        .notice-li:hover>span{
-            color: #0183FF;
-            opacity: 1;
-        }
-        
-        /* 导航内容 */
-        .content{
-            margin-top: 89px;
-            width: 100%;
-            font-size: 0px;
-            margin-bottom: 40px;
-        }
-        .content-a{
-            display: inline-block;
-            width: 590px;
-            height: 150px;
-            background: #fff;
-            box-sizing: border-box;
-            padding: 20px;
-            font-family: PingFangSC-Regular;
-            font-size: 12px;
-            position: relative;
-            margin-top: 20px;
-            border-radius: 4px;
-        }
-        .content-a .classify{
-            color: rgba(54,62,70,.5);
-        }
-        .content-a .tips{
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-        .content-a .tips-card{
-            display: inline-block;
-            width: 60px;
-            height: 22px;
-            background: #F2F3F5;
-            border-radius: 2px;
-            font-family: PingFangSC-Regular;
-            font-size: 12px;
-            color: rgba(54,62,70,.8);
-            line-height: 22px;
-            text-align: center;
-            margin-left: 10px;;
-        }
-        .content-a .content-title{
-            display: block;
-            height: 25px;
-            line-height: 25px;
-            font-family: PingFangSC-Semibold;
-            font-size: 18px;
-            color: #363E46;
-            margin-top: 8px;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        .content-a .content-text{
-            display: inline-block;
-            color: rgba(54,62,70,.5);
-            font-family: PingFangSC-Regular;
-            font-size: 12px;
-            text-align: justify;
-            line-height: 17px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-        }
-        .content-a:nth-child(odd){
-            margin-right: 20px;
-        }
-        .content-a:hover{
-            box-shadow: 0 4px 10px 0 rgba(21,23,82,0.30);
-        }
-        .content-a:hover .content-title{
-            color: #0183FF;
-        }
-
-        /* 分页 */
-        .whj_jqueryPaginationCss-2{
-            margin-left: 391px;
-        }
-        /* 内容 end*/
-        /* 底部 */
-        .footer{
-            margin-top: 40px;
-            background: url('./imgs/footer.png') no-repeat center;
-            width: 100%;
-            height: 117px;
-            background-size: cover;
-        }
-        .footer .footer-text{
-            width: 100%;
-            height: 34px;
-            color: rgba(54,62,70,.7);
-            font-family: PingFangSC-Regular;
-            font-size: 12px;
-            text-align: center;
-            line-height: 17px;
-            padding-top: 29px;
-            box-sizing: border-box;
-        }
-    </style>
 </head>
 <body>
     <div class="home">
@@ -228,39 +20,33 @@
                 </div>
             </header>
             <!-- 导航 -->
-            <ul class="notice">
-                <li class="notice-li">
-                    <img src="./imgs/noticeAll.png" class="notice-li-img" alt="">
-                    <img src="./imgs/notice-all-checked.png" class="notice-li-checked"  alt="">
+            <ul class="nav">
+                <li class="on">
+                    <i></i>
                     <span>全部资讯</span>
                 </li>
-                <li class="notice-li">
-                    <img src="./imgs/healthy-experience.png" class="notice-li-img" alt="">
-                    <img src="./imgs/healthy-experience-checked.png" class="notice-li-checked"  alt="">
+                <li>
+                        <i></i>
                     <span>健康经验</span>
                 </li>
-                <li class="notice-li">
-                    <img src="./imgs/mother-baby-healthy.png" class="notice-li-img" alt="">
-                    <img src="./imgs/mother-baby-healthy-checked.png" class="notice-li-checked"  alt="">
+                <li>
+                        <i></i>
                     <span>母婴健康</span>
                 </li>
-                <li class="notice-li">
-                    <img src="./imgs/life-healthcare.png" class="notice-li-img" alt="">
-                    <img src="./imgs/life-healthcare-checked.png" class="notice-li-checked"  alt="">
+                <li>
+                        <i></i>
                     <span>生活保健</span>
-                </li><li class="notice-li">
-                    <img src="./imgs/diet-nutrition.png" class="notice-li-img" alt="">
-                    <img src="./imgs/diet-nutrition-checked.png" class="notice-li-checked"  alt="">
+                </li><li>
+                    <i></i>
                     <span>饮食营养</span>
                 </li>
-                <li class="notice-li">
-                    <img src="./imgs/more.png" class="notice-li-img" alt="">
-                    <img src="./imgs/more-checked.png" class="notice-li-checked"  alt="">
+                <li >
+                        <i></i>
                     <span>其他</span>
                 </li>
             </ul>
             <!-- 内容 -->
-            <div class="container">
+            <div class="container index">
                 <!-- 导航内容 -->
                 <div class="content">
                     <a href="#" class="content-a">
@@ -359,18 +145,16 @@
             </footer>
         </div>
         <!-- 登录 -->
-        <div class="login">
-            <div class="login-modal">
-                <img src="./imgs/logo-login.png" class="logo-login-img" alt="logo">
-                <input type="text" class="login-account login-input" placeholder="请输入患者账号/专家账号">
-                <input type="password" class="login-password login-input" placeholder="请输入密码">
-                <span class="error-tip">账号或密码错误，请重新输入。</span>
-                <button type="button" class="login-sumbit">登&nbsp;录</button>
-            </div>
+        <div class="login" style="display: none">
+            <img src="./imgs/logo-login.png" class="logo-login-img" alt="logo">
+            <input type="text" class="login-account login-input" placeholder="请输入患者账号/专家账号">
+            <input type="password" class="login-password login-input" placeholder="请输入密码">
+            <span class="error-tip">账号或密码错误，请重新输入。</span>
+    
         </div>
     </div>
     <script type="text/javascript" src="./js/plugins/jquery-1.9.1.min.js"></script>
-
+    <script type="text/javascript" src="./js/layui/layui.all.js"></script>
     <script type="text/javascript" src="./js/plugins/pagination.min.js"></script>
 
     <script>
@@ -413,9 +197,21 @@
             });
 
             // 登录弹框
-            $('.login-btn').bind('click',function(){
-                $('.login').css('display','inline-block');
-            })
+            $('.login-btn').on('click', function(){
+                var index=layer.open({
+                    type: 1,
+                    area: ['420px', '450px'],
+                    skin: 'layer-login',
+                    title: false,
+                    shadeClose : true, // 点击遮罩关闭层
+                    content: $('.login'),
+                    btn: ['登录'],
+                    btn1: function(){ 
+                        $('.login').hide();
+                        layer.close(index);
+                    }
+                });
+            });
         })
     
     </script>

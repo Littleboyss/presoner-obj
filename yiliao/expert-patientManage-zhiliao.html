@@ -6,125 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>患者管理-治疗记录</title>
     <link rel="stylesheet" href="./css/common.css">
-    <style>
-        .header img{
-            margin-top: 25px;
-        }
-        
-        /* 内容 */
-        .container{
-            width: 1200px;
-            height: 100%;
-            margin: 0 auto;
-            margin-bottom: 40px;
-            padding: 80px 0 117px 0;
-        }
-        .container h3{
-            width: 100%;
-            text-align: center;
-            font-family: PingFangSC-Semibold;
-            font-size: 16px;
-            color: #363E46;
-            line-height: 16px;
-            margin: 40px auto 20px;
-        }
-        .content{
-            width: 720px;
-            height: auto;
-            margin: 0 auto;
-        }
-        .content .content-li{
-            width: 100%;
-            min-height: 50px;
-            background: #fff;
-            line-height: 50px;
-            margin-bottom: 10px;
-            padding: 0px 20px;
-            box-sizing: border-box; 
-            
-        }
-        .content-li .content-li-time{
-            font-family: PingFangSC-Semibold;
-            font-size: 14px;
-            color: #363E46;
-            font-weight: 600;
-        }
-        .content-li-bar-open,.content-li-bar-close{
-            position: relative;
-            height: 50px;
-            line-height: 50px;
-            float: right;
-            font-size: 0px;
-            cursor: pointer;
-            
-        }
-        .content-li-bar-close{
-            display: none;
-            
-        }
-        .content-li-bar-open span,.content-li-bar-close span{
-            font-family: PingFangSC-Regular;
-            font-size: 12px;
-            color: rgba(54,62,70,.8);
-            margin-right: 20px;
-        }
-        .content-li-bar-open img,.content-li-bar-close img{
-            position: absolute;
-            right: 0;
-            top: 15px;
-        }
-        .content-bingli-img{
-            font-size: 0px;
-            line-height: 0;
-            margin-top: 16px;
-        }
-        .content-bingli-img img{
-            width: 155px;
-            height: 155px;
-            margin-right: 20px;
-            cursor: pointer;
-        }
-        .content-bingli-img img:nth-child(4n){
-            margin-right: 0px;
-        }
-
-        .message{
-            padding-bottom: 20px;
-            display: none;
-        }
-        .content-text{
-            margin-top: 20px;
-            font-family: PingFangSC-Regular;
-            font-size: 14px;
-            color: rgba(54,62,70,.8);
-            line-height: 20px;
-        }
-        .content-li:last-child{
-            margin-bottom: 0px;
-        }
-        /* 大图 */
-        .big-bingli-img{
-            width: 100%;
-            height: 100%;
-            display: none;
-            position: fixed;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            background: rgba(0, 0, 0, .5);
-            z-index: 100;
-        }
-       
-        .big-img{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-            padding: 12px;
-            background: #fff;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/expert.css">
+    
 </head>
 <body>
         
@@ -142,11 +25,11 @@
             </div>
         </header>
         <!-- 内容 -->
-        <div class="container">
+        <div class="container expert-zhiliao export-check">
             <h3>“张泽刚”的治疗记录</h3>
             <ul class="content">
                 <li class="content-li">
-                    <span class="content-li-time">2018/5/30</span>
+                    <span class="content-li-time">2018/5/30<font>华中科技大学同济医学院附属同济医院</font></span>
                     <div class="content-li-bar-open">
                         <span>查看</span>
                         <img src="./imgs/down.png" alt="箭头" >
@@ -172,7 +55,7 @@
                     </div>
                 </li>
                 <li class="content-li">
-                    <span class="content-li-time">2018/5/30</span>
+                    <span class="content-li-time">2018/5/30 <font>同济东院</font></span>
                     <div class="content-li-bar-open">
                         <span>查看</span>
                         <img src="./imgs/down.png" alt="箭头" >

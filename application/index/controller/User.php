@@ -1,6 +1,6 @@
 <?php
 //命名空间
-namespace app\user\Controller;
+namespace app\index\Controller;
 
 //定义类
 class User extends Main
@@ -11,16 +11,22 @@ class User extends Main
         $User = model('User');
         if ($this->request->isPost()) {
             $post_data = $this->request->post();
+            if(!preg_match("/^1[34578][0-9]{9}$/", $post_data['phone'])){
+                $this->returnMsg(3,'请正确输入手机号');// 请正确输入手机号
+            }            
+            $post_data['hospital_id'] = session('id');
+            $post_data['addtime'] = time();
+            $post_data['password'] = '123456';
             $error     = $User->check($post_data);
             if (!$error) {
                 $User->_before_insert($post_data);
                 $res = $User->save($post_data);
                 if ($res) {
-                    $this->success('添加成功', 'index');
+                    $this->returnMsg(0,'添加成功');
                     exit;
                 }
             }
-            $this->error('添加失败' . $error);
+            $this->returnMsg(1,'添加失败' . $error);
             exit;
         }
         return $this->fetch();
@@ -137,9 +143,7 @@ class User extends Main
             $data['password'] = '123456';
             $UserModel->_before_update($data);
             $res = $UserModel->save($data, ['id' => $id]);
-            if ($res) {
-                $this->returnMsg(0, '密码重置成功');
-            }
+            $this->returnMsg(0, '密码重置成功');
         }
         $this->returnMsg(1, '密码重置失败');
     }

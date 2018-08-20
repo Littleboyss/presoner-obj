@@ -1,42 +1,13 @@
 <?php
 //命名空间
-namespace app\admin\Controller;
+namespace app\index\Controller;
 
 //定义类
 class Hospital extends Main
 {
-    //显示添加界面
-    public function add()
-    {
-        $Hospital = model('Hospital');
-        if ($this->request->isPost()) {
-            $post_data = $this->request->post();
-            $error     = $Hospital->check($post_data);
-            if (!$error) {
-                $Hospital->_before_insert($post_data);
-                $res = $Hospital->save($post_data);
-                if ($res) {
-                    $this->success('添加成功', 'index');
-                    exit;
-                }
-            }
-            $this->error('添加失败' . $error);
-            exit;
-        }
-        return $this->fetch();
-    }
-    public function index()
-    {
-        $HospitalModel = model('Hospital');
-        $data          = $HospitalModel->paginate(10);
-        $page          = $data->render();
-        $this->assign('data', $data);
-        $this->assign('page', $page);
-        return $this->fetch();
-    }
     public function edit()
     {
-        $id            = $this->request->param('id');
+        $id            = session('id');
         $HospitalModel = model("Hospital");
         if ($this->request->isPost()) {
             $post_data = $this->request->post();
@@ -45,29 +16,35 @@ class Hospital extends Main
                 $this->error('修改失败' . $error);
                 exit;
             }
-            $HospitalModel->_before_update($post_data);
             $res = $HospitalModel->save($post_data, ['id' => $id]);
             if ($res) {
-                $this->success('修改成功', 'index');
-                exit();
+                $this->success('修改成功');
             } else {
                 $this->error('修改失败' . $HospitalModel->getError());
             }
         }
-        $HospitalInfo = $HospitalModel->find($id);
-        $this->assign('HospitalInfo', $HospitalInfo);
-        return $this->fetch();
     }
 
-    // 删除
-    public function del()
+
+    // 详情页
+    public function detail()
     {
-        $id            = $this->request->param('id');
-        $HospitalModel = model('Hospital');
-        if ($HospitalModel->where('id =' . $id)->delete()) {
-            $this->return_msg(0, '删除成功');
-        } else {
-            $this->return_msg(1, '删除失败');
+        $UserModel = model('User');
+        $Hospital  = model('Hospital');
+        $Experts   = model('Experts');
+        $data      = $UserModel->where(['hospital_id'=>session('id')])->paginate(10);
+        $hospital_info = $Hospital->where('id =' . session('id'))->find();
+        foreach ($data as $key => $value) {
+            if ($value['eid'] == 0) {
+                $data[$key]['Experts'] = '暂无';
+            } else {
+                $data[$key]['Experts'] = $Experts->where('id =' . $value['eid'])->value('name');
+            }
         }
+        $page = $data->render();
+        $this->assign('data', $data);
+        $this->assign('hospital_info', $hospital_info);
+        $this->assign('page', $page);
+        return $this->fetch();
     }
 }

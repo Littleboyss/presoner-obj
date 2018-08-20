@@ -1,6 +1,6 @@
 <?php
 //命名空间
-namespace app\user\model;
+namespace app\index\model;
 
 //定义类
 class Experts extends Common

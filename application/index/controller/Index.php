@@ -40,13 +40,14 @@ class Index extends \think\Controller
         }
         $User = model('hospital');
         //登陆验证
-        $status = $User->login($post_data['idcard'], $post_data['password']);
+        $status = $User->login($post_data['name'], $post_data['password']);
         if ($status == 1) {
             $this->error('用户名不存在', 'index');
         } elseif ($status == 2) {
             $this->error('密码错误');
         } elseif ($status == 3) {
-            $this->redirect('User/index');
+            $this->success('登陆成功');
+            //$this->redirect('Hospital/index');
         }
     }
     public function logout()

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>医院-患者管理</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/common.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/hospital.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/pagination.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/page.css" />
+    <style>
+    /* 内容 */
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="__PUBLIC__/imgs/home-logo.png" alt="logo">
+            <div class="hospital-manage fr">
+                <div class="hospital-name">{$hospital_info.nickname}<span></span></div>
+                <ul class="hospital-exit">
+                    <li class="hospital-update-info">
+                        修改信息
+                    </li>
+                    <li class="logout">
+                        退出登录
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- 内容 -->
+    <div class="container patient-manage">
+        <div class="patient-manage-add">
+            <a href="javascript:;" id="add_user">添加</a>
+        </div>
+        <div class="container-table">
+            <table class="table">
+                <thead class="thead">
+                    <tr>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>年龄</th>
+                        <th>联系方式</th>
+                        <th>账号</th>
+                        <th>病历</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    {foreach name="data" item="vo"}
+                    <tr>
+                        <td>{$vo.name}</td>
+                        {if condition="$vo['sex'] eq 1"}
+                        <td>男</td>
+                        {else /}
+                        <td>女</td>
+                        {/if}
+                        <td>{$vo.age}</td>
+                        <td>
+                            {$vo.phone}
+                        </td>
+                        <td>
+                            <a href="javascript:;" class="td-btn">查看账号</a>
+                            <a href="javascript:;" data="{$vo.id}" class="td-btn pwd-reset-btn">重置密码</a>
+                        </td>
+                        <td>
+                            <a href="#" class="td-btn">添加病历</a>
+                            <a href="#" class="td-btn">查看病历</a>
+                        </td>
+                    </tr>
+                    {/foreach}
+                </tbody>
+            </table>
+        </div>
+        <!-- 分页 -->
+        <div id="pagination">{$page}</div>
+    </div>
+    <footer class="footer-copy">
+        <div class="footer-text">
+            Copyright @ 医疗智慧云
+            <br> 互联网医疗信息服务资格证书(鄂)-经营性-2018-0000 网站备案编号： 鄂ICP备18000000号
+        </div>
+    </footer>
+    <!-- 登陆免责协议 -->
+    <div class="hospotal-popup" style="display: none">
+        <div class="hospotal-contect">
+            <div class="base-info">
+                <label for="">医院</label>
+                <input type="text" name="nickname" value="{$hospital_info.nickname}">
+            </div>
+            <div class="base-info">
+                <label class="title" for="">简介</label>
+                <textarea maxlength="200" name="descrip" id="descrip" onkeyup="javascript:setShowLength(this, 200, 'hospotal-sizes');">{$hospital_info.descrip}</textarea>
+                <span id="hospotal-size"><font id="hospotal-sizes">200</font>/200</span>
+            </div>
+        </div>
+    </div>
+    <!-- 填写患者资料弹窗 -->
+    <div class="hospotal-info-popup" style="display: none">
+        <div class="personal-user">
+            <div class="base-info">
+                <span for="">姓名</span>
+                <input class="miss" name="name" type="text" placeholder="">
+            </div>
+            <div class="base-info sex">
+                <span for="" class="fl">性别</span>
+                <div class="male fl">
+                    <input id="male" type="radio" name="sex" value="1" checked>
+                    <label for="male"></label>
+                    <span>男</span>
+                </div>
+                <div class="female fl">
+                    <input id="female" type="radio" name="sex" value="2">
+                    <label for="female"></label>
+                    <span>女</span>
+                </div>
+            </div>
+            <div class="base-info">
+                <span for="">年龄</span>
+                <input type="number" name="age" placeholder="">
+            </div>
+            <div class="base-info">
+                <span for="">联系方式</span>
+                <input type="text" name="phone" placeholder="" maxlength="11">
+            </div>
+            <div class="base-info">
+                <span for="">身份证</span>
+                <input type="type"  name="idcard" placeholder="" maxlength="18">
+            </div>
+            <div class="xieyi">
+                <input id="xieyi" type="checkbox" name="item" value="xieyi">
+                <label for="xieyi"></label>
+                已告知患者并患者知情协议
+            </div>
+        </div>
+    </div>
+    <!-- 重置密码 -->
+    <div class="hospotal-pwd-reset" style="display: none">
+        <p>确认重置密码？</p>
+        <font>密码重置后为“123456”</font>
+    </div>
+    <script type="text/javascript" src="__PUBLIC__/js/plugins/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layui/layui.all.js"></script>
+    <script>
+    //限制字数
+    function setShowLength(obj, maxlength, id) {
+        var rem = maxlength - obj.value.length;
+        var wid = id;
+        if (rem < 0) {
+            rem = 0;
+        }
+        document.getElementById(wid).innerHTML = "" + rem + "";
+    }
+    $(function() {
+
+
+        //退出功能
+        $(".hospital-name").bind('click', function() {
+            $(".hospital-exit").toggle();
+        })
+        //医院信息弹窗
+        $('.hospital-update-info').on('click', function() {
+            $(".hospital-exit").toggle();
+            var index = layer.open({
+                type: 1,
+                area: ['640px', '436px'],
+                skin: 'layer-ext-moon',
+                title: '医院信息',
+                content: $('.hospotal-popup'),
+                btn: ['取消', '确定'],
+                end: function() {
+                    $('.hospotal-popup').hide();
+                },
+                btn1: function() {
+                    $('.hospotal-popup').hide();
+                    layer.close(index)
+                },
+                btn2: function() {
+                    var nickname = $(":input[name='nickname']").val();
+                    var descrip = $("#descrip").val();
+                    $.ajax({
+                        type: 'POST',
+                        dataType: "json",
+                        url: "{:url('edit')}",
+                        data: { nickname: nickname, descrip: descrip },
+                        success: function(json) {
+                            $('.error-msg').find('i').text(json.msg);
+                            $('.error-msg').show()
+
+                            //layer.open(json.msg, { icon: 1, time: 2000 });
+                            if (json.code == 1) {
+                                window.location.href = "{:url('hospital/detail')}";
+                            }
+                        }
+                    })
+                    $('.hospotal-popup').hide();
+                    layer.close(index)
+
+                }
+            });
+        });
+        $('.logout').on('click', function() {
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                url: "{:url('index/logout')}",
+                success: function(json) {
+                    window.location.href = "/";
+                }
+            })
+        })
+
+        //添加患者信息
+        $('#add_user').on('click', function() {
+            layer.open({
+                type: 1,
+                area: ['640px', '470px'],
+                skin: 'layer-ext-info',
+                title: '填写患者资料',
+                content: $('.hospotal-info-popup'),
+                btn: ['添加'],
+                end: function() {
+                    $('.hospotal-info-popup').hide();
+                },
+                btn1: function() {
+                    var name = $(":input[name='name']").val();
+                    var phone = $(":input[name='phone']").val();
+                    var sex = $(":input[name='sex']:checked").val();
+                    var idcard = $(":input[name='idcard']").val();
+                    var age = $(":input[name='age']").val();
+
+                    $.ajax({
+                        type: 'POST',
+                        dataType: "json",
+                        url: "{:url('user/add')}",
+                        data: { name: name,phone: phone,sex: sex,age: age,idcard:idcard},
+                        success: function(json) {
+                            if (json.status == 0) {
+                                layer.msg(json.info, { time: 3000 });
+                                $('.hospotal-info-popup').hide();
+                                layer.close(index)
+                            }else{
+                                layer.msg(json.info, { time: 3000 });
+                            }
+                        }
+                    })
+                },
+            });
+        });
+        //重置密码
+        $('.pwd-reset-btn').on('click', function() {
+            var id = $(this).attr('data');
+            var index = layer.open({
+                type: 1,
+                area: ['640px', '242px'],
+                skin: 'patient-pwd-reset',
+                title: '重置密码',
+                content: $('.hospotal-pwd-reset'),
+                btn: ['取消', '确定'],
+                end: function() {
+                    $('.hospotal-pwd-reset').hide();
+                }, 
+                btn1: function() {
+                    $('.hospotal-pwd-reset').hide();
+                    layer.close(index)
+                },
+                btn2: function() {
+                    $.ajax({
+                        type: 'POST',
+                        dataType: "json",
+                        url: "{:url('user/reset')}",
+                        data: { id: id},
+                        success: function(json) {
+                            if (json.status == 0) {
+                                layer.msg(json.info, { time: 3000 ,shade :0.3});
+                            }else{
+                                layer.msg(json.info, { time: 3000 });
+                            }
+                        }
+                    })
+                    $('.hospotal-pwd-reset').hide();
+                    layer.close(index)
+
+                }
+            })
+
+        })
+
+    })
+    </script>
+</body>
+
+</html>

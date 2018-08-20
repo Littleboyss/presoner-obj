@@ -68,19 +68,10 @@
            </div>
         </section>  
     </div>
-    <div class="liastre-popup" >
-        <div class="liastre-modal">
-            <div class="liastre-head">
-                <h2>添加近况</h2>
-                <span class="close black"></span>
-            </div>
-            <div class="liastre-contect">
-                <textarea maxlength="50" onkeyup="javascript:setShowLength(this, 50, 'liastre-sizes');"  placeholder="请在此输入状况，将为您安排专家。"></textarea>
-                <span id="liastre-size"><font id="liastre-sizes">50</font>/50</span>
-            </div>
-            <div class="submit-btn">
-                <a href="javascript:;">添加</a>
-            </div>
+    <div class="liastre-popup"  style="display: none">
+        <div class="liastre-contect">
+            <textarea maxlength="50" onkeyup="javascript:setShowLength(this, 50, 'liastre-sizes');"  placeholder="请在此输入状况，将为您安排专家。"></textarea>
+            <span id="liastre-size"><font id="liastre-sizes">50</font>/50</span>
         </div>
     </div>
     <footer class="footer-copy">
@@ -91,6 +82,7 @@
     </footer>
 
     <script type="text/javascript" src="./js/plugins/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="./js/layui/layui.all.js"></script>
     <script>
         function setShowLength(obj, maxlength, id) 
         { 
@@ -101,14 +93,20 @@
             } 
             document.getElementById(wid).innerHTML = "" + rem + ""; 
         }
-        $(function(){
-            $('.liastre-add').bind('click',function(){
-                $('.liastre-popup').css('display','block');
+         //我的近况
+         $('.liastre-add').on('click', function(){
+            layer.open({
+                type: 1,
+                area: ['640px', '300px'],
+                skin: 'layer-liastre-popup',
+                title: '填写患者资料',
+                content: $('.liastre-popup'),
+                btn: ['添加'],
+                end: function(){ 
+                    $('.liastre-popup').hide();
+                }
             });
-            $('.close.black').bind('click',function(){
-                $('.liastre-popup').css('display','none');
-            });
-        }) 
+        });
       
     </script>
 </body>

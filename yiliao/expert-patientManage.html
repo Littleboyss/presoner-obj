@@ -8,152 +8,8 @@
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" type="text/css" href="./css/pagination.css"/>
     <link rel="stylesheet" type="text/css" href="./css/page.css"/>
-    <style>
-        
-        /* 内容 */
-        .container{
-            width: 1200px;
-            height: 100%;
-            margin: 0 auto;
-            padding: 95px 0 117px 0;
-        }
-        .container-navigation{
-            font-size: 0px;
-        }
-        .container-navigation-li{
-            position: relative;
-            display: inline-block;
-            font-family: PingFangSC-Regular;
-            font-size: 14px;
-            color: #363E46;
-            padding: 0px 9px;
-            height: 20px;
-            line-height: 20px;
-            cursor: pointer;
-        }
-        .container-navigation-span{
-            display: inline-block;
-            font-family: PingFangSC-Regular;
-            font-size: 14px;
-            color: #363E46;
-        }
-        .container-navigation-up{
-            display: inline-block;
-            font-family: PingFangSC-Semibold;
-            font-size: 12px;
-            color: #FA041C;
-            vertical-align: super;
-        }
-        .container-navigation-border{
-            display: none;
-            position: absolute;
-            height: 4px;
-            width: 100%;
-            background: #0183FF;
-            border-radius: 4px;
-            margin-left: -9px;
-            margin-top: 4px;
-        }
+    <link rel="stylesheet" type="text/css" href="./css/expert.css"/>
 
-        .container-navigation-li:hover .container-navigation-border{
-            display: inline-block;
-        }
-        .container-navigation-li:hover .container-navigation-span{
-            font-size: 16px;
-            color: #363E46;
-            font-weight: bold;
-        }
-        
-
-        /* 表格区域 */
-        .container-table{
-            margin-top: 10px;
-            padding: 20px;
-            background: #fff;
-        }
-        .table{
-            width: 1160px;
-            height: auto;
-            box-sizing: border-box;
-            background: #fff;
-        }
-        .table .thead{
-            width: 1160px;
-            height: 50px; 
-            background: rgba(1,131,255,.1);
-            border-radius: 4px;
-        }
-        .table .thead th{   
-            width: 140px;
-            height: 50px;
-            line-height: 50px;
-            font-family: PingFangSC-Semibold;
-            font-size: 14px;
-            color: #363E46;
-        }
-        .table .thead th:last-child{
-            width: 460px;
-            text-align: left;
-            padding-left: 20px;
-            box-sizing: border-box;
-        }
-        .tbody tr{
-            height: 100px;
-            border-bottom: 1px solid #F2F3F5; 
-            
-        }
-        .tbody tr td:first-child{
-            position: relative;
-        }
-
-        .tbody tr .sex{
-            width: 60px;
-            height: 60px;
-            position: absolute;
-            top: 20px;
-            left: 40px;
-        }
-        .tbody tr td{
-            text-align: center;
-            line-height: 100px;
-            font-family: PingFangSC-Regular;
-            font-size: 14px;
-            color: #363E46;
-        }
-        .tbody tr td:last-child{
-            text-align: left;
-            padding-left: 20px;
-            font-size: 0px;
-            line-height: 0;
-        }
-        .tbody tr td .td-btn{
-            display: inline-block;
-            width: 80px;
-            height: 30px;
-            line-height: 30px;
-            text-align: center;
-            background: #F2F3F5;
-            border-radius: 4px;
-            font-family: PingFangSC-Regular;
-            font-size: 12px;
-            color: #363E46;
-            margin-right: 35px;
-            cursor: pointer;
-        }
-        .tbody tr td .td-btn:last-child{
-            margin-right: 0px;
-        }
-
-        .tbody tr td .td-btn:hover{
-            background: #0183FF;
-            color: #FFFFFF;
-        }
-        
-        /* 分页 */
-        #pagination{
-            margin: 40px 0 40px 391px;
-        }
-    </style>
 </head>
 <body>
         
@@ -171,24 +27,31 @@
             </div>
         </header>
         <!-- 内容 -->
-        <div class="container">
-            <ul class="container-navigation">
-                <li class="container-navigation-li">
-                    <span class="container-navigation-span">全部</span>
-                    <span class="container-navigation-up">114</span>
-                    <span class="container-navigation-border"></span>
-                </li>
-                <li class="container-navigation-li">
-                    <span class="container-navigation-span">治疗中</span>
-                    <span class="container-navigation-up">10</span>
-                    <span class="container-navigation-border"></span>
-                </li>
-                <li class="container-navigation-li">
-                    <span class="container-navigation-span">治疗结束</span>
-                    <span class="container-navigation-up">104</span>
-                    <span class="container-navigation-border"></span>
-                </li>
-            </ul>
+        <div class="container  export-pmanage">
+            <div class="export-pmanage-head">
+                <ul class="container-navigation fl">
+                    <li class="container-navigation-li">
+                        <span class="container-navigation-span">全部</span>
+                        <span class="container-navigation-up">114</span>
+                        <span class="container-navigation-border"></span>
+                    </li>
+                    <li class="container-navigation-li">
+                        <span class="container-navigation-span">治疗中</span>
+                        <span class="container-navigation-up">10</span>
+                        <span class="container-navigation-border"></span>
+                    </li>
+                    <li class="container-navigation-li">
+                        <span class="container-navigation-span">治疗结束</span>
+                        <span class="container-navigation-up">104</span>
+                        <span class="container-navigation-border"></span>
+                    </li>
+                </ul>
+                <div class="search fr">
+                   <input type="text" placeholder="输入姓名查找">
+                   <i class="common-icon export-pmanage-search"></i>
+                </div>
+            </div>
+            
             <div class="container-table">
                 <table class="table">
                     <thead class="thead">

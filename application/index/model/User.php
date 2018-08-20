@@ -1,6 +1,6 @@
 <?php
 //命名空间
-namespace app\admin\model;
+namespace app\index\model;
 
 //定义类
 class User extends Common
@@ -8,8 +8,12 @@ class User extends Common
     //条件判断
     public $add_rule = [
         'name|登录名'    => 'unique:user|require|max:64', // unique后加数据表(不带前缀)
-        'password|密码' => 'require|max:32', // unique后加数据表(不带前缀)
-
+        'password|密码' => 'require|max:32', 
+        'phone|手机号' => 'require|max:11', 
+        'idcard|身份证' => 'require|max:18', 
+        'sex|性别' => 'require|number|in:1,2',
+        'age|年龄' => 'require|number|between:1,100',
+        'item|服务条款'=>'require'
     ];
     public $edit_rule = [
         'name|权限名称' => 'require|max:64',
@@ -34,29 +38,20 @@ class User extends Common
             unset($data['password']);
         }
     }
-     //登陆验证
-    public function login($idcard, $password)
+    public function setCookies()
     {
-        //寻找用户名对应的那条记录
-        $where = array('idcard' => $idcard);
-        $info  = $this->where($where)->find();
-        if ($info) {
-            //密码加密
-            $salt     = config('password_pre');
-            $password = md5(md5($password) . $salt);
+        //判断是否有cookie
+        if (cookie('id') != '') {
+            $id       = cookie('id');
+            $password = cookie('password');
+            $info     = $this->find($id);
             //判断密码是否正确
-            if ($password == $info['password']) {
-                //把id，和usernam存到session中
+            if ($info['password'] == $password) {
+                //设置session
                 session('id', $info['id']);
+                $this->_getAuthByUserId($info['role_id']);
                 session('username', $info['username']);
-                //把用户对应得角色的权限取出并放入session中
-                
-                return 3;
-            } else {
-                return 2;
             }
-        } else {
-            return 1;
         }
     }
 
