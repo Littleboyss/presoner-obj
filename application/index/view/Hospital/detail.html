@@ -63,12 +63,12 @@
                             {$vo.phone}
                         </td>
                         <td>
-                            <a href="javascript:;" class="td-btn">查看账号</a>
+                            <a href="javascript:;" data="{$vo.idcard}" class="td-btn check-code">查看账号</a>
                             <a href="javascript:;" data="{$vo.id}" class="td-btn pwd-reset-btn">重置密码</a>
                         </td>
                         <td>
-                            <a href="#" class="td-btn">添加病历</a>
-                            <a href="#" class="td-btn">查看病历</a>
+                            <a href="javascript:;" data="{$vo.id}" class="td-btn medical-record-add">添加病历</a>
+                            <a href="{:url('User/viewHistory',array('id'=>$vo['id']))}" target="_blank" class="td-btn">查看病历</a>
                         </td>
                     </tr>
                     {/foreach}
@@ -131,16 +131,46 @@
                 <input type="type"  name="idcard" placeholder="" maxlength="18">
             </div>
             <div class="xieyi">
-                <input id="xieyi" type="checkbox" name="item" value="xieyi">
+                <input id="xieyi" type="checkbox" name="item" value="1">
                 <label for="xieyi"></label>
                 已告知患者并患者知情协议
             </div>
         </div>
     </div>
+
     <!-- 重置密码 -->
     <div class="hospotal-pwd-reset" style="display: none">
         <p>确认重置密码？</p>
         <font>密码重置后为“123456”</font>
+    </div>
+     <!-- 添加病历 -->
+    <div class="medical-record" style="display: none">
+        <div class="base-info pic">
+            <label for="">上传图片</label>
+            <div class="layui-upload">
+                
+                <blockquote class="layui-elem-quote layui-quote-nm fl">
+                    <div class="layui-upload-list" id="demo1">
+                            
+                    </div>
+                </blockquote>
+                <button type="button" class="layui-btn fl" id="test2">多图片上传</button> 
+            </div>
+        </div>
+        <input type="hidden" name="img_banner" id="img_banner" value="">
+        <div class="base-info description">
+            <label for="">描述</label>
+            <textarea name="content" id="content" cols="30" rows="10" placeholder=""></textarea>
+        </div>
+        <div class="base-info date">
+            <label for="">就诊时间</label>
+            <input type="text" name="vtime" class="layui-input" id="test14" placeholder="yyyy/MM/dd">
+        </div>
+        <div class="xieyi">
+            <input id="xieyi" type="checkbox" name="item" value="1">
+            <label for="xieyi"></label>
+            已告知患者知情协议
+        </div>
     </div>
     <script type="text/javascript" src="__PUBLIC__/js/plugins/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/layui/layui.all.js"></script>
@@ -212,7 +242,69 @@
                 }
             })
         })
+        //添加病历
+        $('.medical-record-add').on('click', function(){
+            var uid = $(this).attr('data');
+            var index=layer.open({
+                type: 1,
+                area: ['640px', '470px'],
+                skin: 'medical-record-layer',
+                title: '添加病历',
+                content: $('.medical-record'),
+                btn: ['添加'],
+                btn1: function(){ 
+                    var item = $(":input[name='item']:checked").val();
+                    if (item != 1) {
+                        layer.msg('请告知患者知情协议', { time: 3000 });
+                        return ;
+                    }
+                    var content = $('#content').val();
+                    var vtime = $(":input[name='vtime']").val();
+                    var img_banner = $(":input[name='img_banner']").val();
+                    var data = {uid:uid,content:content,vtime:vtime,img_banner};
+                    $.ajax({
+                        type: 'POST',
+                        dataType: "json",
+                        url: "{:url('user/addHistory')}",
+                        data: data,
+                        success: function(json) {
+                            if (json.status == 0) {
+                                $(":input[name='item']").attr("checked",'false')
+                                $('#content').val('');
+                                $(":input[name='vtime']").val('');
+                                $(":input[name='img_banner']").val('');
+                                $("#demo1").html('')
+                                layer.close(index);
+                                $('.medical-record').hide();
+                            }
+                            layer.msg(json.info, { time: 3000 });
+                        }
+                    })
+                   
+                },
+                end: function(){
+                    $('.medical-record').hide();
+                }
+            
+            })
 
+        })
+        //查看账号
+        $('.check-code').on('click', function(){
+            var idcard = $(this).attr('data')
+            var index=layer.open({
+                type: 1,
+                area: ['320px', '200px'],
+                skin: 'layer-check-code',
+                title: '查看账号',
+                content:'<p>'+idcard+'</p>' ,
+                btn: ['确定'],
+                btn1: function(){ 
+                    layer.close(index);
+                },
+               
+            })
+        });
         //添加患者信息
         $('#add_user').on('click', function() {
             layer.open({
@@ -288,8 +380,54 @@
             })
 
         })
-
     })
+    layui.use('upload', function(){
+        var $ = layui.jquery,upload = layui.upload;
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test2',
+                url: '{:url("upload")}',
+                multiple: true,
+                before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        //console.log(result)
+                        $('#demo1').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+                        //$('#demo1').append('<img src="__PUBLIC__/imgs/banner.png" alt="'+ file.name +'" class="layui-upload-img">')
+                    });
+                },
+                done: function(res){
+                    //如果上传失败
+                    if(res.code > 0){
+                        return layer.msg('上传失败');
+                    }
+                    var img = $('#img_banner').val();
+                    if (img == '') {
+                        img = res.url;
+                        $('#img_banner').val(img)
+                    }else{
+                        img +=','+res.url 
+                        $('#img_banner').val(img)
+                    }
+
+                },
+                error: function(){
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function(){
+                        uploadInst.upload();
+                    });
+                }
+            });
+        });
+        layui.use('laydate', function(){
+            var laydate = layui.laydate;
+                laydate.render({
+                elem: '#test14'
+                ,format: 'yyyy/MM/dd'
+            });
+        })
     </script>
 </body>
 

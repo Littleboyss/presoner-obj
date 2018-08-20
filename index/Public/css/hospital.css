@@ -299,7 +299,7 @@
     width: 640px;
     height:436px;
 }
-.layer-ext-moon  .layui-layer-title,.patient-pwd-reset .layui-layer-title,.layer-ext-info .layui-layer-title,.hospotal-xieyi .layui-layer-title{
+.layer-ext-moon  .layui-layer-title,.patient-pwd-reset .layui-layer-title,.layer-ext-info .layui-layer-title,.hospotal-xieyi .layui-layer-title,.medical-record-layer .layui-layer-title,.layer-check-code .layui-layer-title {
     text-align: center;
     font-size: 16px;
     color: #FFF;
@@ -309,7 +309,7 @@
     border-radius: 4px 4px 0 0;
     padding: 0;
 }
-.layer-ext-moon  .layui-layer-setwin,.layer-ext-info  .layui-layer-setwin,.patient-pwd-reset .layui-layer-setwin,.hospotal-xieyi .layui-layer-setwin {
+.layer-ext-moon  .layui-layer-setwin,.layer-ext-info  .layui-layer-setwin,.patient-pwd-reset .layui-layer-setwin,.hospotal-xieyi .layui-layer-setwin,.medical-record-layer .layui-layer-setwin,.layer-check-code .layui-layer-setwin{
     top:20px
 }
 .hospotal-popup  .hospotal-contect{
@@ -365,13 +365,13 @@
     bottom: 30px;
     display: inline-block;
 }
-.layer-ext-moon  .layui-layer-btn,.layer-ext-info .layui-layer-btn,.patient-pwd-reset .layui-layer-btn{
+.layer-ext-moon  .layui-layer-btn,.layer-ext-info .layui-layer-btn,.patient-pwd-reset .layui-layer-btn,.medical-record-layer .layui-layer-btn,.layer-check-code .layui-layer-btn {
     text-align: center;
     height: 56px;
     width: 100%;
     background: #fff;
 }
-.layer-ext-moon .layui-layer-btn a,.layer-ext-info .layui-layer-btn a,.patient-pwd-reset .layui-layer-btn a{
+.layer-ext-moon .layui-layer-btn a,.layer-ext-info .layui-layer-btn a,.patient-pwd-reset .layui-layer-btn a,.medical-record-layer .layui-layer-btn a,.layer-check-code .layui-layer-btn a{
     border-radius: 4px;
     width: 80px;
     height: 30px;
@@ -380,7 +380,7 @@
     line-height: 28px;
     display: inline-block;
 }
-.layer-ext-moon a.layui-layer-btn1,.layer-ext-info .layui-layer-btn a.layui-layer-btn0,.patient-pwd-reset .layui-layer-btn a.layui-layer-btn1{
+.layer-ext-moon a.layui-layer-btn1,.layer-ext-info .layui-layer-btn a.layui-layer-btn0,.patient-pwd-reset .layui-layer-btn a.layui-layer-btn1,.medical-record-layer .layui-layer-btn .layui-layer-btn1,.layer-check-code .layui-layer-btn .layui-layer-btn1{
     color: #fff;
     background: #0183FF;
     margin-right: 20px;
@@ -527,7 +527,7 @@
     background: #0183FF;
     border: 1px solid #0183FF;
 }
-.hospotal-info-popup  input[type="checkbox"]:checked+label::after {
+.hospotal-info-popup  input[type="checkbox"]:checked+label::after{
     content: "";
     position: absolute;
     left: 2px;
@@ -567,4 +567,220 @@
 .layui-layer-hui{
     font-size: 14px;
     color: #363E46;
+}
+/* 添加病历 */
+.medical-record-layer.layui-layer{
+    background: #f2f3f5;
+    width: 640px;
+    height:470px;
+    text-align: center;
+}
+.medical-record .base-info{
+    width: 385px;
+    margin:0 auto;
+    margin-top: 20px;
+}
+.medical-record .base-info textarea{
+    width: 300px;
+    height: 120px;
+    background: #FFFFFF;
+    border: 1px solid #0183FF;
+    border-radius: 4px;
+    padding: 10px;
+}
+.medical-record .base-info  label{
+    font-size: 14px;
+    color: #5d646a;
+    display: inline-block;
+    width: 70px;
+    text-align: right;
+    margin-right: 10px;
+}
+.medical-record .base-info.description label{
+    position: relative;
+    bottom: 100px;
+}
+.medical-record .base-info.date input{
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #363E46;
+    text-indent: 10px;
+    border: 0;
+}
+.medical-record .xieyi{
+    width: 200px;
+    margin-left: 200px;
+}
+.medical-record-layer .xieyi{
+    font-size: 14px;
+    color: #363E46;
+    margin: 20px 0 20px 74px;
+    position: relative;
+    width: 200px;
+    margin-left: 200px;
+}
+.medical-record-layer .layui-upload{
+    width: 300px;
+    display: inline-block;
+}
+.medical-record-layer .layui-upload button{
+    width: 90px;
+    height: 90px;
+    background: #fff;
+    border-radius: 4px;
+    margin-left: 20px;
+}
+.medical-record-layer .pic label{
+    position: relative;
+    bottom: 60px;
+}
+.medical-record-layer .layui-upload .layui-upload-img{
+    width: 90px;
+    height: 90px;
+    border-radius: 4px;
+    border:0;
+}
+.medical-record-layer .layui-upload-file{
+    display: none;
+}
+.medical-record-layer .xieyi input[type="checkbox"]{
+    opacity: 0;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    bottom: 2px;
+    left: 0px;
+    z-index: 10;
+}
+.medical-record-layer .xieyi label{
+    position: absolute;
+    left: 0px;
+    width: 16px;
+    height: 16px;
+    right: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 2px;
+    left:24px;
+}
+
+.medical-record-layer input[type="checkbox"]:checked+label { 
+    background: #0183FF;
+    border: 1px solid #0183FF;
+}
+.medical-record-layer  input[type="checkbox"]:checked+label::after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    bottom: 6px;
+    width: 6px;
+    height: 2px;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    -ms-transform: rotate(-60deg);
+    -moz-transform: rotate(-60deg);
+    -webkit-transform: rotate(-60deg);
+    transform: rotate(-45deg);
+    border-radius: 2px;
+}
+/*查看账号*/
+.layer-check-code.layui-layer{
+    background: #f2f3f5;
+    width: 320px;
+    height:200px;
+    text-align: center;
+}
+.layer-check-code p{
+    line-height: 35px;
+    color: #363E46;
+    margin-top: 25px;
+    font-size: 14px;
+}
+/* 医院端 查看病历 */
+.export-check h3{
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    color: #363E46;
+    line-height: 16px;
+    margin: 20px auto 20px;
+}
+.export-check .content{
+    width: 720px;
+    height: auto;
+    margin: 0 auto;
+}
+.export-check .content .content-li{
+    width: 100%;
+    min-height: 50px;
+    background: #fff;
+    line-height: 50px;
+    margin-bottom: 10px;
+    padding: 0px 20px;
+    box-sizing: border-box;  
+}
+
+.export-check .content .content-li .content-li-time{
+    font-size: 14px;
+    color: #363E46;
+    font-weight: bold;
+}
+.export-check .content .content-li .content-li-time font{
+   margin-left: 5px;
+}
+.export-check .content .content-li-bar-open,.content-li-bar-close{
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    float: right;
+    font-size: 0px;
+    cursor: pointer;
+    
+}
+.export-check .content .content-li-bar-close{
+    display: none;
+    
+}
+.export-check .content .content-li-bar-open span,.export-check .content .content-li-bar-close span{
+    font-size: 12px;
+    color: rgba(54,62,70,.8);
+    margin-right: 20px;
+}
+.export-check .content .content-li-bar-open img,.export-check .content .content-li-bar-close img{
+    position: absolute;
+    right: 0;
+    top: 15px;
+}
+.export-check .content .content-bingli-img{
+    font-size: 0px;
+    line-height: 0;
+    margin-top: 16px;
+}
+.eexport-check .content .content-bingli-img img{
+    width: 155px;
+    height: 155px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.export-check .content .content-bingli-img img:nth-child(4n){
+    margin-right: 0px;
+}
+
+.export-check .content .message{
+    padding-bottom: 20px;
+    display: none;
+}
+.export-check .content .content-text{
+    margin-top: 20px;
+    font-size: 14px;
+    color: rgba(54,62,70,.8);
+    line-height: 20px;
+}
+.export-check .content .content-li:last-child{
+    margin-bottom: 0px;
 }

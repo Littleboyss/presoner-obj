@@ -299,7 +299,7 @@
     width: 640px;
     height:436px;
 }
-.layer-ext-moon  .layui-layer-title,.patient-pwd-reset .layui-layer-title,.layer-ext-info .layui-layer-title,.hospotal-xieyi .layui-layer-title,.medical-record-layer .layui-layer-title {
+.layer-ext-moon  .layui-layer-title,.patient-pwd-reset .layui-layer-title,.layer-ext-info .layui-layer-title,.hospotal-xieyi .layui-layer-title,.medical-record-layer .layui-layer-title,.layer-check-code .layui-layer-title {
     text-align: center;
     font-size: 16px;
     color: #FFF;
@@ -309,7 +309,7 @@
     border-radius: 4px 4px 0 0;
     padding: 0;
 }
-.layer-ext-moon  .layui-layer-setwin,.layer-ext-info  .layui-layer-setwin,.patient-pwd-reset .layui-layer-setwin,.hospotal-xieyi .layui-layer-setwin,.medical-record-layer .layui-layer-setwin{
+.layer-ext-moon  .layui-layer-setwin,.layer-ext-info  .layui-layer-setwin,.patient-pwd-reset .layui-layer-setwin,.hospotal-xieyi .layui-layer-setwin,.medical-record-layer .layui-layer-setwin,.layer-check-code .layui-layer-setwin{
     top:20px
 }
 .hospotal-popup  .hospotal-contect{
@@ -365,13 +365,13 @@
     bottom: 30px;
     display: inline-block;
 }
-.layer-ext-moon  .layui-layer-btn,.layer-ext-info .layui-layer-btn,.patient-pwd-reset .layui-layer-btn,.medical-record-layer .layui-layer-btn {
+.layer-ext-moon  .layui-layer-btn,.layer-ext-info .layui-layer-btn,.patient-pwd-reset .layui-layer-btn,.medical-record-layer .layui-layer-btn,.layer-check-code .layui-layer-btn {
     text-align: center;
     height: 56px;
     width: 100%;
     background: #fff;
 }
-.layer-ext-moon .layui-layer-btn a,.layer-ext-info .layui-layer-btn a,.patient-pwd-reset .layui-layer-btn a,.medical-record-layer .layui-layer-btn a{
+.layer-ext-moon .layui-layer-btn a,.layer-ext-info .layui-layer-btn a,.patient-pwd-reset .layui-layer-btn a,.medical-record-layer .layui-layer-btn a,.layer-check-code .layui-layer-btn a{
     border-radius: 4px;
     width: 80px;
     height: 30px;
@@ -380,7 +380,7 @@
     line-height: 28px;
     display: inline-block;
 }
-.layer-ext-moon a.layui-layer-btn1,.layer-ext-info .layui-layer-btn a.layui-layer-btn0,.patient-pwd-reset .layui-layer-btn a.layui-layer-btn1,.medical-record-layer .layui-layer-btn .layui-layer-btn1{
+.layer-ext-moon a.layui-layer-btn1,.layer-ext-info .layui-layer-btn a.layui-layer-btn0,.patient-pwd-reset .layui-layer-btn a.layui-layer-btn1,.medical-record-layer .layui-layer-btn .layui-layer-btn1,.layer-check-code .layui-layer-btn .layui-layer-btn1{
     color: #fff;
     background: #0183FF;
     margin-right: 20px;
@@ -686,7 +686,19 @@
     transform: rotate(-45deg);
     border-radius: 2px;
 }
-
+/*查看账号*/
+.layer-check-code.layui-layer{
+    background: #f2f3f5;
+    width: 320px;
+    height:200px;
+    text-align: center;
+}
+.layer-check-code p{
+    line-height: 35px;
+    color: #363E46;
+    margin-top: 25px;
+    font-size: 14px;
+}
 /* 医院端 查看病历 */
 .export-check h3{
     width: 100%;

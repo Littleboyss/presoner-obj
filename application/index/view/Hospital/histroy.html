@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>患者管理-病历</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/common.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/hospital.css">
+</head>
+<body>
+        
+        <header class="header">
+            <div class="header-content">
+                <img src="__PUBLIC__/imgs/home-logo.png" alt="logo">
+                <div class="hospital-manage fr">
+                    <div class="hospital-name">{$hospital_info.nickname}<span></span></div>
+                    <ul class="hospital-exit">
+                        <li class="hospital-update-info">
+                            修改信息
+                        </li>
+                        <li class="logout">
+                            退出登录
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <!-- 内容 -->
+        <div class="container expert-bingli export-check">
+            <h3>“{$user_name}”的病历</h3>
+            <ul class="content">
+                {foreach name="data" item="vo"}
+                    <li class="content-li">
+                        <span class="content-li-time">{$vo.vtime}</span>
+                        <div class="content-li-bar-open">
+                            <span>查看</span>
+                            <img src="__PUBLIC__/imgs/down.png" alt="箭头" >
+                        </div>
+                        <div class="content-li-bar-close">
+                            <span>收起</span>
+                            <img src="__PUBLIC__/imgs/up.png" alt="箭头" >
+                        </div>
+                        <div class="message">
+                            <div class="content-bingli-img">
+                                {foreach name="vo.img_banner" item="v"}
+                                    <img src="{$v}" class="bingli-img"  alt="">
+                                {/foreach}
+                            </div>
+                            <div class="content-text">
+                                {$vo.content}
+                            </div>
+                        </div>
+                    </li>
+                {/foreach}
+            </ul>
+            <div class="big-bingli-img">
+                <div class="big-img">
+                    <img src="__PUBLIC__/imgs/ct.png"  alt="">
+                </div> 
+            </div>    
+        </div>
+            
+            
+        
+        <footer class="footer-copy">
+            <div class="footer-text">
+                Copyright @ 医疗智慧云<br>
+                互联网医疗信息服务资格证书(鄂)-经营性-2018-0000      网站备案编号： 鄂ICP备18000000号
+            </div>
+        </footer>
+        
+        
+        
+
+
+        <script type="text/javascript" src="__PUBLIC__/js/plugins/jquery-1.9.1.min.js"></script>
+    
+        <script>
+            $(function(){
+                _init();
+                 //医院信息弹窗
+        $('.hospital-update-info').on('click', function() {
+            $(".hospital-exit").toggle();
+            var index = layer.open({
+                type: 1,
+                area: ['640px', '436px'],
+                skin: 'layer-ext-moon',
+                title: '医院信息',
+                content: $('.hospotal-popup'),
+                btn: ['取消', '确定'],
+                end: function() {
+                    $('.hospotal-popup').hide();
+                },
+                btn1: function() {
+                    $('.hospotal-popup').hide();
+                    layer.close(index)
+                },
+                btn2: function() {
+                    var nickname = $(":input[name='nickname']").val();
+                    var descrip = $("#descrip").val();
+                    $.ajax({
+                        type: 'POST',
+                        dataType: "json",
+                        url: "{:url('edit')}",
+                        data: { nickname: nickname, descrip: descrip },
+                        success: function(json) {
+                            $('.error-msg').find('i').text(json.msg);
+                            $('.error-msg').show()
+
+                            //layer.open(json.msg, { icon: 1, time: 2000 });
+                            if (json.code == 1) {
+                                window.location.href = "{:url('hospital/detail')}";
+                            }
+                        }
+                    })
+                    $('.hospotal-popup').hide();
+                    layer.close(index)
+
+                }
+            });
+        });
+        $('.logout').on('click', function() {
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                url: "{:url('index/logout')}",
+                success: function(json) {
+                    window.location.href = "/";
+                }
+            })
+        })
+            })
+        
+            // 初始化函数
+            function _init(){
+                // 给每个查看区域绑定点击事件
+                $('.content-li-bar-open').bind('click',function(){
+                    $(this).css('display','none').next().css('display','inline-block');
+                    $(this).parent('.content-li').find('.message').css({'display':'inline-block','height': 'auto'});
+                })
+               // 给每个收起区域绑定点击事件
+               $('.content-li-bar-close').bind('click',function(){
+                    $(this).css('display','none').prev().css('display','inline-block');
+                    $(this).parent('.content-li').find('.message').css('display','none');
+                })
+
+                // 点击小图显示大图
+                $('.bingli-img').each(function(i,v){
+                    $(v).bind('click',function(){
+                        var imgSrc = $(this).attr('src');
+                        $('.big-bingli-img .big-img img').attr('src',imgSrc);
+                        $('.big-bingli-img').css('display','inline-block');
+                        // console.log($(this).attr('src'))
+                    })
+                })
+                // 关闭大图点击事件
+                $('.big-bingli-img').bind('click',function(){
+                    $(this).css('display','none');
+                })
+            }
+        </script>
+</body>
+</html>

@@ -47,4 +47,24 @@ class Hospital extends Main
         $this->assign('page', $page);
         return $this->fetch();
     }
+    // 上传图像
+    public function upload()
+    {
+
+        $file = request()->file('file');
+        $path = '../user/images/';
+        if (!is_dir($path)) {
+            mkdir($path, 0755, true);
+        }
+        // 移动到框架应用根目录/uploads/ 目录下
+        $info = $file->validate(['size' => 2048000, 'ext' => 'jpg,png,gif'])->move($path);
+        if ($info) {
+            echo json_encode(array('error' => 0, 'url'=>config('IMG_DOMAIN') . '/images/' . $info->getSaveName()));
+        } else {
+            // 上传失败获取错误信息
+            json_encode(array('error'=>1,'message'=>$file->getError()));
+        }
+        exit;
+
+    }
 }

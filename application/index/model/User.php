@@ -16,7 +16,7 @@ class User extends Common
         'item|服务条款'=>'require'
     ];
     public $edit_rule = [
-        'name|权限名称' => 'require|max:64',
+        'name|登录名' => 'require|max:64',
     ];
 
     //插入数据时给密码进行加密
