@@ -9,8 +9,8 @@ class User extends Main
     public function index()
     {
         $UserModel = model('User');
-        $id = session('id');
-        $data      = $UserModel->where(['id'=>$id])->find();
+        $id        = session('id');
+        $data      = $UserModel->where(['id' => $id])->find();
         $this->getNowPwd();
         $this->assign('data', $data);
         return $this->fetch('userinfo');
@@ -37,52 +37,53 @@ class User extends Main
         }
     }
     // 改密
-    public function changePassword(){
+    public function changePassword()
+    {
         if ($this->request->isPost()) {
             $UserModel = model('User');
-            $id = session('id');
-            $data      = $UserModel->where(['id'=>$id])->value('password');
+            $id        = session('id');
+            $data      = $UserModel->where(['id' => $id])->value('password');
             $post_data = $this->request->post();
-            $password = $post_data['old_password'];
-            $salt     = config('password_pre');
-            $password = md5(md5($password) . $salt);
+            $password  = $post_data['old_password'];
+            $salt      = config('password_pre');
+            $password  = md5(md5($password) . $salt);
             //判断密码是否正确
             if ($password == $data) {
-                $save = $post_data['password'];
+                $save             = $post_data['password'];
                 $salt             = config('password_pre');
-                $data['password'] = md5(md5( $save) . $salt);
-                $res = $UserModel->where(['id'=>$id])->save('password',$data['password']);
+                $ch_password = md5(md5($save) . $salt);
+                $res              = $UserModel->save(['password'=> $ch_password],['id' => $id]);
                 if ($res) {
-                    $this->returnMsg(0,'密码修改成功');
-                }else{
-                    $this->returnMsg(2,'密码修改失败');
+                    $this->returnMsg(0, '密码修改成功');
+                } else {
+                    $this->returnMsg(2, '密码修改失败');
                 }
-            }else{
-                $this->returnMsg(1,'原密码不正确');
+            } else {
+                $this->returnMsg(1, '原密码不正确');
             }
         }
     }
-   
+
     // 查看病历
     public function history()
     {
         $id               = session('id');
         $UserModel        = model("User");
-        $user_name = $UserModel->where(['id'=>$id])->value('name');
+        $user_name        = $UserModel->where(['id' => $id])->value('name');
         $UserHistoryModel = model("UserHistory");
-        $res       = $UserHistoryModel->where(['uid' => $id])->order('vtime desc')->select()->toArray();
+        $res              = $UserHistoryModel->where(['uid' => $id])->order('vtime desc')->select()->toArray();
         if ($res) {
             foreach ($res as $key => $value) {
-                $res[$key]['vtime']   = date('Y/m/d', $value['vtime']);
-                $res[$key]['addtime'] = date('Y/m/d', $value['addtime']);
-                $res[$key]['img_banner'] = explode(',',$value['img_banner']);
-             }
+                $res[$key]['vtime']      = date('Y/m/d', $value['vtime']);
+                $res[$key]['addtime']    = date('Y/m/d', $value['addtime']);
+                $res[$key]['img_banner'] = explode(',', $value['img_banner']);
+            }
         }
-        $Hospital  = model('Hospital');
+        $Hospital      = model('Hospital');
         $hospital_info = $Hospital->where('id =' . session('id'))->find();
         $this->assign('hospital_info', $hospital_info);
-        $this->assign('data',$res);
-        $this->assign('user_name',$user_name);
+        $this->assign('data', $res);
+        $this->assign('user_name', $user_name);
         return $this->fetch();
     }
     // 治疗管理
@@ -91,11 +92,11 @@ class User extends Main
         $UserModel = model('User');
         $Hospital  = model('Hospital');
         $Experts   = model('Experts');
-        $where = [];
+        $where     = [];
         if ($this->request->isPost()) {
-            $post_data = $this->request->post();
-            $where['uid'] = $post_data['uid'];
-            $where['name'] = ['like'=>$post_data['name']];
+            $post_data     = $this->request->post();
+            $where['uid']  = $post_data['uid'];
+            $where['name'] = ['like' => $post_data['name']];
         }
         $data = $UserModel->where($where)->order('eid desc')->paginate(10);
         foreach ($data as $key => $value) {
@@ -149,12 +150,13 @@ class User extends Main
         $this->assign('page', $page);
         return $this->fetch();
     }
-     // 回访
+    // 回访
     public function comeback()
     {
         $id               = session('id');
-        $user_name = $UserModel->where(['id'=>$id])->value('name');
+        $UserModel = model("User");
+        $user_name        = $UserModel->where(['id' => $id])->value('name');
         $UserHistoryModel = model("UserHistory");
-        $res       = $UserHistoryModel->where(['uid' => $id])->order('vtime desc')->select()->toArray();
+        $res              = $UserHistoryModel->where(['uid' => $id])->order('vtime desc')->select()->toArray();
     }
 }

@@ -88,11 +88,10 @@
                     content: $('.login'),
                     btn: ['登录'],
                     btn1: function(){ 
+                        $('.error-tip').hide()
                         var name = $(":input[name='name']").val();
                         var password = $(":input[name='password']").val();
-
                         var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
-                        console.log(reg.test(name))
                         if(reg.test(name) === false) { 
                             url = '//experts.hospital.com/index/login';
                         }else{
@@ -106,6 +105,7 @@
                             success:function(json){
                                 if (json.code == 0) {
                                     $('.error-tip').html(json.msg)
+                                    $('.error-tip').show()
                                 }else{
                                     $('.login').hide();
                                     layer.close(index);
