@@ -49,7 +49,7 @@
                                 <td>{$vo.catid}</td>
                                 <td class="catename">{$vo.catename}</td>
                                 <td>
-                                    <a class="btn2 bianJiBtn" href="{:Url('del', array('catid' => $vo['catid']))}">删除</a>
+                                    <a class="btn2 bianJiBtn" href="{:Url('Categorydel', array('catid' => $vo['catid']))}">删除</a>
                                 </td>
                             </tr>
                             {/foreach}
@@ -87,7 +87,7 @@ $(function() {
                 $.ajax({    
                  type: 'POST',   
                  dataType: "json", 
-                 url: '/index.php/News/Categoryedit',    
+                 url: '{:url("News/Categoryedit")}',    
                  data: "catid="+thisid+"&catename="+thisvalue,
                  success: function(json) {
                     if (json.code == 1) {
@@ -114,7 +114,7 @@ $(function() {
         $.ajax({    
         type: 'POST',   
          dataType: "json", 
-         url: '/index.php/News/Categoryadd',    
+         url: '{:url("News/Categoryadd")}',    
          data: {catename : catename},
          success: function(json) {
             if (json.code == 1) {

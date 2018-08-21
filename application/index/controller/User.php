@@ -62,7 +62,7 @@ class User extends Main
         $UserModel        = model("User");
         $user_name = $UserModel->where(['id'=>$id])->value('name');
         $UserHistoryModel = model("UserHistory");
-        $res       = $UserHistoryModel->where(['uid' => $id])->order('addtime desc')->select()->toArray();
+        $res       = $UserHistoryModel->where(['uid' => $id])->order('vtime desc')->select()->toArray();
         if ($res) {
             foreach ($res as $key => $value) {
                 $res[$key]['vtime']   = date('Y/m/d', $value['vtime']);

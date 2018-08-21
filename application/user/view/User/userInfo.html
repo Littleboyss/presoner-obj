@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>患者-我的信息</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/common.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/patient.css">
+</head>
+<body>
+    {include file="../application/user/view/Index/header.html"}
+    <!-- 内容 -->
+        <div class="container">
+        <section class="patient-info" >
+            <h2 class="title">我的信息</h2>
+            <div class="patient-user">
+                <div class="base-info">
+                    <span for="">姓名</span>
+                    <input  type="text" name="name" value="{$data.name}" placeholder="">
+                </div>
+                <div class="base-info sex">
+                    <span for="" class="fl">性别</span>
+                    <div class="male fl">
+                        <input  id="male" type="radio" name="sex" value="1" checked>
+                        <label for="male"></label>
+                        <span>男</span>
+                    </div>
+                    <div class="female fl">
+                        <input id="female" type="radio" name="sex" value="2" {if condition="$data['sex'] neq 1"} 
+                                         checked
+                                    {/if}>
+                        <label for="female"></label>
+                        <span>女</span>
+                    </div>
+                </div>
+                <div class="base-info">
+                    <span for="">年龄</span>
+                    <input type="text" placeholder="28" name="age" value="{$data.age}" maxlength="3">   
+                </div>
+                <div class="base-info">
+                    <span for="">身份证</span>
+                    <input type="text" placeholder="" name="idcard" value="{$data.idcard}" maxlength="18">   
+                </div>
+                <div class="base-info">
+                    <span for="">手机号</span>
+                    <input  type="text" name="phone" value="{$data.phone}" placeholder="17677778888" maxlength="11">  
+                </div>
+                <div class="base-info">
+                    <span for="">亲属手机号</span>
+                    <input type="text"  name="famliy_phone" value="{$data.famliy_phone}" placeholder="17677778888" maxlength="11"> 
+                </div>
+                <div class="submit-btn useredit">
+                    <a href="javascript:;">保存</a>
+                </div>
+            </div>
+        </section>
+        <section class="patient-info-pwd" >
+            <h2 class="title">修改密码</h2>
+            <div class="patient-user">
+                <div class="base-info">
+                    <span for="">旧密码</span>
+                    <input type="password" name="old_password" placeholder="">   
+                </div>
+                <div class="base-info">
+                    <span for="">新密码</span>
+                    <input type="password" name="password" placeholder="">   
+                </div>
+                <div class="base-info">
+                    <span for="">确认密码</span>
+                    <input  type="password" name="re_password" placeholder="">  
+                </div>
+                
+                <div class="submit-btn change_password">
+                    <a href="javascript:;">保存</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    {include file="../application/user/view/Index/footer.html"}
+    <script type="text/javascript">
+        $('.useredit').on('click', function() {
+            var name = $(":input[name='name']").val();
+            var phone = $(":input[name='phone']").val();
+            var sex = $(":input[name='sex']:checked").val();
+            var idcard = $(":input[name='idcard']").val();
+            var age = $(":input[name='age']").val();
+            var data = {'name':name,'phone':phone,'sex':sex,'idcard':idcard,age:age}
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                data: data,
+                url: "{:url('user/edit')}",
+                success: function(json) {
+                    console.log(json)
+                    if (json.code == 1) {
+                        layer.msg(json.msg, {icon:1, time: 3000 });
+                    }else{
+                        layer.msg(json.msg, {icon:2, time: 3000 });
+                    }
+                }
+            })
+        })
+        $('.change_password').on('click', function() {
+            var old_password = $(":input[name='old_password']").val();
+            var password = $(":input[name='password']").val();
+            var re_password = $(":input[name='re_password']").val();
+            if (re_password !== password) {
+                layer.msg('两次密码输入不正确', {icon:2, time: 3000 });
+                return false
+            }
+            if (old_password == '') {
+                layer.msg('旧密码不能为空', {icon:2, time: 3000 });return;
+            }
+            if (password == '') {
+                layer.msg('新密码不能为空', {icon:2, time: 3000 });return;
+            }
+            var data = {'old_password':old_password,'password':password}
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                data: data,
+                url: "{:url('user/changePassword')}",
+                success: function(json) {
+                    console.log(json)
+                    if (json.status == 0) {
+                        layer.msg(json.info, {icon:1, time: 3000 });
+                    }else{
+                        layer.msg(json.info, {icon:2, time: 3000 });
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+</html>

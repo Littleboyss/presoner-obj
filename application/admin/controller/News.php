@@ -128,10 +128,22 @@ class News extends Main
         }
     }
     // 分类删除
-    public function show(){
+    public function Categorydel()
+    {
+        $id        = $this->request->param('catid');
+        $NewsModel = model('Category');
+        if ($NewsModel->where('catid =' . $id)->delete()) {
+            $this->success('删除成功');
+        } else {
+            $this->error('删除失败');
+        }
+    }
+    // 分类删除
+    public function show()
+    {
         $id        = $this->request->param('id');
         $NewsModel = model("News");
-        $data     = $NewsModel->find($id);
+        $data      = $NewsModel->find($id);
         $this->assign('category', $category);
         $this->assign('data', $data);
         return $this->fetch();

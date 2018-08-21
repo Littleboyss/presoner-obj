@@ -23,7 +23,11 @@ return [
     'view_replace_str'      => [
         '__PUBLIC__' => '/Public',
     ],
-    
+    'paginate'               => [
+        'type'     => 'bootstrap',
+        'var_page' => 'page',
+    ],
+
     // 是否开启路由
     'url_route_on'          => true,
     // 日志类型

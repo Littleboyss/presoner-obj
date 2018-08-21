@@ -5,50 +5,20 @@ namespace app\user\Controller;
 //定义类
 class User extends Main
 {
-    //显示添加界面
-    public function add()
-    {
-        $User = model('User');
-        if ($this->request->isPost()) {
-            $post_data = $this->request->post();
-            $error     = $User->check($post_data);
-            if (!$error) {
-                $User->_before_insert($post_data);
-                $res = $User->save($post_data);
-                if ($res) {
-                    $this->success('添加成功', 'index');
-                    exit;
-                }
-            }
-            $this->error('添加失败' . $error);
-            exit;
-        }
-        return $this->fetch();
-    }
     // 患者列表页
     public function index()
     {
         $UserModel = model('User');
-        $Hospital  = model('Hospital');
-        $Experts   = model('Experts');
-        $data      = $UserModel->paginate(10);
-        foreach ($data as $key => $value) {
-            if ($value['eid'] == 0) {
-                $data[$key]['Experts'] = '暂无';
-            } else {
-                $data[$key]['Experts'] = $Experts->where('id =' . $value['eid'])->value('name');
-            }
-            $data[$key]['hospital'] = $Hospital->where('id =' . $value['hospital_id'])->value('nickname');
-        }
-        $page = $data->render();
+        $id = session('id');
+        $data      = $UserModel->where(['id'=>$id])->find();
+        $this->getNowPwd();
         $this->assign('data', $data);
-        $this->assign('page', $page);
-        return $this->fetch();
+        return $this->fetch('userinfo');
     }
     // 患者信息修改
     public function edit()
     {
-        $id        = $this->request->param('id');
+        $id        = session('id');
         $UserModel = model("User");
         if ($this->request->isPost()) {
             $post_data = $this->request->post();
@@ -57,7 +27,6 @@ class User extends Main
                 $this->error('修改失败' . $error);
                 exit;
             }
-            $UserModel->_before_update($post_data);
             $res = $UserModel->save($post_data, ['id' => $id]);
             if ($res) {
                 $this->success('修改成功', 'index');
@@ -66,41 +35,55 @@ class User extends Main
                 $this->error('修改失败' . $UserModel->getError());
             }
         }
-        $UserInfo = $UserModel->find($id);
-        $this->assign('UserInfo', $UserInfo);
-        return $this->fetch();
     }
-
-    // 删除
-    public function del()
-    {
-        $id        = $this->request->param('id');
-        $UserModel = model('User');
-        if ($UserModel->where('id =' . $id)->delete()) {
-            $this->returnMsg(0, '删除成功');
-        } else {
-            $this->returnMsg(1, '删除失败');
-        }
-    }
-
-    // 查看病历
-    public function viewHistory()
-    {
-        $id               = $this->request->param('id');
-        $UserModel        = model("User");
-        $UserHistoryModel = model("UserHistory");
+    // 改密
+    public function changePassword(){
         if ($this->request->isPost()) {
+            $UserModel = model('User');
+            $id = session('id');
+            $data      = $UserModel->where(['id'=>$id])->value('password');
             $post_data = $this->request->post();
-            $res       = $UserHistoryModel->where(['uid' => $id])->order('addtime desc')->select()->toArray();
-            if ($res) {
-                foreach ($res as $key => $value) {
-                    $res[$key]['vtime']   = date('y-m-d', $value['vtime']);
-                    $res[$key]['addtime'] = date('Y-m-d', $value['addtime']);
+            $password = $post_data['old_password'];
+            $salt     = config('password_pre');
+            $password = md5(md5($password) . $salt);
+            //判断密码是否正确
+            if ($password == $data) {
+                $save = $post_data['password'];
+                $salt             = config('password_pre');
+                $data['password'] = md5(md5( $save) . $salt);
+                $res = $UserModel->where(['id'=>$id])->save('password',$data['password']);
+                if ($res) {
+                    $this->returnMsg(0,'密码修改成功');
+                }else{
+                    $this->returnMsg(2,'密码修改失败');
                 }
-                $this->returnMsg(0, '获取成功', $res);
+            }else{
+                $this->returnMsg(1,'原密码不正确');
             }
         }
-        $this->returnMsg(1, '获取失败');
+    }
+   
+    // 查看病历
+    public function history()
+    {
+        $id               = session('id');
+        $UserModel        = model("User");
+        $user_name = $UserModel->where(['id'=>$id])->value('name');
+        $UserHistoryModel = model("UserHistory");
+        $res       = $UserHistoryModel->where(['uid' => $id])->order('vtime desc')->select()->toArray();
+        if ($res) {
+            foreach ($res as $key => $value) {
+                $res[$key]['vtime']   = date('Y/m/d', $value['vtime']);
+                $res[$key]['addtime'] = date('Y/m/d', $value['addtime']);
+                $res[$key]['img_banner'] = explode(',',$value['img_banner']);
+             }
+        }
+        $Hospital  = model('Hospital');
+        $hospital_info = $Hospital->where('id =' . session('id'))->find();
+        $this->assign('hospital_info', $hospital_info);
+        $this->assign('data',$res);
+        $this->assign('user_name',$user_name);
+        return $this->fetch();
     }
     // 治疗管理
     public function getEid()
@@ -166,15 +149,12 @@ class User extends Main
         $this->assign('page', $page);
         return $this->fetch();
     }
-     // 服药期间不适患者列表
-    public function test()
+     // 回访
+    public function comeback()
     {
-        $user = model("Test");
-        $list = [
-            ['id'=>1, 'name'=>'thinkphp'],
-            ['id'=>2, 'name'=>'onethink']
-        ];
-        $res = $user->saveAll($list);
-        dump($res);
+        $id               = session('id');
+        $user_name = $UserModel->where(['id'=>$id])->value('name');
+        $UserHistoryModel = model("UserHistory");
+        $res       = $UserHistoryModel->where(['uid' => $id])->order('vtime desc')->select()->toArray();
     }
 }

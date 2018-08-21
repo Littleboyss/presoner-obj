@@ -1,0 +1,29 @@
+<header class="header">
+    <div class="header-content">
+        <img src="__PUBLIC__/imgs/home-logo.png" alt="logo">
+        <ul class="navigation">
+            <li class="navigation-li"><a href="{:url('user/index')}">我的资讯</a></li>
+            <li class="navigation-li"><a href="{:url('user/index')}">患者管理</a></li>
+            <li class="navigation-li"><a href="{:url('user/index')}">回复管理</a></li>
+            <li class="navigation-li{if condition="$currentPri ==  'User/comeback'"} on{/if}"><a href="{:url('user/comeback')}">我的回访</a></li>
+            <li class="navigation-li{if condition="$currentPri ==  'User/history'"} on{/if}"><a href="{:url('user/history')}">查看病例</a></li>
+            <li class="navigation-li{if condition="$currentPri ==  'User/index'"} on{/if}"><a href="{:url('user/index')}">我的信息</a></li>
+        </ul>
+        <button class="logout-btn">退出</button>
+    </div>
+</header>
+<script type="text/javascript" src="__PUBLIC__/js/plugins/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/layui/layui.all.js"></script>
+<script type="text/javascript">
+    $('.logout-btn').on('click', function() {
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "{:url('index/logout')}",
+            success: function(json) {
+                window.location.href = "/";
+            }
+        })
+    })
+
+</script>

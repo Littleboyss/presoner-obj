@@ -1,8 +1,8 @@
 <?php
 namespace app\user\controller;
 
+use app\common\util\Page;
 use think\Request;
-use think\Url;
 
 class Main extends \think\Controller
 {
@@ -13,6 +13,7 @@ class Main extends \think\Controller
         $this->request = Request::instance();
         //判断用户是否登陆
         $this->initSessions();
+        $this->getNowPwd();
     }
 
     public function initSessions()
@@ -45,7 +46,7 @@ class Main extends \think\Controller
     // 展示分页
     public function showPages($count, $list, $Map)
     {
-        $page = new \Think\Page($count, $list);
+        $page = new Page($count, $list);
         foreach ($Map as $key => $val) {
             $page->parameter[$key] = urlencode($val);
         }
@@ -61,5 +62,10 @@ class Main extends \think\Controller
         $page->rollPage   = 10;
         $show             = $page->show();
         $this->assign("show", $show);
+    }
+    public function getNowPwd()
+    {
+        $currentPri = $this->request->controller() . '/' . $this->request->action();
+        $this->assign('currentPri', $currentPri);
     }
 }

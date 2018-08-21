@@ -1,6 +1,6 @@
 <?php
 //命名空间
-namespace app\admin\model;
+namespace app\user\model;
 
 //定义类
 class User extends Common
@@ -12,7 +12,11 @@ class User extends Common
 
     ];
     public $edit_rule = [
-        'name|权限名称' => 'require|max:64',
+        'name|姓名'    => 'require|max:64', 
+        'phone|手机号' => 'require|max:11', 
+        'idcard|身份证' => 'require|max:18', 
+        'sex|性别' => 'require|number|in:1,2',
+        'age|年龄' => 'require|number|between:1,100',
     ];
 
     //插入数据时给密码进行加密
@@ -34,7 +38,7 @@ class User extends Common
             unset($data['password']);
         }
     }
-     //登陆验证
+    //登陆验证
     public function login($idcard, $password)
     {
         //寻找用户名对应的那条记录
@@ -48,15 +52,28 @@ class User extends Common
             if ($password == $info['password']) {
                 //把id，和usernam存到session中
                 session('id', $info['id']);
-                session('username', $info['username']);
-                //把用户对应得角色的权限取出并放入session中
-                
+                session('name', $info['name']);
                 return 3;
             } else {
                 return 2;
             }
         } else {
             return 1;
+        }
+    }
+    public function setCookies()
+    {
+        //判断是否有cookie
+        if (cookie('id') != '') {
+            $id       = cookie('id');
+            $password = cookie('password');
+            $info     = $this->find($id);
+            //判断密码是否正确
+            if ($info['password'] == $password) {
+                //设置session
+                session('id', $info['id']);
+                session('name', $info['name']);
+            }
         }
     }
 

@@ -31,16 +31,8 @@ class Hospital extends Main
     {
         $UserModel = model('User');
         $Hospital  = model('Hospital');
-        $Experts   = model('Experts');
         $data      = $UserModel->where(['hospital_id'=>session('id')])->paginate(10);
         $hospital_info = $Hospital->where('id =' . session('id'))->find();
-        foreach ($data as $key => $value) {
-            if ($value['eid'] == 0) {
-                $data[$key]['Experts'] = '暂无';
-            } else {
-                $data[$key]['Experts'] = $Experts->where('id =' . $value['eid'])->value('name');
-            }
-        }
         $page = $data->render();
         $this->assign('data', $data);
         $this->assign('hospital_info', $hospital_info);

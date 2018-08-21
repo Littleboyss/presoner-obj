@@ -47,7 +47,6 @@ class Index extends \think\Controller
             $this->error('密码错误');
         } elseif ($status == 3) {
             $this->success('登陆成功');
-            //$this->redirect('Hospital/index');
         }
     }
     public function logout()

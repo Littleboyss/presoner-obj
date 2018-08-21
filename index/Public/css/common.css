@@ -581,3 +581,31 @@ select,samp {
     padding: 12px;
     background: #fff;
 }
+/*翻页*/
+#pagination{
+    text-align: center;
+    width: 200px;
+    margin:0 auto;
+    height: 30px;
+}
+#pagination ul{
+    text-align: center;
+   
+}
+
+#pagination ul li span,#pagination ul li a{
+    background: #FFFFFF;
+    border-radius: 4px;
+    padding: 8px 10px;
+    margin:0 5px;
+    text-align: center;
+    float: left;
+}
+#pagination ul li a{
+    font-size: 12px;
+   color: #666666;
+}
+#pagination ul li.active a,#pagination ul li.active span{
+    background: rgb(1, 131, 255);
+    color: #fff;
+}

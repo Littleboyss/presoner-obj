@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>患者-查看病历</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/common.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/patient.css">
+</head>
+
+<body>
+    {include file="../application/user/view/Index/header.html"}
+    <!-- 内容 -->
+    <div class="container check-medical">
+        <ul class="content">
+            {foreach name="data" item="vo"}
+                    <li class="content-li">
+                        <span class="content-li-time">{$vo.vtime}</span>
+                        <div class="content-li-bar-open">
+                            <span>查看</span>
+                            <img src="__PUBLIC__/imgs/down.png" alt="箭头" >
+                        </div>
+                        <div class="content-li-bar-close">
+                            <span>收起</span>
+                            <img src="__PUBLIC__/imgs/up.png" alt="箭头" >
+                        </div>
+                        <div class="message">
+                            <div class="content-bingli-img">
+                                {foreach name="vo.img_banner" item="v"}
+                                    <img src="{$v}" class="bingli-img"  alt="">
+                                {/foreach}
+                            </div>
+                            <div class="content-text">
+                                {$vo.content}
+                            </div>
+                        </div>
+                    </li>
+                {/foreach}
+        </ul>
+        <div class="big-bingli-img">
+            <div class="big-img">
+                <img src="__PUBLIC__/imgs/ct.png" alt="">
+            </div>
+        </div>
+    </div>
+    {include file="../application/user/view/Index/footer.html"}
+    <script>
+    $(function() {
+        _init();
+    })
+
+    // 初始化函数
+    function _init() {
+        // 给每个查看区域绑定点击事件
+        $('.content-li-bar-open').bind('click', function() {
+            $(this).css('display', 'none').next().css('display', 'inline-block');
+            $(this).parent('.content-li').find('.message').css({ 'display': 'inline-block', 'height': 'auto' });
+        })
+        // 给每个收起区域绑定点击事件
+        $('.content-li-bar-close').bind('click', function() {
+            $(this).css('display', 'none').prev().css('display', 'inline-block');
+            $(this).parent('.content-li').find('.message').css('display', 'none');
+        })
+
+        // 点击小图显示大图
+        $('.bingli-img').each(function(i, v) {
+            $(v).bind('click', function() {
+                var imgSrc = $(this).attr('src');
+                $('.big-bingli-img .big-img img').attr('src', imgSrc);
+                $('.big-bingli-img').css('display', 'inline-block');
+                // console.log($(this).attr('src'))
+            })
+        })
+        // 关闭大图点击事件
+        $('.big-bingli-img').bind('click', function() {
+            $(this).css('display', 'none');
+        })
+    }
+    </script>
+</body>
+
+</html>

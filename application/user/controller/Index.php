@@ -1,7 +1,6 @@
 <?php
 namespace app\user\controller;
 
-use app\common\util\Verify;
 use think\Request;
 use think\Url;
 use think\View;
@@ -17,13 +16,15 @@ class Index extends \think\Controller
     {
         $NewsModel = model('news');
         $request   = $this->request;
-        if ($request->isPost()) {
-            $post_data      = $request->post();
-            $where['catid'] = $post_data['catid'];
+        $catid        = $request->param('catid');
+        if ($catid) {
+            $where['catid'] = $catid;
         } else {
             $where = [];
+            $catid = 0;
         }
-        $data = $NewsModel->where($where)->paginate(1);
+        $this->assign('catid', $catid);
+        $data = $NewsModel->where($where)->paginate(1,false,['query'=>request()->param()]);
         
         foreach ($data as $key => $value) {
             $data[$key]['catename'] = model('Category')->where('catid =' . $value['catid'])->value('catename');
@@ -53,24 +54,21 @@ class Index extends \think\Controller
     {
         $request   = $this->request;
         $post_data = $request->post();
-        if (!$post_data['idcard']) {
+        if (!$post_data['name']) {
             $this->error('账号为空');
         }
         if (!$post_data['password']) {
             $this->error('密码为空');
         }
         $User = model('User');
-        if (!$User->_checkCode($post_data['code'])) {
-            $this->error('验证码错误', 'index');
-        }
         //登陆验证
-        $status = $User->login($post_data['idcard'], $post_data['password']);
+        $status = $User->login($post_data['name'], $post_data['password']);
         if ($status == 1) {
             $this->error('用户名不存在', 'index');
         } elseif ($status == 2) {
             $this->error('密码错误');
         } elseif ($status == 3) {
-            $this->redirect('User/index');
+            $this->success('登陆成功');
         }
     }
     public function logout()
