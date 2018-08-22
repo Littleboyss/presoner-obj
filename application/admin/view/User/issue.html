@@ -44,6 +44,7 @@
                                 <th>姓名</th>
                                 <th>问题描述</th>
                                 <th>添加时间</th>
+                                <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,6 +54,7 @@
                                     <td>{$vo.name}</td> 
                                     <td>{$vo.issue}</td>
                                     <td>{$vo.addtime|date="Y-m-d H:m:s",###}</td>
+                                    <td>{if condition="$vo['status'] == 0"}<a class="btn2 bianJiBtn" onclick="has_call({$vo.id})">更改状态</a>{/if}<a class="btn2 bianJiBtn" onclick="select_eid({$vo.uid})">重新选择专家</a></td>
                                 </tr>
                             {/foreach}
                         </tbody>
@@ -83,92 +85,31 @@
             area: ['1000px', '400px'],
             shadeClose: true,
             resize: false,
-            content: "{:Url('Experts/selectEid')}", //这里content是一个普通的String
+            content: "{:Url('Experts/selectEid')}?uid="+id, //这里content是一个普通的String
             success: function(layero) {
                 layer.setTop(layero); //重点2
             }
         });
     }
-    // 显示病历
-    function show_history(id) {
-        $.ajax({    
-            type: 'POST',   
-             dataType: "json", 
-             url: '/index.php/User/viewHistory',    
-             data: {id : id},
-             success: function(json) {
-                if (json.status == 0) {
-                    html = '';
-                    html +="<table  class=\'csTable\' cellspacing=\'0\'>";
-                        html +="<thead>";
-                            html +="<tr>";
-                                html +="<th  width=\"300\">描述</th>";
-                                html +="<th >详情</th>";
-                                html +="<th width=\"100\">就诊时间</th>";
-                            html +="</tr>";
-                        html +="</thead>";
-                        html +="<tbody>";
-                    $.each(json.data, function(index, val) {
-                        html +="<tr>";
-                            html +="<td align=\'center\'>"+ val.descrip+"</td>";
-                            html +="<td align=\'center\'>"+ val.content+"</td>";
-                            html +="<td align=\'center\'>"+ val.vtime+"</td>";
-                        html +="</tr>";
-                    });
-                    html +="</table>";
-                        layer.open({
-                            fixed: true,
-                            scrollbar: false,
-                            title: '患者病历',
-                            zIndex: layer.zIndex,
-                            area: ['1000px', '400px'],
-                            shadeClose: true,
-                            resize: false,
-                            content: html
-                        });  
-                }else{
-                    layer.msg(json.msg,
+function has_call(id){
+    $.ajax({
+        url: '{:url("user/change")}',
+        type: 'post',
+        dataType: 'json',
+        data:{id:id},
+        success:function(json){
+            if (json.status == 0) {
+                 layer.msg(json.info,
                         {icon: 1,time: 2000 }
                     );
-                }
-             }    
-        });  
-    };
-    // 添加治疗计划
-    function add_plan(uid){
-        layer.open({
-            type: 2,
-            fixed: true,
-            scrollbar: false,
-            title: '治疗安排',
-            zIndex: layer.zIndex,
-            area: ['800px', '400px'],
-            shadeClose: true,
-            resize: false,
-            content: "{:Url('CasePlan/add')}?uid="+uid, 
-            success: function(layero) {
-                layer.setTop(layero); //重点2
+            }else{
+                layer.msg(json.info,
+                        {icon: 2,time: 2000 }
+                    );
             }
-        });
-    }
-    // 显示聊天记录
-    function show_msg(uid){
-        layer.open({
-            type: 2,
-            fixed: true,
-            scrollbar: false,
-            title: '聊天记录',
-            zIndex: layer.zIndex,
-            area: ['700px', '500px'],
-            shadeClose: true,
-            resize: false,
-            content: "{:Url('User/msg')}?uid="+uid, 
-            success: function(layero) {
-                layer.setTop(layero); //重点2
-            }
-        });
-        
-    }
-
+    
+        }
+    });
+}
 </script>
 </html>

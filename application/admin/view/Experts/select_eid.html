@@ -115,7 +115,7 @@
         $.ajax({    
             type: 'POST',   
              dataType: "json", 
-             url: '/index.php/Experts/showSchedule',    
+             url: '{:url('Experts/showSchedule')}',    
              data: {id : id},
              success: function(json) {
                 if (json.status == 0) {
@@ -153,7 +153,7 @@
         var eid = $("input[name='choice']:checked").val();
         var uid = {$uid};
         $.ajax({
-            url: '/index.php/Experts/choice',
+            url: '{:url('Experts/choice')}',
             type: 'POST',
             dataType: 'json',
             data: {uid : uid,eid : eid},

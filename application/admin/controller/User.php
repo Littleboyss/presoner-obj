@@ -166,4 +166,15 @@ class User extends Main
         $this->assign('page', $page);
         return $this->fetch();
     }
+    // 更改处理结果
+    public function change(){
+        $id  = $this->request->param('id');
+        $model  = model('UserIssue');
+        $data      = $model->save(['status'=>1],['id'=>$id]);
+        if ($data) {
+            $this->returnMsg(0,'处理成功');
+        }else{
+            $this->returnMsg(1,'处理失败');
+        }
+    }
 }

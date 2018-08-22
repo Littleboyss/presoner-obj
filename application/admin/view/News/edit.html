@@ -150,7 +150,7 @@ function upload(ico1, wqico1, width, height) {
         var uploadInst = upload.render({
             elem: elem,
             data: { width: width, height: height, name: 'image' },
-            url: '/index.php/admin/upload',
+            url: ':url('admin/upload')',
             before: function(obj) {
                 //预读本地文件示例，不支持ie8
                 obj.preview(function(index, file, result) {

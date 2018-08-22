@@ -8,6 +8,7 @@ class CasePlan extends Common
     public $add_rule = [
         'uid|患者id'      => 'require', // unique后加数据表(不带前缀)
         'descrip|描述'    => 'require|max:225',
+        'expert|专家'    => 'require|max:64',
         'hospital|就诊医院' => 'require|max:50',
         'stime|就诊时间'    => 'require',
     ];

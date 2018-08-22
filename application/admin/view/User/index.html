@@ -109,7 +109,7 @@
         $.ajax({    
             type: 'POST',   
             dataType: "json", 
-            url: '/User/reset',    
+            url: '{:url("User/reset")}',    
             data: {id : id},
             success: function(json) {
                 console.log(json)
@@ -124,7 +124,7 @@
         $.ajax({    
             type: 'POST',   
              dataType: "json", 
-             url: '/User/viewHistory',    
+             url: ':url("User/viewHistory")',    
              data: {id : id},
              success: function(json) {
                 if (json.status == 0) {

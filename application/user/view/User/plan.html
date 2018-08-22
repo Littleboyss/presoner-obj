@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>患者-我的治疗</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/common.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/patient.css">
+
+</head>
+<body>   
+    {include file="../application/user/view/Index/header.html"}
+    <!-- 内容 -->
+    <div class="container">
+        <section class="treatment">
+           <div class="treatment-cont">
+                <table class="table">
+                    <thead class="thead">
+                        <tr>
+                            <th>问诊时间</th>
+                            <th>医院</th>
+                            <th>专家</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+{foreach name="data" item="vo"}
+                        <tr>
+                           
+                            <td>
+                               {$vo.stime|date="Y/m/d H:i",###}
+                            </td>
+                            <td>
+                                {$vo.hospital}
+                            </td>
+                            <td>
+                                {$vo.expert}
+                            </td>
+                            <td>
+                                {$vo.descrip}
+                            </td>
+                        </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+           </div>
+        </section>  
+    </div>
+    {include file="../application/user/view/Index/footer.html"}
+</body>
+</html>

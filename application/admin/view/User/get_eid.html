@@ -113,7 +113,7 @@
         $.ajax({    
             type: 'POST',   
              dataType: "json", 
-             url: '/User/viewHistory',    
+             url: '{:Url('User/viewHistory')}',    
              data: {id : id},
              success: function(json) {
                 if (json.status == 0) {
@@ -146,8 +146,8 @@
                             content: html
                         });  
                 }else{
-                    layer.msg(json.msg,
-                        {icon: 1,time: 2000 }
+                    layer.msg(json.info,
+                        {icon: 2,time: 2000 }
                     );
                 }
              }    

@@ -16,7 +16,11 @@
             <header class="home-header">
                 <div class="home-header-content">
                     <img src="__PUBLIC__/imgs/home-logo.png" alt="logo">
+                    {if condition="!session('id')"}
                     <button class="login-btn">登录</button>
+                    {else /}
+                    <div class="hospital-name" onclick="window.location.href = '{:url('user/index')}'">我的信息</div>
+                    {/if}
                 </div>
                 <!-- 登录 -->
                 <div class="login" style="display: none">

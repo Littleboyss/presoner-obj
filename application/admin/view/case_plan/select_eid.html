@@ -110,7 +110,7 @@
         $.ajax({    
             type: 'POST',   
              dataType: "json", 
-             url: '/index.php/Experts/showSchedule',    
+             url: '{:url("Experts/showSchedule")}',    
              data: {id : id},
              success: function(json) {
                 if (json.status == 0) {

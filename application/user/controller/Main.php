@@ -65,7 +65,9 @@ class Main extends \think\Controller
     }
     public function getNowPwd()
     {
+        $eid = model('user')->where(['id'=>session('id')])->value('eid');
         $currentPri = $this->request->controller() . '/' . $this->request->action();
         $this->assign('currentPri', $currentPri);
+        $this->assign('eid', $eid);
     }
 }

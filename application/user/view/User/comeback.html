@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>患者-查看病历</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/common.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/patient.css">
+</head>
+
+<body>
+    {include file="../application/user/view/Index/header.html"}
+    <!-- 内容 -->
+    <div class="container check-medical">
+        <ul class="content"><li class="content-li"><span class="content-li-time">
+            
+    {if condition="$flag eq true"} 距上次就诊已有一月,请及时复诊{else/}暂无消息 {/if}   
+            </span>  
+        </li>
+    </ul>   
+    </div>
+    {include file="../application/user/view/Index/footer.html"}
+</body>
+
+</html>

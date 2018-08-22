@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>患者-我的专家</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/common.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/patient.css">
+</head>
+<body>
+    {include file="../application/user/view/Index/header.html"}
+    <!-- 内容 -->
+    <div class="container my-expert">
+        <!-- 左侧栏 -->
+        <aside class="expert-info">
+            <div class="expert-area scroll">
+                <div class="expert-face">
+                    <img src="{$ExpertsInfo['avatar']}" alt="专家头像">
+                    <p>{$ExpertsInfo['nickname']}</p>
+                </div>
+                <div class="export-text">
+                    <span>专长</span>
+                    <p>{$ExpertsInfo['specialty']}</p>
+                    <span>简介</span>
+                    <p>
+                        {$ExpertsInfo['descrip']}
+                    </p>
+                </div>
+            </div>
+        </aside>
+        <!-- 右侧栏 -->
+        <article class="chat-content">
+            <div class="chat-header">
+                <h2 class="title">{$ExpertsInfo['nickname']}</h2>
+                <a href="#" class="choose-btn fr">咨询记录</a>
+            </div>
+            <ul class="chat-area scroll ">
+                {foreach name="data" item="vo"}
+                {if condition="$vo['type'] eq 1"}
+                    <li class="me clearfix"> 
+                        <div class="fr">
+                        <img src="__PUBLIC__/imgs/male.png" class="people-img"  alt="">
+                        <div class="me-msg">
+                            {$vo.content}
+                        </div>
+                        <span class="me-send-time">{$vo.addtime|date="m/d H:i",###}</span>
+                    </div>
+                {else /}
+                    <li class="other">
+                        <img src="__PUBLIC__/imgs/female.png" class="people-img"  alt="">
+                        <div class="other-msg">
+                            {$vo.content}
+                        </div>
+                        <span class="other-send-time">{$vo.addtime|date="m/d H:i",###}</span>
+                    </li>
+                {/if}
+                    
+                {/foreach}
+                
+            </ul>
+            <div class="input-area">
+                <textarea class="scroll" id="content" name="content"></textarea>
+                <div class="input-area-btn">
+                    <span class="send-pic">发送图片</span>
+                    <span class="enter-reply">回复(Enter)</span>
+                </div>
+            </div>
+        </article>
+    </div>
+    {include file="../application/user/view/Index/footer.html"}
+    <script type="text/javascript">
+        $('.enter-reply').on('click', function() {
+            var content = $("#content").val();
+            var eid = {$eid};
+            var data = {'content':content,eid:eid}
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                data: data,
+                url: "{:url('user/addmsg')}",
+                success: function(json) {
+                    if (json.status == 0) {
+                        var html = `<li class="me clearfix"> 
+                                <div class="fr">
+                                <img src="/Public/imgs/male.png" class="people-img" alt="">
+                                <div class="me-msg">`+content+`</div>
+                                <span class="me-send-time">07/16 14:30</span>
+                            </div>
+                        </li>`
+
+                        layer.msg(json.msg, {icon:1, time: 2000 });
+
+                    }else{
+                        layer.msg(json.msg, {icon:2, time: 2000 });
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+</html>

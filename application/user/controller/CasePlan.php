@@ -1,6 +1,6 @@
 <?php
 //命名空间
-namespace app\admin\Controller;
+namespace app\user\Controller;
 
 //定义类
 class CasePlan extends Main

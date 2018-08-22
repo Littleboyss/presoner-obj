@@ -1,10 +1,12 @@
 <header class="header">
     <div class="header-content">
-        <img src="__PUBLIC__/imgs/home-logo.png" alt="logo">
+        <img src="__PUBLIC__/imgs/home-logo.png" onclick="window.location.href = '/'" alt="logo">
         <ul class="navigation">
-            <li class="navigation-li"><a href="{:url('user/index')}">我的资讯</a></li>
-            <li class="navigation-li"><a href="{:url('user/index')}">患者管理</a></li>
-            <li class="navigation-li"><a href="{:url('user/index')}">回复管理</a></li>
+            {if condition="$eid neq 0"} 
+            <li class="navigation-li{if condition="$currentPri ==  'User/expert'"} on{/if}"><a href="{:url('user/expert')}">我的专家</a></li>
+            {/if}
+            <li class="navigation-li{if condition="$currentPri ==  'User/plan'"} on{/if}"><a href="{:url('user/plan')}">我的治疗</a></li>
+            <li class="navigation-li{if condition="$currentPri ==  'User/issue'"} on{/if}"><a href="{:url('user/issue')}">我的近况</a></li>
             <li class="navigation-li{if condition="$currentPri ==  'User/comeback'"} on{/if}"><a href="{:url('user/comeback')}">我的回访</a></li>
             <li class="navigation-li{if condition="$currentPri ==  'User/history'"} on{/if}"><a href="{:url('user/history')}">查看病例</a></li>
             <li class="navigation-li{if condition="$currentPri ==  'User/index'"} on{/if}"><a href="{:url('user/index')}">我的信息</a></li>
