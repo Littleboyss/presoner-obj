@@ -49,10 +49,10 @@ class User extends Main
             $password  = md5(md5($password) . $salt);
             //判断密码是否正确
             if ($password == $data) {
-                $save             = $post_data['password'];
-                $salt             = config('password_pre');
+                $save        = $post_data['password'];
+                $salt        = config('password_pre');
                 $ch_password = md5(md5($save) . $salt);
-                $res              = $UserModel->save(['password'=> $ch_password],['id' => $id]);
+                $res         = $UserModel->save(['password' => $ch_password], ['id' => $id]);
                 if ($res) {
                     $this->returnMsg(0, '密码修改成功');
                 } else {
@@ -141,7 +141,7 @@ class User extends Main
     {
         $UserModel = model("User");
         $model     = model('UserIssue');
-        $data      = $model->where(['uid'=>session('id')])->order('addtime desc')->paginate(10);
+        $data      = $model->where(['uid' => session('id')])->order('addtime desc')->paginate(10);
         foreach ($data as $key => $value) {
             $data[$key]['name'] = $UserModel->where(['id' => $value['uid']])->value('name');
         }
@@ -159,13 +159,13 @@ class User extends Main
             $error     = $User->check($post_data);
             if (!$error) {
                 $post_data['addtime'] = time();
-                $post_data['uid'] = session('id');
-                $res = $User->save($post_data);
+                $post_data['uid']     = session('id');
+                $res                  = $User->save($post_data);
                 if ($res) {
-                    $this->returnMsg(0,'添加成功');
+                    $this->returnMsg(0, '添加成功');
                 }
             }
-            $this->returnMsg(1,'添加成功');
+            $this->returnMsg(1, '添加成功');
             exit;
         }
     }
@@ -173,57 +173,60 @@ class User extends Main
     public function comeback()
     {
         $id               = session('id');
-        $UserModel = model("User");
+        $UserModel        = model("User");
         $user_name        = $UserModel->where(['id' => $id])->value('name');
         $UserHistoryModel = model("UserHistory");
         $res              = $UserHistoryModel->where(['uid' => $id])->order('vtime desc')->find()->toArray();
-        $flag = false;
+        $flag             = false;
         if ($res) {
-            if ($res['vtime']+3600*24*30 < time() ) {
+            if ($res['vtime'] + 3600 * 24 * 30 < time()) {
                 $flag = true;
             }
         }
-        $this->assign('flag',$flag);
+        $this->assign('flag', $flag);
         return $this->fetch();
     }
     // 治疗计划
     public function plan()
     {
         $CasePlanModel = model('CasePlan');
-        $data          = $CasePlanModel->order('stime desc')->where(['uid'=>session('id')])->paginate(10);
+        $data          = $CasePlanModel->order('stime desc')->where(['uid' => session('id')])->paginate(10);
         $page          = $data->render();
         $this->assign('data', $data);
         $this->assign('page', $page);
         return $this->fetch();
     }
     // 我的专家
-    public function expert(){
-        $expert_id = model('user')->where(['id'=>session('id')])->value('eid');
-        $Msg  = model('Msg');
-        $data = $Msg->where(['uid' => session('id'),'eid'=>$expert_id])->select();
+    public function expert()
+    {
+        $expert_id = model('user')->where(['id' => session('id')])->value('eid');
+        $Msg       = model('Msg');
+        $data      = $Msg->where(['uid' => session('id'), 'eid' => $expert_id])->select();
         $this->assign('data', $data);
-        $ExpertsModel = model("Experts");
-        $ExpertsInfo = $ExpertsModel->find($expert_id);
+        $ExpertsModel             = model("Experts");
+        $ExpertsInfo              = $ExpertsModel->find($expert_id);
         $ExpertsInfo['specialty'] = config('cal')[$ExpertsInfo['specialty']];
         $this->assign('ExpertsInfo', $ExpertsInfo);
         return $this->fetch();
     }
     // 回复
-    public function addmsg(){
+    public function addmsg()
+    {
         $Msg = model('msg');
         if ($this->request->isPost()) {
             $post_data = $this->request->post();
-            $error     = $User->check($post_data);
+            $error     = $Msg->check($post_data);
             if (!$error) {
                 $post_data['addtime'] = time();
-                $post_data['uid'] = session('id');
-                $post_data['type'] = 1;
-                $res = $User->save($post_data);
+                $post_data['uid']     = session('id');
+                $post_data['type']    = 1;
+                $res                  = $Msg->save($post_data);
                 if ($res) {
-                    $this->returnMsg(0,'添加成功');
+
+                    $this->returnMsg(0, '回复成功',date('m/d H:i',time()));
                 }
             }
-            $this->returnMsg(1,'添加成功');
+            $this->returnMsg(1, '回复失败');
             exit;
         }
     }

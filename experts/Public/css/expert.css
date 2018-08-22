@@ -1,0 +1,894 @@
+.header img{
+    margin-top: 25px;
+}
+
+/* 内容 */
+.container{
+    width: 1200px;
+    height: 100%;
+    margin: 20px auto 0;
+    padding: 80px 0 117px 0;
+    background: #f2f3f5;
+    position: relative;
+    font-size: 0px;
+}
+/* 专家 患者管理 */
+.export-pmanage .container-navigation-li{
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    color: #363E46;
+    padding: 0px 9px;
+    height: 20px;
+    line-height: 20px;
+    cursor: pointer;
+}
+.export-pmanage .container-navigation{
+    font-size: 0px;
+
+}
+.export-pmanage .container-navigation-li .container-navigation-span{
+    display: inline-block;
+    font-size: 14px;
+    color: #363E46;
+}
+.export-pmanage .container-navigation-li  .container-navigation-up{
+    display: inline-block;
+    font-size: 12px;
+    color: #FA041C;
+    vertical-align: super;
+}
+.export-pmanage .container-navigation-li  .container-navigation-border{
+    display: none;
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background: #0183FF;
+    border-radius: 4px;
+    margin-left: -9px;
+    margin-top: 4px;
+}
+.export-pmanage .container-navigation-li:hover .container-navigation-border{
+    display: inline-block;
+}
+.export-pmanage  .container-navigation-li:hover .container-navigation-span{
+    font-size: 16px;
+    color: #363E46;
+    font-weight: bold;
+}
+.export-pmanage .export-pmanage-head{
+    padding-bottom: 25px;
+    height: 36px;
+}
+.export-pmanage .export-pmanage-head .search{
+    position: relative;
+    width: 300px;
+    height: 36px;
+    border:1px solid rgb(93,100,106);
+    border-radius: 4px;
+}
+.export-pmanage .export-pmanage-head .search i{
+    position: absolute;
+    top:8px;
+    left: 8px;
+    right: 10px;
+}
+.export-pmanage .export-pmanage-head .search input{
+    height: 34px;
+    line-height: 40px;
+    border:0;
+    margin-left: 35px;
+    width: 260px;
+    background: #f2f3f5;
+    font-size: 14px;
+    color: #363E46;
+}
+.export-pmanage  .container-table{
+    margin-top: 10px;
+    padding: 20px;
+    background: #fff;
+}
+.export-pmanage  .container-table  .table{
+    width: 1160px;
+    height: auto;
+    box-sizing: border-box;
+    background: #fff;
+}
+.export-pmanage  .container-table .table .thead{
+    width: 1160px;
+    height: 50px; 
+    background: rgba(1,131,255,.1);
+    border-radius: 4px;
+}
+.export-pmanage  .container-table .table .thead th{   
+    width: 140px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    color: #363E46;
+}
+.export-pmanage  .container-table .table .thead th:last-child{
+    width: 460px;
+    text-align: left;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+.export-pmanage  .container-table .tbody tr{
+    height: 100px;
+    border-bottom: 1px solid #F2F3F5; 
+    
+}
+.export-pmanage  .container-table .tbody tr td:first-child{
+    position: relative;
+}
+.export-pmanage  .container-table .tbody tr .sex{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 20px;
+    left: 40px;
+}
+.export-pmanage  .container-table .tbody tr td{
+    text-align: center;
+    line-height: 100px;
+    font-size: 14px;
+    color: #363E46;
+}
+.export-pmanage  .container-table .tbody tr td:last-child{
+    text-align: left;
+    padding-left: 20px;
+    font-size: 0px;
+    line-height: 0;
+}
+.export-pmanage  .container-table .tbody tr td .td-btn{
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: #F2F3F5;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #363E46;
+    margin-right: 35px;
+    cursor: pointer;
+}
+.export-pmanage  .container-table .tbody tr td .td-btn:last-child{
+    margin-right: 0px;
+}
+
+
+/*专家-患者管理-病历 专家-患者管理-治疗记录*/
+.export-check h3{
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    color: #363E46;
+    line-height: 16px;
+    margin: 20px auto 20px;
+}
+.export-check .content{
+    width: 720px;
+    height: auto;
+    margin: 0 auto;
+}
+.export-check .content .content-li{
+    width: 100%;
+    min-height: 50px;
+    background: #fff;
+    line-height: 50px;
+    margin-bottom: 10px;
+    padding: 0px 20px;
+    box-sizing: border-box;  
+}
+
+.export-check .content .content-li .content-li-time{
+    font-size: 14px;
+    color: #363E46;
+    font-weight: bold;
+}
+.export-check .content .content-li .content-li-time font{
+   margin-left: 5px;
+}
+.export-check .content .content-li-bar-open,.content-li-bar-close{
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    float: right;
+    font-size: 0px;
+    cursor: pointer;
+    
+}
+.export-check .content .content-li-bar-close{
+    display: none;
+    
+}
+.export-check .content .content-li-bar-open span,.export-check .content .content-li-bar-close span{
+    font-size: 12px;
+    color: rgba(54,62,70,.8);
+    margin-right: 20px;
+}
+.export-check .content .content-li-bar-open img,.export-check .content .content-li-bar-close img{
+    position: absolute;
+    right: 0;
+    top: 15px;
+}
+.export-check .content .content-bingli-img{
+    font-size: 0px;
+    line-height: 0;
+    margin-top: 16px;
+}
+.eexport-check .content .content-bingli-img img{
+    width: 155px;
+    height: 155px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.export-check .content .content-bingli-img img:nth-child(4n){
+    margin-right: 0px;
+}
+
+.export-check .content .message{
+    padding-bottom: 20px;
+    display: none;
+}
+.export-check .content .content-text{
+    margin-top: 20px;
+    font-size: 14px;
+    color: rgba(54,62,70,.8);
+    line-height: 20px;
+}
+.export-check .content .content-li:last-child{
+    margin-bottom: 0px;
+}
+/*专家-患者管理-咨询记录*/
+.expert-zixun h3{
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    color: #363E46;
+    line-height: 16px;
+    margin:20px auto 0px;
+}
+.expert-zixun .chat{
+    width: 720px;
+    height: 490px;
+    overflow: auto;
+    background: #fff;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 0px;
+    box-sizing: border-box;
+    position: relative;
+    /* display: none; */
+    margin-top: 20px;
+}
+.expert-zixun .chat .date-line{
+    width: 100%;
+    height: 1px;
+    background: #F2F3F5;
+    display: inline-block;
+    margin-top: 7px;
+}
+.expert-zixun .chat .chat-date{
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 20px;
+    background: #fff; 
+    font-size: 12px;
+    color: rgba(54,62,70,.5);
+}
+.expert-zixun .chat .message{
+    padding-top: 8px;
+}
+.expert-zixun .chat .message-li{
+    margin-top: 10px;
+}
+.expert-zixun .chat .message-li .message-role-time span{
+    font-size: 12px;
+    color: #0183FF;
+    line-height: 17px;
+}
+.expert-zixun .chat .message .message-li .message-role-time span:first-child{
+    margin-right: 10px;
+}
+.expert-zixun .chat .message .message-content{
+    display: inline-block;
+    line-height: 17px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 12px;
+    color: #363E46;
+}
+.expert-zixun .no-message{
+    display: none;
+    margin-top: 80px;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(54,62,70,.5);
+}
+/*专家-回复管理*/
+.expert-huifu .contacts{
+    float: left;
+    width: 280px;
+    height: 620px;
+    background: #fff;
+    margin-right: 10px;
+}
+.expert-huifu .chat-content{
+    display: inline-block;
+    width: 910px;
+    height: 620px;
+    background: #fff;
+}
+.expert-huifu .contacts  .search-contacts{
+    width: 100%;
+    height: 70px;
+    padding: 20px;
+    border-bottom: 1px solid #F2F3F5;
+    position: relative;
+}
+.expert-huifu .contacts .search-contacts input{
+    width: 240px;
+    height: 30px;
+    border-width: 0px;
+    background: #F2F3F5;
+    border-radius: 4px; 
+    box-sizing: border-box;
+    padding: 0px 30px 0px 10px;
+}
+
+.expert-huifu .contacts .search-contacts input::-webkit-input-placeholder{ 
+    font-size: 14px; 
+    color: rgba(54,62,70,.3);
+}
+
+.expert-huifu .contacts .search-contacts input:-moz-placeholder{ 
+    font-size: 14px;
+    color: rgba(54,62,70,.3);
+}
+
+.expert-huifu .contacts .search-contacts input::-moz-placeholder{ 
+    font-size: 14px; 
+    color: rgba(54,62,70,.3);
+} 
+.expert-huifu .contacts .search-contacts input:-ms-input-placeholder{ 
+    font-size: 14px; 
+    color: rgba(54,62,70,.3);
+}
+.expert-huifu .contacts .search-contacts img{
+    position: absolute;
+    top: 28px;
+    right: 30px;
+    cursor: pointer;
+}
+.expert-huifu .contacts .img-blue{
+    display: none;
+}
+
+.expert-huifu .contacts .search-contacts input:focus~.img-blue{
+    display: inline-block;
+}
+.expert-huifu .contacts .search-contacts input:focus+.img-default{
+    display: none;
+}
+
+.expert-huifu .contacts .search-contacts input:hover~.img-blue{
+    display: inline-block;
+}
+.expert-huifu .contacts .search-contacts input:hover+.img-default{
+    display: none;
+}
+.expert-huifu .contacts .search-contacts input:focus{
+    border: 1px solid #0183FF;
+}
+.expert-huifu .contacts .search-contacts input:hover{
+    border: 1px solid #0183FF;
+}
+
+.expert-huifu .contacts  .contacts-area{
+    width: 100%;
+    height: 549px;
+    padding: 9px 10px 0px 10px;
+    overflow: auto;
+}
+.expert-huifu .contacts .contacts-area .contacts-info{
+    position: relative;
+    width: 260px;
+    height: 60px;
+    border-radius: 4px;
+    padding: 10px;
+    line-height: 20px;
+    cursor: pointer;
+}
+.expert-huifu .contacts .contacts-area .no-contacts{
+    text-align: center;
+    font-size: 12px;
+    color: #363E46;
+    line-height: 60px;
+}
+.expert-huifu .contacts .contacts-area .no-contacts:hover{
+    background: transparent;
+}
+.expert-huifu .contacts .contacts-area .contacts-info:hover{
+    background: rgba(1,131,255,.1);
+}
+.expert-huifu .contacts .contacts-area .contacts-info-img{
+    width: 40px;
+    height: 40px;
+}
+.expert-huifu .contacts .contacts-area .contacts-info-name{
+    display: inline-block;
+    font-size: 14px;
+    color: #363E46;
+    margin-left: 10px;
+    vertical-align: top;  
+}
+.expert-huifu .contacts .contacts-area .contacts-info-time{
+    float: right;
+    font-size: 12px;
+    color: rgba(54,62,70,.5);
+}
+.expert-huifu .contacts .contacts-area .contacts-info-msg{
+    position: absolute;
+    left: 60px;
+    bottom: 10px;
+    width: 190px;
+    font-size: 12px;
+    color: rgba(54,62,70,.5);
+    vertical-align: top;
+    overflow: hidden;/*超出部分隐藏*/
+    white-space: nowrap;/*不换行*/
+    text-overflow:ellipsis;/*超出部分文字以...显示*/
+}
+.expert-huifu .contacts .contacts-area .red-circular{
+    position: absolute;
+    left: 46px;
+    top: 3px;
+    margin: 0px;
+}
+
+.expert-huifu .chat-content .chat-content-header{
+    width: 100%;
+    height: 65px;
+    border-bottom: 1px solid #F2F3F5;
+    padding: 15px 20px;
+}
+.expert-huifu .chat-content .chat-content-header .chat-content-header-name{
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #363E46;
+    line-height: 22px;
+    margin-top: 6px;
+}
+.expert-huifu .chat-content .chat-content-header-status{
+    display: inline-block;
+}
+.expert-huifu .chat-content .green-circular{
+    margin: 0 6px  2px 20px;
+}
+.expert-huifu .chat-content .chat-content-header-status span{
+    font-size: 14px;
+    color: #363E46;
+    line-height: 20px;
+}
+.expert-huifu .chat-content  .chat-content-header-check{
+    float: right;
+}
+.expert-huifu .chat-content  .choose-btn:last-child{
+    margin-right: 0;
+}
+.expert-huifu  .chat-content .chat-content-area{
+    width: 100%;
+    height: 433px;
+    border-bottom: 1px solid #F2F3F5;
+    padding: 0px 20px 10px;
+    overflow: auto;
+}
+.expert-huifu  .chat-content .other,.expert-huifu  .chat-content .me{
+    position: relative;
+    margin-top: 20px;
+}
+.expert-huifu  .chat-content .other .people-img,.expert-huifu  .chat-content .me .people-img{
+    position: absolute;
+    right: 0px;
+    bottom:21px;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0px; 
+}
+.expert-huifu  .chat-content .other .people-img{
+    left: 0px;
+}
+.expert-huifu  .chat-content .other-msg,.me-msg,.expert-huifu  .chat-content .other .send-img,.me .send-img{
+    display: inline-block;
+    max-width: 490px;
+    padding: 10px 15px;
+    margin-right: 50px;
+    background: #F2F3F5;
+    border-radius: 20px 20px 20px 4px;
+    font-size: 14px;
+    color: #363E46;
+    line-height: 20px;
+    position: relative;
+}
+.expert-huifu  .chat-content .me .send-img,.expert-huifu  .chat-content .other .send-img{
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 50px;
+    line-height: 0px;
+}
+.expert-huifu  .chat-content .other-msg,.expert-huifu  .chat-content .other .send-img{
+    margin-right: 0;
+    margin-left: 50px;
+}
+
+.expert-huifu  .chat-content .me-msg{
+    background: #0183FF;
+    font-size: 14px;
+    color: #FFFFFF;
+    border-radius: 20px 20px 4px 20px;
+}
+.expert-huifu  .chat-content .me .error-msg{
+   position: relative;
+   bottom: 44px;
+  right: 23px;
+}
+.expert-huifu  .chat-content .msg-fail{
+    font-size: 12px;
+    color: #FA041C;
+    background: #FEE5E8;
+    border-radius: 4px;
+    padding: 5px 10px;
+    position: absolute;
+    bottom:5px;
+}
+.expert-huifu  .chat-content .condition-img{
+    width: 200px;
+    height: 200px;
+}
+.expert-huifu  .chat-content .other-send-time,.expert-huifu  .chat-content  .me-send-time{
+    display: block;
+    line-height: 17px;
+    margin-top: 4px;
+    font-size: 12px;
+    color: rgba(54,62,70,.5);
+}
+.expert-huifu  .chat-content .other-send-time{
+    margin-left: 50px;
+}
+.expert-huifu  .chat-content .me-send-time{
+    text-align: right;
+    margin-right: 50px;
+}
+.expert-huifu  .chat-content .input-area{
+    height: 120px;
+    width: 100%;
+    padding: 15px 20px 0 20px;
+    position: relative;
+}
+.expert-huifu  .chat-content .input-area textarea{
+    width: 100%;
+    height: 60px;
+    border: none;
+    resize: none;
+    padding: 0;
+    font-size: 14px;
+    color: #363E46;
+}
+.expert-huifu  .chat-content .input-area .input-area-btn{
+    position: absolute;
+    bottom:10px;
+    right: 20px;
+}
+.expert-huifu  .chat-content .input-area .input-area-btn span{
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    border:1px solid #0183FF;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #0183FF;
+    text-align: center;
+    line-height: 28px;
+    cursor: pointer;
+}
+.expert-huifu  .chat-content .input-area .input-area-btn span:hover{
+    background: #0183FF;
+    color: #fff;
+}
+.expert-huifu .chat-content .input-area .input-area-btn span:nth-child(1){
+    margin-right: 25px;
+}
+
+
+
+/*专家-排班管理*/
+.work-force{
+    width: 1200px;
+    height: auto;
+    background: #fff;
+}
+.work-force h2{
+    font-size: 16px;
+    color: #363E46;
+    line-height: 16px;
+    border-bottom:1px solid #E7E9EC;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+}
+.work-force .work-shift{
+    width: 376px;
+    margin:0 auto;
+    font-size: 12px;
+}
+.work-force .work-shift span,.work-force .rest-time .head span{
+    width: 116px;
+    height: 30px;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+}
+.work-force .work-shift .head span,.work-force .rest-time .head span{
+    color: #979b9f;
+    margin:12px 0;
+    font-size: 12px;
+}
+.work-force .work-shift .head span:nth-child(2),.work-force .work-shift ul li span:nth-child(2),.work-force .rest-time .head span:nth-child(2){
+    margin: 0 10px;
+}
+.work-force .work-shift ul li,.work-force .rest-time ul li{
+    margin-bottom: 20px;
+}
+.work-force .work-shift ul li span{
+    background: #F2F3F5;
+    border-radius: 4px;
+}
+.work-force .work-shift a{
+    border: 1px solid #0183FF;
+    border-radius: 4px;
+    width:80px;
+    height: 30px;
+    font-size: 12px;
+    color: #0183FF;
+    text-align: center;
+    line-height: 28px;
+    display: inline-block;
+    margin:20px auto 40px auto;
+}
+.work-force .work-shift .submit-btn,.work-force .rest-time .submit-btn,.personal-info .personal-user .submit-btn{
+    text-align: center;
+}
+.work-force .work-shift a:hover{
+    background: #0183FF;
+    color: #fff;
+}
+.work-force .rest-time{
+    width: 410px;
+    margin:0 auto;
+}
+.work-force .rest-time ul li select {
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    width: 116px;
+    height: 30px;
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    background: url("../imgs/select-arrow.png") no-repeat scroll 95px center transparent;
+    margin-right: 10px;
+    font-size: 12px;
+    color: #363E46;
+    text-indent: 10px;
+    cursor: pointer;
+}
+.work-force .rest-time ul li i{
+    cursor: pointer;
+}
+.work-force .rest-time ul li:last-child{
+    margin-bottom: 0;
+}
+.work-force .rest-time ul li select::-ms-expand {
+    display: none;
+}
+.work-force .rest-time .rest-time-add{
+    margin-top: 10px;
+    cursor: pointer;
+}
+.work-force .rest-time a,.personal-info .personal-user .submit-btn a{
+    border-radius: 4px;
+    width:80px;
+    height: 30px;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    line-height: 28px;
+    display: inline-block;
+    margin:20px auto 40px auto;
+    background: #0183FF;
+}
+.work-force .rest-time a:hover,.personal-info .personal-user .submit-btn a:hover{
+    background: #fff;
+    color:#0183FF;
+    border:1px solid #0183FF;
+}
+
+
+/* 专家-个人信息 */
+/*专家  个人信息*/
+.personal-info{
+    width: 1200px;
+    height: auto;
+    background: #fff;
+}
+.personal-info h2{
+    font-size: 16px;
+    color: #363E46;
+    line-height: 16px;
+    border-bottom:1px solid #E7E9EC;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+}
+.personal-info .personal-user{
+    width: 500px;
+    margin: 0 auto;
+}
+.personal-info .personal-user .user-pic{
+    position: relative;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.personal-info .personal-user .user-pic #test1{
+    font-size: 100px;
+    opacity: 0;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    display:block;
+    margin-left: 200px;
+}
+.personal-info .personal-user .layui-upload-file{
+    display: none;
+}
+.personal-info .personal-user .user-pic img{
+    width: 100px;
+    height: 100px;
+}
+.personal-info .personal-user .user-pic .title{
+    color: #363E46;;
+    font-size: 12px;
+    display: inline-block;
+}
+.personal-info .personal-user .base-info{
+    margin-top: 20px;
+    position: relative;
+}
+.personal-info .personal-user .base-info span{
+    display: inline-block;
+    font-size: 14px;
+    color: #363E46;
+    opacity: 0.8;
+    line-height: 40px;
+    height: 44px;
+    width: 70px;
+    text-align: right;
+    position: relative;
+    top:5px;
+}
+.personal-info .personal-user .base-info span.base-jianjie{
+    top:-145px;
+}
+.personal-info .personal-user .base-info #zhuanchang{
+    font-size: 14px;
+    color: #5d646a;
+    position: absolute;
+    right: 20px;
+    top: 18px;
+}
+.personal-info .personal-user .base-info #base-jian{
+    font-size: 14px;
+    color: #5d646a;
+    position: absolute;
+    right: 20px;
+    bottom:30px;
+}
+.personal-info .personal-user .base-info input[type="text"]{
+    width: 400px;
+    height: 38px;
+    background: #F2F3F5;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #363E46;
+    border:0;
+    margin-left: 20px;
+    text-indent: 10px;
+    line-height: 38px;
+    border: 1px solid #F2F3F5;
+}
+.personal-info .personal-user .base-info input[type="text"]:hover,.personal-info .personal-user .base-info textarea:hover{
+    border-color:#0183FF;
+    background: #fff;
+}
+.personal-info .personal-user .base-info textarea{
+    background: #F2F3F5;
+    border-radius: 4px;
+    width: 400px;
+    height: 160px;
+    margin-left: 20px;
+    font-size: 14px;
+    color: #363E46;
+    border:0;
+    padding: 10px;
+    border: 1px solid #F2F3F5;
+}
+.personal-info .personal-user .sex{
+    font-size: 12px;
+    color: #151752;
+    display: inline-block;
+}
+.personal-info .personal-user .sex .male{
+    margin-left: 15px;
+    position: relative;
+    top:5px;
+}
+.personal-info .personal-user .sex .female{
+    margin-left: 35px;
+    position: relative;
+    top:5px;
+}
+.personal-info .personal-user .sex .male span,.personal-info .personal-user .sex .female span{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    position: relative;
+    top: -1px;
+}
+
+.personal-info .personal-user .sex input[type="radio"]{
+    margin-right: 8px;
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    bottom: 3px;
+    left: 2px;
+}
+.personal-info .personal-user .sex label{
+    position: absolute;
+    left: 5px;
+    top: 12px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid #D9D9D9;
+    right: 10px;
+}
+.personal-info .personal-user .sex input[type="radio"]:checked+label { 
+    background: #FFFFFF;
+    border: 1px solid #0183FF;
+}
+.personal-info .personal-user .sex input[type="radio"]:checked+label::after {
+    position: absolute;
+    content: "";
+    width: 6px;
+    height: 6px;
+    top: 3px;
+    left: 3px;
+    border-top: none;
+    border-left: none; 
+    background: #0183FF;
+    border-radius: 3px;
+    transform: rotate(45deg);
+}
+.personal-info .personal-user .submit-btn a{
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+

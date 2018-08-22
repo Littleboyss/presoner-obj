@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人信息</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/common.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/expert.css">
+
+
+
+</head>
+<body>
+    {include file="../application/experts/view/Index/header.html"}
+    <!-- 内容 -->
+    <div class="container">
+        <section class="personal-info" >
+            <h2 class="title">个人信息</h2>
+            <div class="personal-user">
+                <div class="user-pic" >
+                    <div class="layui-upload">
+                        <button type="button" class="layui-btn" id="test1">上传图片</button>
+                        <div class="layui-upload-list">
+                            <img src="{$ExpertsInfo.avatar}" class="layui-upload-img" id="demo1">
+                            <p id="demoText"></p>
+                            <input type="hidden" name="avatar" id="avatar" />
+                        </div>
+                    </div> 
+                    <span class="title">点击更换头像</span>
+                </div>
+                <div class="base-info">
+                    <span for="">姓名</span>
+                    <input type="text" name="nickname" value="{$ExpertsInfo.nickname}" placeholder="张泽刚">
+                </div>
+                <div class="base-info sex">
+                    <span for="" class="fl">性别</span>
+                    <div class="male fl">
+                        <input  id="male" type="radio" name="sex" value="1" checked>
+                        <label for="male"></label>
+                        <span>男</span>
+                    </div>
+                    <div class="female fl">
+                        <input id="female" type="radio" name="sex" value="2" {if condition="$ExpertsInfo['sex'] eq 2"}
+                                            checked
+                                        {/if}>
+                        <label for="female"></label>
+                        <span>女</span>
+                    </div>
+                </div>
+                <div class="base-info">
+                    <span for="">专长</span>
+                    <select name="specialty">
+                        {foreach name="cal" item="vo"}
+                            <option value="{$vo['id']}" 
+                                {if condition="$vo['id'] == $ExpertsInfo['specialty']"}
+                                    selected="selected" 
+                                {/if}
+                            >{$vo[0]}</option>
+                        {/foreach}  
+                        </select> 
+                </div>
+                <div class="base-info">
+                    <span class="base-jianjie" for="">基本简介</span>
+                    <textarea maxlength="100" id="descrip" onkeyup="javascript:setShowLength(this, 100, 'base-size');">{$ExpertsInfo['descrip']}</textarea>
+                    <font id="base-jian"><samp id="base-size">100</samp>/100</font>  
+                </div>
+                <div class="submit-btn">
+                    <a href="javascript:;" id="save">保存</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    {include file="../application/user/view/Index/footer.html"}
+    <script type="text/javascript">
+       layui.use('upload', function(){
+            var $ = layui.jquery
+            ,upload = layui.upload;
+            
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test1'
+                ,url: '{:url("upload")}'
+                ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+                }
+                ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                $('#avatar').val(res.url);
+                }
+                ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+                }
+            });
+       })
+        function setShowLength(obj, maxlength, id) 
+        { 
+            var rem = maxlength - obj.value.length; 
+            var wid = id; 
+            if (rem < 0){ 
+                rem = 0; 
+            } 
+            document.getElementById(wid).innerHTML = "" + rem + ""; 
+        } 
+    </script>
+</body>
+</html>

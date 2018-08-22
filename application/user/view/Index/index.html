@@ -97,7 +97,8 @@
                         var password = $(":input[name='password']").val();
                         var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
                         if(reg.test(name) === false) { 
-                            url = '//experts.hospital.com/index/login';
+                            url = 'http://experts.hospital.com/index/login.html?name='+name+'&password='+password;
+                            window.location.href=url;return;
                         }else{
                             url = "{:url('login')}";
                         }
@@ -111,13 +112,14 @@
                                     $('.error-tip').html(json.msg)
                                     $('.error-tip').show()
                                 }else{
+                                    if (url == '//experts.hospital.com/index/login.html') {
+                                        
+                                        return;
+                                    }else{
+                                        window.location.href="{:url('user/index')}";
+                                    }
                                     $('.login').hide();
                                     layer.close(index);
-                                    if (url == '//experts.hospital.com/index/login.html') {
-                                        window.location.href="//experts.hospital.com/experts/index.html";
-                                        return;
-                                    }
-                                    window.location.href="{:url('user/index')}";
                                 }
                             }
                         });

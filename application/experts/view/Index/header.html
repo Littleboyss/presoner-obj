@@ -1,0 +1,29 @@
+<header class="header">
+    <div class="header-content">
+        <img src="__PUBLIC__/imgs/home-logo.png" onclick="window.location.href = '/'" alt="logo">
+        <ul class="navigation">
+            <li class="navigation-li{if condition="$currentPri ==  'Experts/expert'"} on{/if}"><a href="{:url('Experts/expert')}">我的专家</a></li>
+            <li class="navigation-li{if condition="$currentPri ==  'Experts/plan'"} on{/if}"><a href="{:url('Experts/plan')}">我的治疗</a></li>
+            <li class="navigation-li{if condition="$currentPri ==  'Experts/issue'"} on{/if}"><a href="{:url('Experts/issue')}">我的近况</a></li>
+            <li class="navigation-li{if condition="$currentPri ==  'Experts/comeback'"} on{/if}"><a href="{:url('Experts/comeback')}">我的回访</a></li>
+            <li class="navigation-li{if condition="$currentPri ==  'Experts/history'"} on{/if}"><a href="{:url('Experts/history')}">查看病例</a></li>
+            <li class="navigation-li{if condition="$currentPri ==  'Experts/index'"} on{/if}"><a href="{:url('Experts/index')}">我的信息</a></li>
+        </ul>
+        <button class="logout-btn">退出</button>
+    </div>
+</header>
+<script type="text/javascript" src="__PUBLIC__/js/plugins/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/layui/layui.all.js"></script>
+<script type="text/javascript">
+    $('.logout-btn').on('click', function() {
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "{:url('index/logout')}",
+            success: function(json) {
+                window.location.href = "/";
+            }
+        })
+    })
+
+</script>

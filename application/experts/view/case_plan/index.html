@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>治疗计划列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/BeatPicker.min.css" /> -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/select2.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/select2_lh.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/htmlCss.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/windowCss.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/libs/layer/css/layui.css" />
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/bootstrap-3.3.4.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/layer/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/laydate/laydate.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/nav.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/libs/js/public.js"></script>
+</head>
+
+<body>
+    <ul class="leftMenu nav nav-tabs" role="tablist">
+        {include file="../application/admin/view/User/nav_care.html"}
+    </ul>
+    <div class="main tab-content">
+        <div role="tabpanel" class="tab-pane fade in active">
+            <!------顶部栏目标题-------->
+            <div class="topTit flexed2">
+                <span>治疗计划列表</span>
+            </div>
+            
+            <!--内容-->
+            <div class="Inner">
+                <div class="box boxShow">
+                    <!--表格列表-->
+                    <table class="csTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>患者</th>
+                                <th>专家</th>
+                                <th>治疗医院</th>
+                                <th>计划问诊时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach name="data" item="vo"}
+                                <tr>
+                                    <td>{$vo.id}</td>
+                                    <td>{$vo.name}</td>
+                                    <td>{$vo.expert}</td>
+                                    <td>{$vo.hospital}</td>
+                                    <td>{$vo.stime|date="Y-m-d H:i:s",###}</td>
+                                    <td>
+                                      <a class="btn2 bianJiBtn show_detal"  data="{$vo.descrip}">查看详情</a>
+                                      <a class="btn2 bianJiBtn" href="{:Url('edit', array('id' => $vo['id']))}">修改</a>
+                                    </td>
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
+                    <!--右对齐-->
+                    <div class="nav_a clear_b">
+                        <span class="mar_l15"><em class="cor_b"><i class="cor_pad"></i></em></span>
+                        <div class="nav_c nav_right">
+                            {$page}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</body>
+<script type="text/javascript">
+    $('.show_detal').click(function(){
+        var data = $(this).attr('data');
+        layer.tips(data, $(this).parents('tr').find('td').eq(1));  
+    })
+</script>
+</html>

@@ -1,0 +1,784 @@
+/*医院端-登录*/
+.hospital-index{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-size:cover;
+    background: #1083ff;
+}
+.hospital-index-bottom{
+    position:fixed;
+    bottom:0;
+    background:url('../imgs/hospital-bottom.png') no-repeat center center;
+    width: 100%;
+    height: 45%;
+    -moz-background-size:100% 100%;  
+    background-size:100% 100%;  
+}
+.hospital-index .hospital-index-login{
+    width: 260px;
+    height: auto;
+    margin:0 auto;
+    text-align: center;
+}
+.hospital-index .hospital-index-login .logo{
+    display: inline-block;
+    margin-top: 50%;
+    margin-bottom: 35%;
+}
+.hospital-index .hospital-index-login .logo img{
+    width: 109px;
+    height: 129px;
+}
+.hospital-login .base-info{
+    width: 260px;
+    height: 40px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    line-height: 40px;
+    margin-bottom: 20px;
+}
+.hospital-login .base-info .hospital-login-user,.hospital-login .base-info .hospital-login-pwd{
+    margin-left: 10px;
+    margin-top:10px;
+    float: left;
+    margin-right: 10px;
+}
+.hospital-login .base-info input{
+    width: 190px;
+    border:0;
+    float: left;
+    line-height: 38px;
+    color: #868b90;
+    height: 38px;
+}
+.hospital-login .base-info .hospital-login-enter{
+    float: right;
+    margin-right: 10px;
+    margin-top: 12px;
+}
+.hospital-login .base-info input::-webkit-input-placeholder{
+    color:#becec3;
+}
+.hospital-login .base-info input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+    color:#becec3;
+}
+.hospital-login .base-info input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+    color:#becec3;
+}
+.hospital-login .base-info input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+    color:#becec3;
+}
+.hospital-login .error-msg{
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    background: #1a8fff;
+    padding: 8px 10px;
+    border-radius: 2px;
+    display: inline-block;
+}
+.hospital-login .error-msg i{
+    display: inline-block;
+    margin-right: 5px;
+    position: relative;
+    top:2px;
+}
+.hospital-login .base-info a{
+        display: block;
+    float: right;
+    width: 30px;
+    height: 40px;
+}
+/*医院端登录-负责协议弹窗*/
+.agreement-popup{
+    width: 860px;
+    height: 516px;
+    background: #f2f3f5;
+}
+
+.agreement-popup  .agreement-contect{
+    padding: 20px;
+    width: 860px;
+    height: 385px;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+    position: relative;
+    right: 6px;
+    padding-right: 10px;
+}
+.agreement-popup   .agreement-contect p{
+    font-size: 14px;
+    color: #363E46;
+    line-height: 20px;
+    margin-bottom: 20px;
+}
+
+.hospotal-xieyi .layui-layer-btn{
+    text-align: center;
+    width: 100%;
+    height: 56px;
+    background: #fff;
+}
+.hospotal-xieyi .layui-layer-btn a{
+    border-radius: 4px;
+    width: 100px;
+    height: 30px;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    line-height: 28px;
+    display: inline-block;
+    background: #0183FF;
+}
+/*医院端登录-负责协议弹窗滚动条样式*/
+.agreement-scroll::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 8px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 70px;
+}
+.agreement-scroll::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 0 5px rgb(204,206,210);
+    background: #ccced2;
+}
+.agreement-scroll::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgb(242,243,245);
+    border-radius: 0;
+    background: #f2f3f5;
+}
+
+/*医院-患者管理*/
+.container{
+    width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 95px 0 117px 0;
+}
+.hospital-manage{
+    position: relative;
+}
+.hospital-manage .hospital-name{
+    font-size: 16px;
+    color: #FFFFFF;
+    line-height: 80px;
+    height: 80px;
+    cursor: pointer;
+}
+.hospital-manage .hospital-name span {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #fff;
+    position: relative;
+    top: 15px;
+    left: 5px;
+}
+.hospital-manage ul{
+    position: absolute;
+    background: #FFFFFF;
+    box-shadow: 0 4px 10px 0 rgba(21,23,82,0.30);
+    border-radius: 4px;
+    right: 0;
+    bottom: -92px;
+    display: none;
+}
+.hospital-manage ul li:hover{
+    background: #e5f2ff;
+}
+.hospital-manage ul li:nth-child(1){
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.hospital-manage ul li:nth-child(2){
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.hospital-manage ul li{
+    width: 180px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 14px;
+    color: #363E46;
+    cursor: pointer;
+}
+
+.patient-manage  .patient-manage-add a{
+    border-radius: 4px;
+    width: 80px;
+    height: 30px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 28px;
+    display: inline-block;
+    margin-top: 13px;
+    color: #0183FF;
+    border:1px solid #0183FF;
+}
+.patient-manage .container-table{
+    margin-top: 10px;
+    padding: 20px;
+    background: #fff;
+}
+.patient-manage .container-table .table{
+    width: 1160px;
+    height: auto;
+    box-sizing: border-box;
+    background: #fff;
+}
+.patient-manage .container-table .table .thead{
+    width: 1160px;
+    height: 50px; 
+    background: rgba(1,131,255,.1);
+    border-radius: 4px;
+}
+.patient-manage .container-table .table .thead th{   
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    color: #363E46;
+    text-indent: 20px;
+    text-align: left;
+}
+.patient-manage .container-table .table th:nth-child(1),.patient-manage .container-table .table th:nth-child(2),.patient-manage .container-table .table th:nth-child(3),
+.patient-manage .container-table .table td:nth-child(1),.patient-manage .container-table .table td:nth-child(2),.patient-manage .container-table .table td:nth-child(3){
+    width: 150px;
+  
+}
+.patient-manage .container-table .table th:nth-child(4),
+.patient-manage .container-table .table td:nth-child(4){
+    width: 190px;
+}
+.patient-manage .container-table .table th:nth-child(5),
+.patient-manage .container-table .table td:nth-child(5){
+   width: 300px;
+}
+
+.patient-manage .container-table .tbody tr{
+    height: 70px;
+    border-bottom: 1px solid #F2F3F5; 
+}
+
+.patient-manage .container-table .tbody tr td{
+    line-height: 70px;
+    font-size: 14px;
+    color: #363E46;
+    text-indent: 20px;
+}
+.patient-manage .container-table .tbody tr td .td-btn{
+    text-align: center;
+    background: #F2F3F5;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #363E46;
+    cursor: pointer;
+    padding: 6px 15px;
+    margin-right: 20px;
+}
+.patient-manage .container-table .tbody tr td .td-btn:last-child{
+    margin-right: 0px;
+}
+
+.patient-manage .container-table .tbody tr td .td-btn:hover{
+    background: #0183FF;
+    color: #FFFFFF;
+}
+
+/* 分页 */
+#pagination{
+    margin: 40px 0 40px 391px;
+}
+
+
+/*医院信息弹窗*/
+.layer-ext-moon.layui-layer{
+    background: #f2f3f5;
+    width: 640px;
+    height:436px;
+}
+.layer-ext-moon  .layui-layer-title,.patient-pwd-reset .layui-layer-title,.layer-ext-info .layui-layer-title,.hospotal-xieyi .layui-layer-title,.medical-record-layer .layui-layer-title,.layer-check-code .layui-layer-title {
+    text-align: center;
+    font-size: 16px;
+    color: #FFF;
+    height: 56px;
+    line-height: 56px;
+    background: #0183FF;
+    border-radius: 4px 4px 0 0;
+    padding: 0;
+}
+.layer-ext-moon  .layui-layer-setwin,.layer-ext-info  .layui-layer-setwin,.patient-pwd-reset .layui-layer-setwin,.hospotal-xieyi .layui-layer-setwin,.medical-record-layer .layui-layer-setwin,.layer-check-code .layui-layer-setwin{
+    top:20px
+}
+.hospotal-popup  .hospotal-contect{
+    width: 360px;
+    margin:auto;
+}
+.hospotal-popup  .hospotal-contect .base-info{
+    margin-top: 20px;
+    position: relative;
+}
+.hospotal-popup .hospotal-contect .base-info label{
+    font-size: 14px;
+    color: #5d646a;
+    line-height: 40px;
+    height: 40px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.hospotal-popup  .hospotal-contect .base-info input{
+    width: 300px;
+    height: 38px;
+    line-height: 38px;
+    border:1px  solid #fff;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 14px;
+    color: #5d646a;
+    text-indent: 10px;
+}
+.hospotal-popup  .hospotal-contect .base-info input:hover,.hospotal-popup  .hospotal-modal .hospotal-contect textarea:hover{
+    border-color: #0183FF;
+}
+.hospotal-popup  .hospotal-contect textarea{
+    width: 300px;
+    height: 224px;
+    border:0;
+    background: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    color: #5d646a;
+    border:1px  solid #fff;
+}
+.hospotal-popup .hospotal-contect .base-info .title{
+    position: relative;
+    bottom:204px;
+}
+.hospotal-popup  .hospotal-contect #hospotal-size{
+    font-size: 14px;
+    color: #5d646a;
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    display: inline-block;
+}
+.layer-ext-moon  .layui-layer-btn,.layer-ext-info .layui-layer-btn,.patient-pwd-reset .layui-layer-btn,.medical-record-layer .layui-layer-btn,.layer-check-code .layui-layer-btn {
+    text-align: center;
+    height: 56px;
+    width: 100%;
+    background: #fff;
+}
+.layer-ext-moon .layui-layer-btn a,.layer-ext-info .layui-layer-btn a,.patient-pwd-reset .layui-layer-btn a,.medical-record-layer .layui-layer-btn a,.layer-check-code .layui-layer-btn a{
+    border-radius: 4px;
+    width: 80px;
+    height: 30px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 28px;
+    display: inline-block;
+}
+.layer-ext-moon a.layui-layer-btn1,.layer-ext-info .layui-layer-btn a.layui-layer-btn0,.patient-pwd-reset .layui-layer-btn a.layui-layer-btn1,.medical-record-layer .layui-layer-btn .layui-layer-btn1,.layer-check-code .layui-layer-btn .layui-layer-btn1{
+    color: #fff;
+    background: #0183FF;
+    margin-right: 20px;
+}
+.layer-ext-moon a.layui-layer-btn0,.patient-pwd-reset .layui-layer-btn a.layui-layer-btn0{
+    color: #0183FF;
+    border:1px solid #0183FF;
+    background: #fff;
+}
+
+
+/* 填写患者资料弹窗 */
+.layer-ext-info.layui-layer{
+    background: #f2f3f5;
+    width: 640px;
+    height:470px;
+}
+.hospotal-info-popup  .personal-user{
+    width: 380px;
+    margin: 0 auto;
+}
+.hospotal-info-popup   .base-info{
+    margin-top: 20px;
+    position: relative;
+}
+.hospotal-info-popup   .base-info span{
+    display: inline-block;
+    font-size: 14px;
+    color: #363E46;
+    opacity: 0.8;
+    line-height: 40px;
+    height: 44px;
+    width: 60px;
+    text-align: right;
+    position: relative;
+    top:5px;
+}
+.hospotal-info-popup  .base-info input{
+    width: 300px;
+    height: 38px;
+    background: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #363E46;
+    margin-left: 10px;
+    text-indent: 10px;
+    line-height: 38px;
+    border: 1px solid #fff;
+}
+.hospotal-info-popup  .base-info input:hover{
+    border-color:#0183FF;
+}
+.hospotal-info-popup  .base-info input.miss{
+    border-color: #FA041C;
+}
+
+.hospotal-info-popup .sex{
+    font-size: 12px;
+    color: #151752;
+    display: inline-block;
+    margin-top: 8px;
+    margin-bottom: -10px;
+}
+.hospotal-info-popup .sex .male{
+    margin-left: 15px;
+    position: relative;
+    top:5px;
+}
+.hospotal-info-popup  .sex .female{
+    margin-left: 35px;
+    position: relative;
+    top:5px;
+}
+.hospotal-info-popup  .sex .male span,.hospotal-info-popup  .sex .female span{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    position: relative;
+    top: -1px;
+}
+
+.hospotal-info-popup  .sex input[type="radio"]{
+    margin-right: 8px;
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    bottom: 3px;
+    left: 2px;
+}
+.hospotal-info-popup  .sex label{
+    position: absolute;
+    left: 5px;
+    top: 12px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid #D9D9D9;
+    right: 10px;
+}
+.hospotal-info-popup  input[type="radio"]:checked+label { 
+    background: #FFFFFF;
+    border: 1px solid #0183FF;
+}
+.hospotal-info-popup  input[type="radio"]:checked+label::after {
+    position: absolute;
+    content: "";
+    width: 6px;
+    height: 6px;
+    top: 3px;
+    left: 3px;
+    border-top: none;
+    border-left: none; 
+    background: #0183FF;
+    border-radius: 3px;
+    transform: rotate(45deg);
+}
+.hospotal-info-popup .xieyi{
+    font-size: 14px;
+    color: #363E46;
+    margin: 20px 0 20px 74px;
+    position: relative;
+}
+.hospotal-info-popup .xieyi input[type="checkbox"]{
+    opacity: 0;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    bottom: 2px;
+    left: 0px;
+}
+.hospotal-info-popup .xieyi label{
+    position: absolute;
+    left: 0px;
+    width: 16px;
+    height: 16px;
+    right: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 2px;
+}
+
+.hospotal-info-popup  input[type="checkbox"]:checked+label { 
+    background: #0183FF;
+    border: 1px solid #0183FF;
+}
+.hospotal-info-popup  input[type="checkbox"]:checked+label::after{
+    content: "";
+    position: absolute;
+    left: 2px;
+    bottom: 6px;
+    width: 6px;
+    height: 2px;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    -ms-transform: rotate(-60deg);
+    -moz-transform: rotate(-60deg);
+    -webkit-transform: rotate(-60deg);
+    transform: rotate(-45deg);
+    border-radius: 2px;
+}
+/* 重置密码 */
+.patient-pwd-reset.layui-layer{
+    background: #f2f3f5;
+    width: 640px;
+    height:242px;
+    text-align: center;
+}
+.patient-pwd-reset .pwd-reset{
+    text-align: center;
+    font-size: 14px;
+}
+.patient-pwd-reset  p{
+    line-height: 35px;
+    color: #363E46;
+    margin-top: 40px;
+    font-size: 14px;
+}
+.patient-pwd-reset  font{
+    color: #FA041C;
+    font-size: 14px;
+}
+.layui-layer-hui{
+    font-size: 14px;
+    color: #363E46;
+}
+/* 添加病历 */
+.medical-record-layer.layui-layer{
+    background: #f2f3f5;
+    width: 640px;
+    height:470px;
+    text-align: center;
+}
+.medical-record .base-info{
+    width: 385px;
+    margin:0 auto;
+    margin-top: 20px;
+}
+.medical-record .base-info textarea{
+    width: 300px;
+    height: 120px;
+    background: #FFFFFF;
+    border: 1px solid #0183FF;
+    border-radius: 4px;
+    padding: 10px;
+}
+.medical-record .base-info  label{
+    font-size: 14px;
+    color: #5d646a;
+    display: inline-block;
+    width: 70px;
+    text-align: right;
+    margin-right: 10px;
+}
+.medical-record .base-info.description label{
+    position: relative;
+    bottom: 100px;
+}
+.medical-record .base-info.date input{
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #363E46;
+    text-indent: 10px;
+    border: 0;
+}
+.medical-record .xieyi{
+    width: 200px;
+    margin-left: 200px;
+}
+.medical-record-layer .xieyi{
+    font-size: 14px;
+    color: #363E46;
+    margin: 20px 0 20px 74px;
+    position: relative;
+    width: 200px;
+    margin-left: 200px;
+}
+.medical-record-layer .layui-upload{
+    width: 300px;
+    display: inline-block;
+}
+.medical-record-layer .layui-upload button{
+    width: 90px;
+    height: 90px;
+    background: #fff;
+    border-radius: 4px;
+    margin-left: 20px;
+}
+.medical-record-layer .pic label{
+    position: relative;
+    bottom: 60px;
+}
+.medical-record-layer .layui-upload .layui-upload-img{
+    width: 90px;
+    height: 90px;
+    border-radius: 4px;
+    border:0;
+}
+.medical-record-layer .layui-upload-file{
+    display: none;
+}
+.medical-record-layer .xieyi input[type="checkbox"]{
+    opacity: 0;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    bottom: 2px;
+    left: 0px;
+}
+.medical-record-layer .xieyi label{
+    position: absolute;
+    left: 0px;
+    width: 16px;
+    height: 16px;
+    right: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 2px;
+}
+
+.medical-record-layer input[type="checkbox"]:checked+label { 
+    background: #0183FF;
+    border: 1px solid #0183FF;
+}
+.medical-record-layer  input[type="checkbox"]:checked+label::after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    bottom: 6px;
+    width: 6px;
+    height: 2px;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    -ms-transform: rotate(-60deg);
+    -moz-transform: rotate(-60deg);
+    -webkit-transform: rotate(-60deg);
+    transform: rotate(-45deg);
+    border-radius: 2px;
+}
+/*查看账号*/
+.layer-check-code.layui-layer{
+    background: #f2f3f5;
+    width: 320px;
+    height:200px;
+    text-align: center;
+}
+.layer-check-code p{
+    line-height: 35px;
+    color: #363E46;
+    margin-top: 25px;
+    font-size: 14px;
+}
+/* 医院端 查看病历 */
+.export-check h3{
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    color: #363E46;
+    line-height: 16px;
+    margin: 20px auto 20px;
+}
+.export-check .content{
+    width: 720px;
+    height: auto;
+    margin: 0 auto;
+}
+.export-check .content .content-li{
+    width: 100%;
+    min-height: 50px;
+    background: #fff;
+    line-height: 50px;
+    margin-bottom: 10px;
+    padding: 0px 20px;
+    box-sizing: border-box;  
+}
+
+.export-check .content .content-li .content-li-time{
+    font-size: 14px;
+    color: #363E46;
+    font-weight: bold;
+}
+.export-check .content .content-li .content-li-time font{
+   margin-left: 5px;
+}
+.export-check .content .content-li-bar-open,.content-li-bar-close{
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    float: right;
+    font-size: 0px;
+    cursor: pointer;
+    
+}
+.export-check .content .content-li-bar-close{
+    display: none;
+    
+}
+.export-check .content .content-li-bar-open span,.export-check .content .content-li-bar-close span{
+    font-size: 12px;
+    color: rgba(54,62,70,.8);
+    margin-right: 20px;
+}
+.export-check .content .content-li-bar-open img,.export-check .content .content-li-bar-close img{
+    position: absolute;
+    right: 0;
+    top: 15px;
+}
+.export-check .content .content-bingli-img{
+    font-size: 0px;
+    line-height: 0;
+    margin-top: 16px;
+}
+.eexport-check .content .content-bingli-img img{
+    width: 155px;
+    height: 155px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.export-check .content .content-bingli-img img:nth-child(4n){
+    margin-right: 0px;
+}
+
+.export-check .content .message{
+    padding-bottom: 20px;
+    display: none;
+}
+.export-check .content .content-text{
+    margin-top: 20px;
+    font-size: 14px;
+    color: rgba(54,62,70,.8);
+    line-height: 20px;
+}
+.export-check .content .content-li:last-child{
+    margin-bottom: 0px;
+}

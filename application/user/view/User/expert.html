@@ -35,7 +35,7 @@
                 <h2 class="title">{$ExpertsInfo['nickname']}</h2>
                 <a href="#" class="choose-btn fr">咨询记录</a>
             </div>
-            <ul class="chat-area scroll ">
+            <ul class="chat-area scroll msg">
                 {foreach name="data" item="vo"}
                 {if condition="$vo['type'] eq 1"}
                     <li class="me clearfix"> 
@@ -73,6 +73,10 @@
         $('.enter-reply').on('click', function() {
             var content = $("#content").val();
             var eid = {$eid};
+            if (content == '') {
+                layer.msg('内容不能为空', {icon:2, time: 2000 });
+                return false
+            }
             var data = {'content':content,eid:eid}
             $.ajax({
                 type: 'POST',
@@ -85,14 +89,14 @@
                                 <div class="fr">
                                 <img src="/Public/imgs/male.png" class="people-img" alt="">
                                 <div class="me-msg">`+content+`</div>
-                                <span class="me-send-time">07/16 14:30</span>
+                                <span class="me-send-time">`+json.data+`</span>
                             </div>
                         </li>`
-
-                        layer.msg(json.msg, {icon:1, time: 2000 });
-
+                        $('.msg').append(html);
+                        layer.msg(json.info, {icon:1, time: 2000 });
+                        $("#content").val('');
                     }else{
-                        layer.msg(json.msg, {icon:2, time: 2000 });
+                        layer.msg(json.info, {icon:2, time: 2000 });
                     }
                 }
             })
