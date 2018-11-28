@@ -76,8 +76,8 @@
                             $('.error-msg').show()
 
                             //layer.open(json.msg, { icon: 1, time: 2000 });
-                            if (json.code == 1) {
-                                window.location.href="{:url('hospital/detail')}";
+                            if (json.status == 0) {
+                                window.location.href="{{:url('hospital/detail')}";
                             }
                         }
                     })

@@ -14,25 +14,7 @@ class Experts extends Common
     public $edit_rule = [
     ];
 
-    //插入数据时给密码进行加密
-    public function _before_insert(&$data)
-    {
-        $salt             = config('password_pre');
-        $data['password'] = md5(md5('123456') . $salt);
-        $data['addtime']  = time();
-    }
-
-    //修改数据时给密码进行加密
-    public function _before_update(&$data)
-    {
-        //判断密码是否为空
-        if ($data['password']) {
-            $salt             = config('password_pre');
-            $data['password'] = md5(md5($data['password']) . $salt);
-        } else {
-            unset($data['password']);
-        }
-    }
+    
     //登陆验证
     public function login($username, $password)
     {

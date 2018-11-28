@@ -58,12 +58,6 @@ class Experts extends Main
                 $this->error('修改失败' . $ExpertsModel->getError());
             }
         }
-        $authModel = model('Auth');
-        $data      = $authModel->tree(config('cal_array'));
-        $this->assign('cal', $data);
-        $ExpertsInfo = $ExpertsModel->find($id);
-        $this->assign('ExpertsInfo', $ExpertsInfo);
-        return $this->fetch();
     }
 
     // 删除

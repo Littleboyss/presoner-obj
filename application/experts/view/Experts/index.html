@@ -24,7 +24,7 @@
                         <div class="layui-upload-list">
                             <img src="{$ExpertsInfo.avatar}" class="layui-upload-img" id="demo1">
                             <p id="demoText"></p>
-                            <input type="hidden" name="avatar" id="avatar" />
+                            <input type="hidden" name="avatar" value="{$ExpertsInfo.avatar}" id="avatar" />
                         </div>
                     </div> 
                     <span class="title">点击更换头像</span>
@@ -114,6 +114,27 @@
             } 
             document.getElementById(wid).innerHTML = "" + rem + ""; 
         } 
+        $('#save').on('click', function() {
+            var nickname = $(":input[name='nickname']").val();
+            var avatar = $(":input[name='avatar']").val();
+            var sex = $(":input[name='sex']:checked").val();
+            var specialty = $(":select[name='specialty']").val();
+            var descrip = $("#descrip").val();
+            var data = {'nickname':nickname,'avatar':avatar,'sex':sex,'specialty':specialty,descrip:descrip}
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                data: data,
+                url: "{:url('edit')}",
+                success: function(json) {
+                    if (json.code == 1) {
+                        layer.msg(json.msg, {icon:1, time: 3000 });
+                    }else{
+                        layer.msg(json.msg, {icon:2, time: 3000 });
+                    }
+                }
+            })
+        })
     </script>
 </body>
 </html>
